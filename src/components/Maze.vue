@@ -1,14 +1,19 @@
 <script>
-    // these values determine the size of the maze 
-    const length = 15;
-    const width = 15;
     export default {
+        props: {
+            length: Number,
+            width: Number
+        },
+        created() {
+            // props are exposed on `this`
+            console.log(this.length)
+        },
         data() {
             return {
-                length: Array(length).fill(' '),
-                width: Array(width).fill(' '),
-                lengthP: (1 / length) * 100,
-                widthP: (1 / width) * 100,
+                length: Array(this.length).fill(' '),
+                width: Array(this.width).fill(' '),
+                lengthP: (1 / this.length) * 100,
+                widthP: (1 / this.width) * 100,
             }
         }
     }

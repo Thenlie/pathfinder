@@ -1,9 +1,7 @@
 <script setup>
-// This starter template is using Vue 3 <script setup> SFCs
-// Check out https://vuejs.org/api/sfc-script-setup.html#script-setup
-import Maze from './components/Maze.vue';
+    import Maze from './components/Maze.vue';
 </script>
 
 <template>
-  <Maze />
+  <Maze :length="15" :width="15"/> <!-- these values determine the size of the maze  -->
 </template>
