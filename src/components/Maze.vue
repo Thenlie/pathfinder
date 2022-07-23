@@ -1,6 +1,7 @@
 <script>
-    const length = 20;
-    const width = 20;
+    // these values determine the size of the maze 
+    const length = 15;
+    const width = 15;
     export default {
         data() {
             return {
@@ -17,7 +18,10 @@
     <h1 class="maze-heading">Maze</h1>
     <section class="maze">
         <div v-for="(x, i) in length" class="maze-row">
-            <div v-for="(y, j) in width" :id="i.toString()+j.toString()" class="maze-container"  :style="{ width: lengthP + '%', 'padding-top': lengthP + '%'}">
+            <div v-for="(y, j) in width" 
+            :id="i.toString()+j.toString()" 
+            class="maze-container"  
+            :style="{ width: lengthP + '%', 'padding-top': lengthP + '%'}">
                 <div class="maze-cell">
                     {{ i === 0 && j === 0 ? 'S' : ' '}}
                     {{ i === length.length-1 && j === width.length-1 ? 'F' : ' '}}
@@ -34,7 +38,8 @@
 }
 
 .maze {
-    margin: 2em 8em;
+    width: 50%;
+    margin: auto;
     text-align: center;
 }
 
@@ -57,6 +62,10 @@
     left: 0;
     bottom: 0;
     right: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 .maze-row:first-child .maze-container:first-child .maze-cell {
