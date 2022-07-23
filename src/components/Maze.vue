@@ -1,21 +1,23 @@
 <script>
-    const length = 10;
-    const width = 10;
-export default {
-    data() {
-        return {
-            length: Array(length).fill(' '),
-            width: Array(width).fill(' ')
+    const length = 20;
+    const width = 20;
+    export default {
+        data() {
+            return {
+                length: Array(length).fill(' '),
+                width: Array(width).fill(' '),
+                lengthP: (1 / length) * 100,
+                widthP: (1 / width) * 100,
+            }
         }
     }
-}
 </script>
 
 <template>
     <h1 class="maze-heading">Maze</h1>
     <section class="maze">
         <div v-for="(x, i) in length" class="maze-row">
-            <div v-for="(y, j) in width" :id="i.toString()+j.toString()" class="maze-container">
+            <div v-for="(y, j) in width" :id="i.toString()+j.toString()" class="maze-container"  :style="{ width: lengthP + '%', 'padding-top': lengthP + '%'}">
                 <div class="maze-cell">
                     {{ i === 0 && j === 0 ? 'S' : ' '}}
                     {{ i === length.length-1 && j === width.length-1 ? 'F' : ' '}}
@@ -32,25 +34,29 @@ export default {
 }
 
 .maze {
-    margin: 1em;
+    margin: 2em 8em;
     text-align: center;
 }
 
 .maze-row {
     display: flex;
-    min-height: 10px;
 }
 
 .maze-container {
-    width: 5%;
     background-color: lightgray;
     border: black 1px solid;
+    position: relative;
 }
 
 .maze-cell {
     text-align: center;
     font-size: larger;
     font-weight: bold;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
 }
 
 .maze-row:first-child .maze-container:first-child .maze-cell {
