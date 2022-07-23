@@ -20,7 +20,10 @@ A program that creates and solves mazes automatically
 
 ## Usage
 
-
+To run the development version of this app, use the following command:
+```
+npm run dev
+```
 
 ## License
 <details>
