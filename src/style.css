@@ -1,14 +1,37 @@
+* {
+    padding: 0;
+    margin: 0;
+    font-family: monospace;
+}
+
+/* --- [START] MAZE TABLE STYLING [START] --- */
+
 .maze-heading {
     text-align: center;
+    padding: 0.5em;
 }
 
 .maze-table {
     margin: auto;
+    border-collapse: collapse;
 }
 
 .maze-table td {
-    width: 15px;
-    height: 15px;
+    width: 2em;
+    height: 2em;
+    text-align: center;
+    font-size: larger;
+    font-weight: bold;
     border: 1px black solid;
     background-color: lightgrey;
 }
+
+.maze-table tr:first-child td:first-child {
+    background-color: #8CDBC8;
+}
+
+.maze-table tr:last-child td:last-child {
+    background-color: #E7A7A7;
+}
+
+/* --- [END] MAZE TABLE STYLING [END] --- */
