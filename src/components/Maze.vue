@@ -4,14 +4,10 @@
             length: Number,
             width: Number
         },
-        created() {
-            // props are exposed on `this`
-            console.log(this.length)
-        },
         data() {
             return {
-                length: Array(this.length).fill(' '),
-                width: Array(this.width).fill(' '),
+                lengthArr: Array(this.length).fill(' '),
+                widthArr: Array(this.width).fill(' '),
                 lengthP: (1 / this.length) * 100,
                 widthP: (1 / this.width) * 100,
             }
@@ -22,14 +18,14 @@
 <template>
     <h1 class="maze-heading">Maze</h1>
     <section class="maze">
-        <div v-for="(x, i) in length" class="maze-row">
-            <div v-for="(y, j) in width" 
+        <div v-for="(x, i) in lengthArr" class="maze-row">
+            <div v-for="(y, j) in widthArr" 
             :id="i.toString()+j.toString()" 
             class="maze-container"  
             :style="{ width: lengthP + '%', 'padding-top': lengthP + '%'}">
                 <div class="maze-cell">
                     {{ i === 0 && j === 0 ? 'S' : ' '}}
-                    {{ i === length.length-1 && j === width.length-1 ? 'F' : ' '}}
+                    {{ i === lengthArr.length-1 && j === widthArr.length-1 ? 'F' : ' '}}
                 </div>
             </div>
         </div>
