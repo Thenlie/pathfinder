@@ -35,7 +35,7 @@
     }
 
     .maze {
-        width: 50%;
+        width: 75%;
         margin: 1em auto;
         text-align: center;
         border: 2px solid black;
@@ -46,7 +46,7 @@
     }
 
     .maze-cell-container {
-        border: black 1px dashed;
+        border: black 1px solid;
         position: relative;
     }
 
@@ -72,5 +72,20 @@
 
     .maze-row:last-child  .maze-cell-container:last-child .maze-cell {
         background-color: #E7A7A7;
+    }
+
+    @media screen and (min-width: 900px) {
+        .maze {
+            width: 50%;
+        }
+        .maze-cell-container {
+            border: black 1px dashed;
+        }
+    }
+
+    @media screen and (min-width: 1500px) {
+        .maze {
+            width: 33%;
+        }
     }
 </style>
