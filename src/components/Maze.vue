@@ -1,7 +1,7 @@
 <template>
     <main>
-        <h1>Maze</h1>
-        <table>
+        <h1 class="maze-heading">Maze</h1>
+        <table class="maze-table">
             <tr>
                 <td id="00"></td>
                 <td id="01"></td>
