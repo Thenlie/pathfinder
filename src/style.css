@@ -16,6 +16,11 @@
     border-collapse: collapse;
 }
 
+.maze-table tbody {
+    width: 100%;
+    height: 100%;
+}
+
 .maze-table td {
     width: 2em;
     height: 2em;
