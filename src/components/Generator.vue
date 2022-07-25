@@ -1,6 +1,32 @@
 <script>
     export default {
         props: { length: Number, width: Number },
+        methods: {
+            generateMaze() {
+                // create 2D array 
+                let arr2D = []
+                for (let i = 0; i < this.length; i++) {
+                    arr2D.push([]);
+                }
+                for (let i = 0; i < this.length; i++) {
+                    for (let j = 0; j < this.width; j++) {
+                        if (arr2D[i]) {
+                            arr2D[i].push(0)
+                        } 
+                    }
+                }
+                console.table(arr2D)
+                // create initial path
+                let currX = 0;
+                let currY = 0;
+                while (currX !== this.length-1 && currY !== this.width-1) {
+                    arr2D[currX][currY] = '@';
+                    currX++
+                    currY++
+                }
+                console.table(arr2D)
+            }
+        },
         data() {
             return {
                 lengthArr: Array(this.length).fill(''),
@@ -15,7 +41,7 @@
 <template>
     <h1>Generated Maze</h1>
     <div class="button-container">
-        <button>GENERATE MAZE</button>
+        <button @click="generateMaze()">GENERATE MAZE</button>
         <button>SOLVE MAZE</button>
     </div>
     <section class="maze">
