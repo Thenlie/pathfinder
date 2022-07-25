@@ -1,14 +1,5 @@
-.maze-heading {
-    text-align: center;
-}
-
-.maze-table {
-    margin: auto;
-}
-
-.maze-table td {
-    width: 15px;
-    height: 15px;
-    border: 1px black solid;
-    background-color: lightgrey;
+* {
+    padding: 0;
+    margin: 0;
+    font-family: monospace;
 }
