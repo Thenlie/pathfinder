@@ -3,28 +3,56 @@
         props: { length: Number, width: Number },
         methods: {
             generateMaze() {
-                // create 2D array 
                 let arr2D = []
-                for (let i = 0; i < this.length; i++) {
-                    arr2D.push([]);
-                }
-                for (let i = 0; i < this.length; i++) {
-                    for (let j = 0; j < this.width; j++) {
-                        if (arr2D[i]) {
-                            arr2D[i].push(0)
-                        } 
+                const create2dArray = () => {
+                    // create 2D array 
+                    for (let i = 0; i < this.length; i++) {
+                        arr2D.push([]);
                     }
+                    for (let i = 0; i < this.length; i++) {
+                        for (let j = 0; j < this.width; j++) {
+                            if (arr2D[i]) {
+                                arr2D[i].push(0)
+                            } 
+                        }
+                    }
+                    console.table(arr2D)
                 }
-                console.table(arr2D)
-                // create initial path
-                let currX = 0;
-                let currY = 0;
-                while (currX !== this.length-1 && currY !== this.width-1) {
-                    arr2D[currX][currY] = '@';
-                    currX++
-                    currY++
+                const createMazePath = () => {
+                    const checkSurroundings = () => {
+                        let arr = [];
+                        if (arr2D[currX-1]) {
+                            if (arr2D[currX-1][currY] === 0) {
+                                arr.push('U');
+                            }
+                        }
+                        if (arr2D[currX+1]) {
+                            if (arr2D[currX+1][currY] === 0) {
+                                arr.push('D');
+                            }
+                        }
+                        if (arr2D[currX][currY-1] === 0) {
+                            arr.push('L');
+                        }
+                        if (arr2D[currX][currY+1] === 0) {
+                            arr.push('R');
+                        }
+                        return arr;
+                    }
+                    // create initial path
+                    let currX = 0;
+                    let currY = 0;
+                    while (currX !== this.length-1 && currY !== this.width-1) {
+                        let opts = checkSurroundings();
+                        console.log(opts)
+                        arr2D[currX][currY] = '@';
+                        currX++
+                        currY++
+                    }
+                    console.table(arr2D)
                 }
-                console.table(arr2D)
+                create2dArray();
+                createMazePath();
             }
         },
         data() {
