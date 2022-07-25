@@ -14,6 +14,10 @@
 
 <template>
     <h1>Maze</h1>
+    <div class="button-container">
+        <button>GENERATE MAZE</button>
+        <button>SOLVE MAZE</button>
+    </div>
     <section class="maze">
         <div v-for="(x, i) in lengthArr" class="maze-row">
             <div v-for="(y, j) in widthArr" class="maze-cell-container"  
@@ -34,6 +38,12 @@
         padding-top: 0.5em;
     }
 
+    .button-container {
+        display: flex;
+        justify-content: space-evenly;
+        padding: 0.5em;
+    }
+    
     .maze {
         width: 75%;
         margin: 1em auto;
