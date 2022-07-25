@@ -19,22 +19,59 @@
                     console.table(arr2D)
                 }
                 const createMazePath = () => {
+                    
+                    const checkPosition = (x, y) => {
+                        if (arr2D[x]) {
+                            if (arr2D[x][y] === 0) {
+                                return 0;
+                            } else if (arr2D[x][y] === '@') {
+                                return '@'
+                            }
+                        } 
+                        return null;
+                    }
+
                     const checkSurroundings = () => {
                         let arr = [];
-                        if (arr2D[currX-1]) {
-                            if (arr2D[currX-1][currY] === 0) {
-                                arr.push('U');
-                            }
+                        // if (arr2D[currX-1]) {
+                        //     if (arr2D[currX-1][currY] === 0) {
+                        //         arr.push('U');
+                        //     }
+                        // }
+                        // if (arr2D[currX+1]) {
+                        //     if (arr2D[currX+1][currY] === 0) {
+                        //         arr.push('D');
+                        //     }
+                        // }
+                        // if (arr2D[currX][currY-1] === 0) {
+                        //     arr.push('L');
+                        // }
+                        // if (arr2D[currX][currY+1] === 0) {
+                        //     arr.push('R');
+                        // }
+                        let a = checkPosition(currX-1, currY);
+                        let b = checkPosition(currX+1, currY);
+                        let c = checkPosition(currX, currY-1);
+                        let d = checkPosition(currX, currY+1);
+                        let e = checkPosition(currX-2, currY);
+                        let f = checkPosition(currX+2, currY);
+                        let g = checkPosition(currX, currY-2);
+                        let h = checkPosition(currX, currY+2);
+                        let i = checkPosition(currX-1, currY-1);
+                        let j = checkPosition(currX+1, currY-1);
+                        let k = checkPosition(currX-1, currY+1);
+                        let l = checkPosition(currX+1, currY+1);
+                        console.log(a,b,c,d,e,f,g,h,i,j,k,l)
+                        if ((a === 0) && (e === null || e === 0) && (i === null || i === 0) && (k === null || k === 0)) {
+                            arr.push('U');
                         }
-                        if (arr2D[currX+1]) {
-                            if (arr2D[currX+1][currY] === 0) {
-                                arr.push('D');
-                            }
+                        if ((b === 0) && (j === null || j === 0) && (f === null || f === 0) && (l === null || l === 0)) {
+                            arr.push('D');
                         }
-                        if (arr2D[currX][currY-1] === 0) {
+                        if ((c === 0) && (i === null || i === 0) && (g === null || g === 0) && (j === null || j === 0)) {
                             arr.push('L');
                         }
-                        if (arr2D[currX][currY+1] === 0) {
+                        if ((d === 0) && (k === null || k === 0) && (h === null || h === 0) && (l === null || l === 0)) {
                             arr.push('R');
                         }
                         return arr;
@@ -42,14 +79,35 @@
                     // create initial path
                     let currX = 0;
                     let currY = 0;
-                    while (currX !== this.length-1 && currY !== this.width-1) {
+                    let c = 0
+                    while (!(currX == this.length-1 && currY == this.width-1)) {
+                        console.log(currX, currY)
+                        // safety
+                        c++
+                        if (c > 100) {
+                            break;
+                        }
                         let opts = checkSurroundings();
                         console.log(opts)
+                        let move = Math.floor(Math.random() * opts.length);
+                        console.log(opts[move]);
                         arr2D[currX][currY] = '@';
-                        currX++
-                        currY++
+                        switch (opts[move]) {
+                            case 'U':
+                                currX--
+                                break;
+                            case 'D':
+                                currX++
+                                break;
+                            case 'L':
+                                currY--
+                                break;
+                            case 'R':
+                                currY++
+                                break;
+                        }
                     }
-                    console.table(arr2D)
+                    console.table(arr2D);
                 }
                 create2dArray();
                 createMazePath();

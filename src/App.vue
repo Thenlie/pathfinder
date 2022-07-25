@@ -4,5 +4,5 @@
 </script>
 
 <template>
-  <Generator :length="15" :width="15"/> <!-- these values determine the size of the maze  -->
+  <Generator :length="10" :width="10"/> <!-- these values determine the size of the maze  -->
 </template>
