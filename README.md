@@ -2,6 +2,7 @@
 
 ![JS Badge](https://img.shields.io/static/v1?label=language&message=JavaScript&color=yellow&logo=javascript)
 ![Vue Badge](https://img.shields.io/static/v1?label=framework&message=vue&color=success&logo=vuedotjs)
+![Vite Badge](https://img.shields.io/static/v1?label=created&message=vite&color=blueviolet&logo=vite)
 ![Node Badge](https://img.shields.io/static/v1?label=engine&message=node&color=green&logo=nodedotjs)
 ![Git Badge](https://img.shields.io/static/v1?label=control&message=git&color=orange&logo=git)
 
