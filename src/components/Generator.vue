@@ -16,7 +16,7 @@
                             } 
                         }
                     }
-                    console.table(arr2D)
+                    // console.table(arr2D)
                 }
                 const createMazePath = () => {
                     
@@ -33,22 +33,6 @@
 
                     const checkSurroundings = () => {
                         let arr = [];
-                        // if (arr2D[currX-1]) {
-                        //     if (arr2D[currX-1][currY] === 0) {
-                        //         arr.push('U');
-                        //     }
-                        // }
-                        // if (arr2D[currX+1]) {
-                        //     if (arr2D[currX+1][currY] === 0) {
-                        //         arr.push('D');
-                        //     }
-                        // }
-                        // if (arr2D[currX][currY-1] === 0) {
-                        //     arr.push('L');
-                        // }
-                        // if (arr2D[currX][currY+1] === 0) {
-                        //     arr.push('R');
-                        // }
                         let a = checkPosition(currX-1, currY);
                         let b = checkPosition(currX+1, currY);
                         let c = checkPosition(currX, currY-1);
@@ -61,7 +45,7 @@
                         let j = checkPosition(currX+1, currY-1);
                         let k = checkPosition(currX-1, currY+1);
                         let l = checkPosition(currX+1, currY+1);
-                        console.log(a,b,c,d,e,f,g,h,i,j,k,l)
+                        // console.log(a,b,c,d,e,f,g,h,i,j,k,l)
                         if ((a === 0) && (e === null || e === 0) && (i === null || i === 0) && (k === null || k === 0)) {
                             arr.push('U');
                         }
@@ -81,16 +65,21 @@
                     let currY = 0;
                     let c = 0
                     while (!(currX == this.length-1 && currY == this.width-1)) {
-                        console.log(currX, currY)
+                        // console.log(currX, currY)
                         // safety
                         c++
-                        if (c > 100) {
+                        if (c > 50) {
+                            arr2D = [];
+                            currX = 0;
+                            currY = 0;
+                            create2dArray();
+                            createMazePath();
                             break;
                         }
                         let opts = checkSurroundings();
-                        console.log(opts)
+                        // console.log(opts)
                         let move = Math.floor(Math.random() * opts.length);
-                        console.log(opts[move]);
+                        // console.log(opts[move]);
                         arr2D[currX][currY] = '@';
                         switch (opts[move]) {
                             case 'U':
@@ -107,7 +96,9 @@
                                 break;
                         }
                     }
-                    console.table(arr2D);
+                    if (currX == this.length-1 && currY == this.width-1) {
+                        console.table(arr2D);
+                    }
                 }
                 create2dArray();
                 createMazePath();
