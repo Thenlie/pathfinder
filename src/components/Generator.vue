@@ -4,6 +4,24 @@
         methods: {
             generateMaze() {
                 let arr2D = []
+                let currX = 0;
+                let currY = 0;
+                let c = 0
+                let running = true;
+
+                const clearMaze = () => {
+                    for (let i = 0; i < this.length; i++) {
+                        for (let j = 0; j < this.width; j++) {
+                            if (i != 0 && j != 0) {
+                                if (i != this.length-1 && j != this.width-1) {
+                                    let el = document.getElementById(i.toString() + j.toString());
+                                    el.firstChild.style.backgroundColor = "lightgray";
+                                }
+                            }
+                        }
+                    }
+                }
+
                 const create2dArray = () => {
                     // create 2D array 
                     for (let i = 0; i < this.length; i++) {
@@ -61,26 +79,23 @@
                         return arr;
                     }
                     // create initial path
-                    let currX = 0;
-                    let currY = 0;
-                    let c = 0
                     while (!(currX == this.length-1 && currY == this.width-1)) {
-                        // console.log(currX, currY)
                         // safety
                         c++
                         if (c > 50) {
                             arr2D = [];
                             currX = 0;
                             currY = 0;
-                            create2dArray();
-                            createMazePath();
                             break;
                         }
                         let opts = checkSurroundings();
-                        // console.log(opts)
                         let move = Math.floor(Math.random() * opts.length);
-                        // console.log(opts[move]);
-                        arr2D[currX][currY] = '@';
+                        // fill cell with character
+                        if (currX === 0 && currY === 0) {
+                            arr2D[currX][currY] = 'S'
+                        } else {
+                            arr2D[currX][currY] = '@';
+                        }
                         switch (opts[move]) {
                             case 'U':
                                 currX--
@@ -97,11 +112,25 @@
                         }
                     }
                     if (currX == this.length-1 && currY == this.width-1) {
+                        arr2D[currX][currY] = 'F';
                         console.table(arr2D);
-                    }
+                        // style HTML
+                        for (let i = 0; i < this.length; i++) {
+                            for (let j = 0; j < this.width; j++) {
+                                if (arr2D[i][j] === '@') {
+                                    let el = document.getElementById(i.toString() + j.toString());
+                                    el.firstChild.style.backgroundColor = "rgb(213, 215, 142)";
+                                }
+                            }
+                        }
+                        running = false;
+                    } 
                 }
-                create2dArray();
-                createMazePath();
+                while (running) {
+                    clearMaze();
+                    create2dArray();
+                    createMazePath();
+                }
             }
         },
         data() {
