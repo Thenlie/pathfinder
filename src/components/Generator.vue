@@ -10,18 +10,18 @@
                 let running = true;
 
                 const clearMaze = () => {
+                    // remove current maze styling
                     for (let i = 0; i < this.length; i++) {
                         for (let j = 0; j < this.width; j++) {
                             if (i !== 0 || j !== 0) {
-                                console.log(i, j)
                                 if (i !== this.length-1 || j !== this.width-1) {
+                                    // style HTML
                                     let el = document.getElementById(i.toString() + j.toString());
                                     el.firstChild.style.backgroundColor = "lightgray";
                                 }
                             }
                         }
                     }
-                    console.log('maze cleared');
                 }
 
                 const create2dArray = () => {
@@ -37,7 +37,6 @@
                         }
                     }
                     // console.table(arr2D);
-                    console.log('array created');
                 }
 
                 const createMazePath = () => {
@@ -67,7 +66,6 @@
                         let j = checkPosition(currX+1, currY-1);
                         let k = checkPosition(currX-1, currY+1);
                         let l = checkPosition(currX+1, currY+1);
-                        // console.log(a,b,c,d,e,f,g,h,i,j,k,l)
                         if ((a === 0) && (e === null || e === 0) && (i === null || i === 0) && (k === null || k === 0)) {
                             arr.push('U');
                         }
@@ -85,7 +83,7 @@
 
                     // create initial path
                     while (!(currX == this.length-1 && currY == this.width-1)) {
-                        // safety
+                        // safety check
                         c++
                         if (c > 50) {
                             arr2D = [];
@@ -121,10 +119,10 @@
                     if (currX == this.length-1 && currY == this.width-1) {
                         arr2D[currX][currY] = 'F';
                         // console.table(arr2D);
-                        // style HTML
                         for (let i = 0; i < this.length; i++) {
                             for (let j = 0; j < this.width; j++) {
                                 if (arr2D[i][j] === '@') {
+                                    // style HTML
                                     let el = document.getElementById(i.toString() + j.toString());
                                     el.firstChild.style.backgroundColor = "rgb(213, 215, 142)";
                                 }
@@ -133,6 +131,7 @@
                         running = false;
                     } 
                 }
+                // game loop
                 while (running) {
                     clearMaze();
                     create2dArray();
