@@ -16,7 +16,7 @@
                             if (i !== 0 || j !== 0) {
                                 if (i !== this.length-1 || j !== this.width-1) {
                                     // style HTML
-                                    let el = document.getElementById(i.toString() + j.toString());
+                                    let el = document.getElementById(String(i).padStart(2, '0') + String(j).padStart(2, '0'));
                                     el.firstChild.style.backgroundColor = "lightgray";
                                 }
                             }
@@ -85,7 +85,7 @@
                     while (!(currX == this.length-1 && currY == this.width-1)) {
                         // safety check
                         c++
-                        if (c > 50) {
+                        if (c > this.length * this.width) {
                             arr2D = [];
                             c = 0;
                             currX = 0;
@@ -123,7 +123,8 @@
                             for (let j = 0; j < this.width; j++) {
                                 if (arr2D[i][j] === '@') {
                                     // style HTML
-                                    let el = document.getElementById(i.toString() + j.toString());
+                                    console.log(i, j)
+                                    let el = document.getElementById(String(i).padStart(2, '0') + String(j).padStart(2, '0'));
                                     el.firstChild.style.backgroundColor = "rgb(213, 215, 142)";
                                 }
                             }
@@ -159,7 +160,7 @@
     <section class="maze">
         <div v-for="(x, i) in lengthArr" class="maze-row">
             <div v-for="(y, j) in widthArr" class="maze-cell-container"  
-            :id="i.toString()+j.toString()" 
+            :id="String(i).padStart(2, '0') + String(j).padStart(2, '0')" 
             :style="{ width: lengthP + '%', 'padding-top': lengthP + '%'}">
                 <div class="maze-cell">
                     {{ i === 0 && j === 0 ? 'S' : ' '}}
