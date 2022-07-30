@@ -12,8 +12,9 @@
                 const clearMaze = () => {
                     for (let i = 0; i < this.length; i++) {
                         for (let j = 0; j < this.width; j++) {
-                            if (i != 0 && j != 0) {
-                                if (i != this.length-1 && j != this.width-1) {
+                            if (i !== 0 || j !== 0) {
+                                console.log(i, j)
+                                if (i !== this.length-1 || j !== this.width-1) {
                                     let el = document.getElementById(i.toString() + j.toString());
                                     el.firstChild.style.backgroundColor = "lightgray";
                                 }
@@ -116,11 +117,10 @@
                                 break;
                         }
                     }
-                    console.log(c, currX, currY);
                     // check for finish position
                     if (currX == this.length-1 && currY == this.width-1) {
                         arr2D[currX][currY] = 'F';
-                        console.table(arr2D);
+                        // console.table(arr2D);
                         // style HTML
                         for (let i = 0; i < this.length; i++) {
                             for (let j = 0; j < this.width; j++) {
