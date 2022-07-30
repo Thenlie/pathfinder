@@ -20,6 +20,7 @@
                             }
                         }
                     }
+                    console.log('maze cleared');
                 }
 
                 const create2dArray = () => {
@@ -34,8 +35,10 @@
                             } 
                         }
                     }
-                    // console.table(arr2D)
+                    // console.table(arr2D);
+                    console.log('array created');
                 }
+
                 const createMazePath = () => {
                     
                     const checkPosition = (x, y) => {
@@ -78,12 +81,14 @@
                         }
                         return arr;
                     }
+
                     // create initial path
                     while (!(currX == this.length-1 && currY == this.width-1)) {
                         // safety
                         c++
                         if (c > 50) {
                             arr2D = [];
+                            c = 0;
                             currX = 0;
                             currY = 0;
                             break;
@@ -111,6 +116,8 @@
                                 break;
                         }
                     }
+                    console.log(c, currX, currY);
+                    // check for finish position
                     if (currX == this.length-1 && currY == this.width-1) {
                         arr2D[currX][currY] = 'F';
                         console.table(arr2D);
