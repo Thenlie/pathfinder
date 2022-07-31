@@ -13,8 +13,8 @@
                     // remove current maze styling
                     for (let i = 0; i < this.length; i++) {
                         for (let j = 0; j < this.width; j++) {
-                            if (i !== 0 || j !== 0) {
-                                if (i !== this.length-1 || j !== this.width-1) {
+                            if (i !== 0 || j !== 0) { // not start
+                                if (i !== this.length-1 || j !== this.width-1) { // not finish
                                     // style HTML
                                     let el = document.getElementById(String(i).padStart(2, '0') + String(j).padStart(2, '0'));
                                     el.firstChild.style.backgroundColor = "lightgray";
@@ -125,19 +125,41 @@
                                     // style HTML
                                     console.log(i, j)
                                     let el = document.getElementById(String(i).padStart(2, '0') + String(j).padStart(2, '0'));
-                                    el.firstChild.style.backgroundColor = "rgb(213, 215, 142)";
+                                    // el.firstChild.style.backgroundColor = "rgb(213, 215, 142)";
                                 }
                             }
                         }
                         running = false;
                     } 
                 }
-                // game loop
+
                 while (running) {
+                    // game loop
                     clearMaze();
                     create2dArray();
                     createMazePath();
                 }
+
+                const createMazeWalls = () => {
+                    for (let i = 0; i < this.length; i++) {
+                        for (let j = 0; j < this.width; j++) {
+                            if (i !== 0 || j !== 0) { // not start
+                                if (i !== this.length-1 || j !== this.width-1) { // not finish
+                                    if (arr2D[i][j] === 0) { // not part of path
+                                        let n = Math.floor(Math.random() * 100);
+                                        if (n < 50) { // random selection 65%
+                                            // style HTML
+                                            let el = document.getElementById(String(i).padStart(2, '0') + String(j).padStart(2, '0'));
+                                            el.firstChild.style.backgroundColor = "black";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+
+                createMazeWalls();
             }
         },
         data() {
@@ -228,7 +250,7 @@
             width: 50%;
         }
         .maze-cell-container {
-            border: black 1px dashed;
+            border: black 1px solid;
         }
     }
 
