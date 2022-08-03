@@ -180,8 +180,8 @@
         <button>SOLVE MAZE</button>
     </div>
     <section class="maze">
-        <div v-for="(x, i) in lengthArr" class="maze-row">
-            <div v-for="(y, j) in widthArr" class="maze-cell-container"  
+        <div v-for="(x, i) in lengthArr" :key="i" class="maze-row">
+            <div v-for="(y, j) in widthArr" :key="i + j" class="maze-cell-container"  
             :id="String(i).padStart(2, '0') + String(j).padStart(2, '0')" 
             :style="{ width: lengthP + '%', 'padding-top': lengthP + '%'}">
                 <div class="maze-cell">
