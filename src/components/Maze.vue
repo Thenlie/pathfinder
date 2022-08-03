@@ -1,4 +1,5 @@
 <script>
+    import { v4 as uuidv4 } from 'uuid';
     export default {
         props: { length: Number, width: Number },
         data() {
@@ -19,8 +20,8 @@
         <button>SOLVE MAZE</button>
     </div>
     <section class="maze">
-        <div v-for="(x, i) in lengthArr" class="maze-row">
-            <div v-for="(y, j) in widthArr" class="maze-cell-container"  
+        <div v-for="(x, i) in lengthArr" :key="i" class="maze-row">
+            <div v-for="(y, j) in widthArr" :key="i + j" class="maze-cell-container"  
             :id="i.toString()+j.toString()" 
             :style="{ width: lengthP + '%', 'padding-top': lengthP + '%'}">
                 <div class="maze-cell">
