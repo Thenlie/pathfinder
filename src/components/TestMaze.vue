@@ -1,20 +1,30 @@
 <script>
-    import { v4 as uuidv4 } from 'uuid';
+    import { testMaze } from '../test-maze';
     export default {
-        props: { length: Number, width: Number },
         data() {
             return {
-                lengthArr: Array(this.length).fill(''),
-                widthArr: Array(this.width).fill(''),
-                lengthP: (1 / this.length) * 100,
-                widthP: (1 / this.width) * 100,
+                testMaze,
+                lengthArr: testMaze.length,
+                widthArr: testMaze[0].length,
+                lengthP: testMaze.length,
+            }
+        },
+        mounted() {
+            const cells = document.getElementsByClassName('maze-cell');
+            for (let i = 0; i < cells.length; i++) {
+                if (cells[i].innerHTML === '#') {
+                  cells[i].style.backgroundColor = 'black';
+                }
+                if (cells[i].innerHTML === '0') {
+                  cells[i].style.color = 'transparent';
+                }
             }
         }
     }
 </script>
 
 <template>
-    <h1>Maze</h1>
+    <h1>Test Maze</h1>
     <div class="button-container">
         <button>GENERATE MAZE</button>
         <button>SOLVE MAZE</button>
@@ -22,11 +32,9 @@
     <section class="maze">
         <div v-for="(x, i) in lengthArr" :key="i" class="maze-row">
             <div v-for="(y, j) in widthArr" :key="i + j" class="maze-cell-container"  
-            :id="i.toString()+j.toString()" 
             :style="{ width: lengthP + '%', 'padding-top': lengthP + '%'}">
                 <div class="maze-cell">
-                    {{ i === 0 && j === 0 ? 'S' : ' '}}
-                    {{ i === lengthArr.length-1 && j === widthArr.length-1 ? 'F' : ' '}}
+                    {{ testMaze[i][j] }}
                 </div>
             </div>
         </div>
