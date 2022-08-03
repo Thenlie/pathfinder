@@ -6,7 +6,7 @@
 
 <template>
     <!-- <Maze :length="15" :width="15"/> these values determine the size of the maze  -->
-    <TestMaze :length="10" :width="10" />
+    <TestMaze/>
     <Generator :length="15" :width="15"/> <!-- these values determine the size of the maze  -->
 </template>
 

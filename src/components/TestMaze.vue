@@ -1,12 +1,12 @@
 <script>
+    import { testMaze } from '../test-maze';
     export default {
-        props: { length: Number, width: Number },
         data() {
             return {
-                lengthArr: Array(this.length).fill(''),
-                widthArr: Array(this.width).fill(''),
-                lengthP: (1 / this.length) * 100,
-                widthP: (1 / this.width) * 100,
+                testMaze,
+                lengthArr: testMaze.length,
+                widthArr: testMaze[0].length,
+                lengthP: testMaze.length,
             }
         },
         mounted() {
@@ -15,336 +15,27 @@
                 if (cells[i].innerHTML === '#') {
                   cells[i].style.backgroundColor = 'black';
                 }
+                if (cells[i].innerHTML === '0') {
+                  cells[i].style.color = 'transparent';
+                }
             }
         }
     }
 </script>
 
 <template>
-    <h1>Maze</h1>
+    <h1>Test Maze</h1>
     <div class="button-container">
         <button>GENERATE MAZE</button>
         <button>SOLVE MAZE</button>
     </div>
     <section class="maze">
-        <div class="maze-row">
-            <div class="maze-cell-container" :style="{ width: lengthP + '%', 'padding-top': lengthP + '%'}">
-                <div class="maze-cell">{{ 'S' }}</div>
-            </div>
-            <div class="maze-cell-container" :style="{ width: lengthP + '%', 'padding-top': lengthP + '%'}">
-                <div class="maze-cell">{{ ' ' }}</div>
-            </div>
-            <div class="maze-cell-container" :style="{ width: lengthP + '%', 'padding-top': lengthP + '%'}">
-                <div class="maze-cell">{{ ' ' }}</div>
-            </div>
-            <div class="maze-cell-container" :style="{ width: lengthP + '%', 'padding-top': lengthP + '%'}">
-                <div class="maze-cell">{{ '#' }}</div>
-            </div>
-            <div class="maze-cell-container" :style="{ width: lengthP + '%', 'padding-top': lengthP + '%'}">
-                <div class="maze-cell">{{ ' ' }}</div>
-            </div>
-            <div class="maze-cell-container" :style="{ width: lengthP + '%', 'padding-top': lengthP + '%'}">
-                <div class="maze-cell">{{ ' ' }}</div>
-            </div>
-            <div class="maze-cell-container" :style="{ width: lengthP + '%', 'padding-top': lengthP + '%'}">
-                <div class="maze-cell">{{ ' ' }}</div>
-            </div>
-            <div class="maze-cell-container" :style="{ width: lengthP + '%', 'padding-top': lengthP + '%'}">
-                <div class="maze-cell">{{ '#' }}</div>
-            </div>
-            <div class="maze-cell-container" :style="{ width: lengthP + '%', 'padding-top': lengthP + '%'}">
-                <div class="maze-cell">{{ ' ' }}</div>
-            </div>
-            <div class="maze-cell-container" :style="{ width: lengthP + '%', 'padding-top': lengthP + '%'}">
-                <div class="maze-cell">{{ ' ' }}</div>
-            </div>
-        </div>
-        <div class="maze-row">
-            <div class="maze-cell-container" :style="{ width: lengthP + '%', 'padding-top': lengthP + '%'}">
-                <div class="maze-cell">{{ '#' }}</div>
-            </div>
-            <div class="maze-cell-container" :style="{ width: lengthP + '%', 'padding-top': lengthP + '%'}">
-                <div class="maze-cell">{{ ' ' }}</div>
-            </div>
-            <div class="maze-cell-container" :style="{ width: lengthP + '%', 'padding-top': lengthP + '%'}">
-                <div class="maze-cell">{{ '#' }}</div>
-            </div>
-            <div class="maze-cell-container" :style="{ width: lengthP + '%', 'padding-top': lengthP + '%'}">
-                <div class="maze-cell">{{ ' ' }}</div>
-            </div>
-            <div class="maze-cell-container" :style="{ width: lengthP + '%', 'padding-top': lengthP + '%'}">
-                <div class="maze-cell">{{ ' ' }}</div>
-            </div>
-            <div class="maze-cell-container" :style="{ width: lengthP + '%', 'padding-top': lengthP + '%'}">
-                <div class="maze-cell">{{ '#' }}</div>
-            </div>
-            <div class="maze-cell-container" :style="{ width: lengthP + '%', 'padding-top': lengthP + '%'}">
-                <div class="maze-cell">{{ ' ' }}</div>
-            </div>
-            <div class="maze-cell-container" :style="{ width: lengthP + '%', 'padding-top': lengthP + '%'}">
-                <div class="maze-cell">{{ '#' }}</div>
-            </div>
-            <div class="maze-cell-container" :style="{ width: lengthP + '%', 'padding-top': lengthP + '%'}">
-                <div class="maze-cell">{{ '#' }}</div>
-            </div>
-            <div class="maze-cell-container" :style="{ width: lengthP + '%', 'padding-top': lengthP + '%'}">
-                <div class="maze-cell">{{ ' ' }}</div>
-            </div>
-        </div>
-        <div class="maze-row">
-            <div class="maze-cell-container" :style="{ width: lengthP + '%', 'padding-top': lengthP + '%'}">
-                <div class="maze-cell">{{ '#' }}</div>
-            </div>
-            <div class="maze-cell-container" :style="{ width: lengthP + '%', 'padding-top': lengthP + '%'}">
-                <div class="maze-cell">{{ ' ' }}</div>
-            </div>
-            <div class="maze-cell-container" :style="{ width: lengthP + '%', 'padding-top': lengthP + '%'}">
-                <div class="maze-cell">{{ ' ' }}</div>
-            </div>
-            <div class="maze-cell-container" :style="{ width: lengthP + '%', 'padding-top': lengthP + '%'}">
-                <div class="maze-cell">{{ ' ' }}</div>
-            </div>
-            <div class="maze-cell-container" :style="{ width: lengthP + '%', 'padding-top': lengthP + '%'}">
-                <div class="maze-cell">{{ '#' }}</div>
-            </div>
-            <div class="maze-cell-container" :style="{ width: lengthP + '%', 'padding-top': lengthP + '%'}">
-                <div class="maze-cell">{{ '#' }}</div>
-            </div>
-            <div class="maze-cell-container" :style="{ width: lengthP + '%', 'padding-top': lengthP + '%'}">
-                <div class="maze-cell">{{ ' ' }}</div>
-            </div>
-            <div class="maze-cell-container" :style="{ width: lengthP + '%', 'padding-top': lengthP + '%'}">
-                <div class="maze-cell">{{ ' ' }}</div>
-            </div>
-            <div class="maze-cell-container" :style="{ width: lengthP + '%', 'padding-top': lengthP + '%'}">
-                <div class="maze-cell">{{ ' ' }}</div>
-            </div>
-            <div class="maze-cell-container" :style="{ width: lengthP + '%', 'padding-top': lengthP + '%'}">
-                <div class="maze-cell">{{ ' ' }}</div>
-            </div>
-        </div>
-        <div class="maze-row">
-            <div class="maze-cell-container" :style="{ width: lengthP + '%', 'padding-top': lengthP + '%'}">
-                <div class="maze-cell">{{ ' ' }}</div>
-            </div>
-            <div class="maze-cell-container" :style="{ width: lengthP + '%', 'padding-top': lengthP + '%'}">
-                <div class="maze-cell">{{ ' ' }}</div>
-            </div>
-            <div class="maze-cell-container" :style="{ width: lengthP + '%', 'padding-top': lengthP + '%'}">
-                <div class="maze-cell">{{ ' ' }}</div>
-            </div>
-            <div class="maze-cell-container" :style="{ width: lengthP + '%', 'padding-top': lengthP + '%'}">
-                <div class="maze-cell">{{ '#' }}</div>
-            </div>
-            <div class="maze-cell-container" :style="{ width: lengthP + '%', 'padding-top': lengthP + '%'}">
-                <div class="maze-cell">{{ ' ' }}</div>
-            </div>
-            <div class="maze-cell-container" :style="{ width: lengthP + '%', 'padding-top': lengthP + '%'}">
-                <div class="maze-cell">{{ ' ' }}</div>
-            </div>
-            <div class="maze-cell-container" :style="{ width: lengthP + '%', 'padding-top': lengthP + '%'}">
-                <div class="maze-cell">{{ ' ' }}</div>
-            </div>
-            <div class="maze-cell-container" :style="{ width: lengthP + '%', 'padding-top': lengthP + '%'}">
-                <div class="maze-cell">{{ '#' }}</div>
-            </div>
-            <div class="maze-cell-container" :style="{ width: lengthP + '%', 'padding-top': lengthP + '%'}">
-                <div class="maze-cell">{{ ' ' }}</div>
-            </div>
-            <div class="maze-cell-container" :style="{ width: lengthP + '%', 'padding-top': lengthP + '%'}">
-                <div class="maze-cell">{{ ' ' }}</div>
-            </div>
-        </div>
-        <div class="maze-row">
-            <div class="maze-cell-container" :style="{ width: lengthP + '%', 'padding-top': lengthP + '%'}">
-                <div class="maze-cell">{{ ' ' }}</div>
-            </div>
-            <div class="maze-cell-container" :style="{ width: lengthP + '%', 'padding-top': lengthP + '%'}">
-                <div class="maze-cell">{{ ' ' }}</div>
-            </div>
-            <div class="maze-cell-container" :style="{ width: lengthP + '%', 'padding-top': lengthP + '%'}">
-                <div class="maze-cell">{{ ' ' }}</div>
-            </div>
-            <div class="maze-cell-container" :style="{ width: lengthP + '%', 'padding-top': lengthP + '%'}">
-                <div class="maze-cell">{{ '#' }}</div>
-            </div>
-            <div class="maze-cell-container" :style="{ width: lengthP + '%', 'padding-top': lengthP + '%'}">
-                <div class="maze-cell">{{ ' ' }}</div>
-            </div>
-            <div class="maze-cell-container" :style="{ width: lengthP + '%', 'padding-top': lengthP + '%'}">
-                <div class="maze-cell">{{ ' ' }}</div>
-            </div>
-            <div class="maze-cell-container" :style="{ width: lengthP + '%', 'padding-top': lengthP + '%'}">
-                <div class="maze-cell">{{ '#' }}</div>
-            </div>
-            <div class="maze-cell-container" :style="{ width: lengthP + '%', 'padding-top': lengthP + '%'}">
-                <div class="maze-cell">{{ '#' }}</div>
-            </div>
-            <div class="maze-cell-container" :style="{ width: lengthP + '%', 'padding-top': lengthP + '%'}">
-                <div class="maze-cell">{{ ' ' }}</div>
-            </div>
-            <div class="maze-cell-container" :style="{ width: lengthP + '%', 'padding-top': lengthP + '%'}">
-                <div class="maze-cell">{{ '#' }}</div>
-            </div>
-        </div>
-        <div class="maze-row">
-            <div class="maze-cell-container" :style="{ width: lengthP + '%', 'padding-top': lengthP + '%'}">
-                <div class="maze-cell">{{ '#' }}</div>
-            </div>
-            <div class="maze-cell-container" :style="{ width: lengthP + '%', 'padding-top': lengthP + '%'}">
-                <div class="maze-cell">{{ ' ' }}</div>
-            </div>
-            <div class="maze-cell-container" :style="{ width: lengthP + '%', 'padding-top': lengthP + '%'}">
-                <div class="maze-cell">{{ '#' }}</div>
-            </div>
-            <div class="maze-cell-container" :style="{ width: lengthP + '%', 'padding-top': lengthP + '%'}">
-                <div class="maze-cell">{{ ' ' }}</div>
-            </div>
-            <div class="maze-cell-container" :style="{ width: lengthP + '%', 'padding-top': lengthP + '%'}">
-                <div class="maze-cell">{{ '#' }}</div>
-            </div>
-            <div class="maze-cell-container" :style="{ width: lengthP + '%', 'padding-top': lengthP + '%'}">
-                <div class="maze-cell">{{ ' ' }}</div>
-            </div>
-            <div class="maze-cell-container" :style="{ width: lengthP + '%', 'padding-top': lengthP + '%'}">
-                <div class="maze-cell">{{ ' ' }}</div>
-            </div>
-            <div class="maze-cell-container" :style="{ width: lengthP + '%', 'padding-top': lengthP + '%'}">
-                <div class="maze-cell">{{ ' ' }}</div>
-            </div>
-            <div class="maze-cell-container" :style="{ width: lengthP + '%', 'padding-top': lengthP + '%'}">
-                <div class="maze-cell">{{ '#' }}</div>
-            </div>
-            <div class="maze-cell-container" :style="{ width: lengthP + '%', 'padding-top': lengthP + '%'}">
-                <div class="maze-cell">{{ ' ' }}</div>
-            </div>
-        </div>
-        <div class="maze-row">
-            <div class="maze-cell-container" :style="{ width: lengthP + '%', 'padding-top': lengthP + '%'}">
-                <div class="maze-cell">{{ ' ' }}</div>
-            </div>
-            <div class="maze-cell-container" :style="{ width: lengthP + '%', 'padding-top': lengthP + '%'}">
-                <div class="maze-cell">{{ '#' }}</div>
-            </div>
-            <div class="maze-cell-container" :style="{ width: lengthP + '%', 'padding-top': lengthP + '%'}">
-                <div class="maze-cell">{{ '#' }}</div>
-            </div>
-            <div class="maze-cell-container" :style="{ width: lengthP + '%', 'padding-top': lengthP + '%'}">
-                <div class="maze-cell">{{ ' ' }}</div>
-            </div>
-            <div class="maze-cell-container" :style="{ width: lengthP + '%', 'padding-top': lengthP + '%'}">
-                <div class="maze-cell">{{ ' ' }}</div>
-            </div>
-            <div class="maze-cell-container" :style="{ width: lengthP + '%', 'padding-top': lengthP + '%'}">
-                <div class="maze-cell">{{ '#' }}</div>
-            </div>
-            <div class="maze-cell-container" :style="{ width: lengthP + '%', 'padding-top': lengthP + '%'}">
-                <div class="maze-cell">{{ '#' }}</div>
-            </div>
-            <div class="maze-cell-container" :style="{ width: lengthP + '%', 'padding-top': lengthP + '%'}">
-                <div class="maze-cell">{{ ' ' }}</div>
-            </div>
-            <div class="maze-cell-container" :style="{ width: lengthP + '%', 'padding-top': lengthP + '%'}">
-                <div class="maze-cell">{{ '#' }}</div>
-            </div>
-            <div class="maze-cell-container" :style="{ width: lengthP + '%', 'padding-top': lengthP + '%'}">
-                <div class="maze-cell">{{ ' ' }}</div>
-            </div>
-        </div>
-        <div class="maze-row">
-            <div class="maze-cell-container" :style="{ width: lengthP + '%', 'padding-top': lengthP + '%'}">
-                <div class="maze-cell">{{ ' ' }}</div>
-            </div>
-            <div class="maze-cell-container" :style="{ width: lengthP + '%', 'padding-top': lengthP + '%'}">
-                <div class="maze-cell">{{ ' ' }}</div>
-            </div>
-            <div class="maze-cell-container" :style="{ width: lengthP + '%', 'padding-top': lengthP + '%'}">
-                <div class="maze-cell">{{ ' ' }}</div>
-            </div>
-            <div class="maze-cell-container" :style="{ width: lengthP + '%', 'padding-top': lengthP + '%'}">
-                <div class="maze-cell">{{ ' ' }}</div>
-            </div>
-            <div class="maze-cell-container" :style="{ width: lengthP + '%', 'padding-top': lengthP + '%'}">
-                <div class="maze-cell">{{ ' ' }}</div>
-            </div>
-            <div class="maze-cell-container" :style="{ width: lengthP + '%', 'padding-top': lengthP + '%'}">
-                <div class="maze-cell">{{ ' ' }}</div>
-            </div>
-            <div class="maze-cell-container" :style="{ width: lengthP + '%', 'padding-top': lengthP + '%'}">
-                <div class="maze-cell">{{ ' ' }}</div>
-            </div>
-            <div class="maze-cell-container" :style="{ width: lengthP + '%', 'padding-top': lengthP + '%'}">
-                <div class="maze-cell">{{ ' ' }}</div>
-            </div>
-            <div class="maze-cell-container" :style="{ width: lengthP + '%', 'padding-top': lengthP + '%'}">
-                <div class="maze-cell">{{ '#' }}</div>
-            </div>
-            <div class="maze-cell-container" :style="{ width: lengthP + '%', 'padding-top': lengthP + '%'}">
-                <div class="maze-cell">{{ ' ' }}</div>
-            </div>
-        </div>
-        <div class="maze-row">
-            <div class="maze-cell-container" :style="{ width: lengthP + '%', 'padding-top': lengthP + '%'}">
-                <div class="maze-cell">{{ ' ' }}</div>
-            </div>
-            <div class="maze-cell-container" :style="{ width: lengthP + '%', 'padding-top': lengthP + '%'}">
-                <div class="maze-cell">{{ ' ' }}</div>
-            </div>
-            <div class="maze-cell-container" :style="{ width: lengthP + '%', 'padding-top': lengthP + '%'}">
-                <div class="maze-cell">{{ ' ' }}</div>
-            </div>
-            <div class="maze-cell-container" :style="{ width: lengthP + '%', 'padding-top': lengthP + '%'}">
-                <div class="maze-cell">{{ ' ' }}</div>
-            </div>
-            <div class="maze-cell-container" :style="{ width: lengthP + '%', 'padding-top': lengthP + '%'}">
-                <div class="maze-cell">{{ '#' }}</div>
-            </div>
-            <div class="maze-cell-container" :style="{ width: lengthP + '%', 'padding-top': lengthP + '%'}">
-                <div class="maze-cell">{{ '#' }}</div>
-            </div>
-            <div class="maze-cell-container" :style="{ width: lengthP + '%', 'padding-top': lengthP + '%'}">
-                <div class="maze-cell">{{ '#' }}</div>
-            </div>
-            <div class="maze-cell-container" :style="{ width: lengthP + '%', 'padding-top': lengthP + '%'}">
-                <div class="maze-cell">{{ '#' }}</div>
-            </div>
-            <div class="maze-cell-container" :style="{ width: lengthP + '%', 'padding-top': lengthP + '%'}">
-                <div class="maze-cell">{{ '#' }}</div>
-            </div>
-            <div class="maze-cell-container" :style="{ width: lengthP + '%', 'padding-top': lengthP + '%'}">
-                <div class="maze-cell">{{ ' ' }}</div>
-            </div>
-        </div>
-        <div class="maze-row">
-            <div class="maze-cell-container" :style="{ width: lengthP + '%', 'padding-top': lengthP + '%'}">
-                <div class="maze-cell">{{ ' ' }}</div>
-            </div>
-            <div class="maze-cell-container" :style="{ width: lengthP + '%', 'padding-top': lengthP + '%'}">
-                <div class="maze-cell">{{ '#' }}</div>
-            </div>
-            <div class="maze-cell-container" :style="{ width: lengthP + '%', 'padding-top': lengthP + '%'}">
-                <div class="maze-cell">{{ ' ' }}</div>
-            </div>
-            <div class="maze-cell-container" :style="{ width: lengthP + '%', 'padding-top': lengthP + '%'}">
-                <div class="maze-cell">{{ ' ' }}</div>
-            </div>
-            <div class="maze-cell-container" :style="{ width: lengthP + '%', 'padding-top': lengthP + '%'}">
-                <div class="maze-cell">{{ ' ' }}</div>
-            </div>
-            <div class="maze-cell-container" :style="{ width: lengthP + '%', 'padding-top': lengthP + '%'}">
-                <div class="maze-cell">{{ ' ' }}</div>
-            </div>
-            <div class="maze-cell-container" :style="{ width: lengthP + '%', 'padding-top': lengthP + '%'}">
-                <div class="maze-cell">{{ ' ' }}</div>
-            </div>
-            <div class="maze-cell-container" :style="{ width: lengthP + '%', 'padding-top': lengthP + '%'}">
-                <div class="maze-cell">{{ ' ' }}</div>
-            </div>
-            <div class="maze-cell-container" :style="{ width: lengthP + '%', 'padding-top': lengthP + '%'}">
-                <div class="maze-cell">{{ ' ' }}</div>
-            </div>
-            <div class="maze-cell-container" :style="{ width: lengthP + '%', 'padding-top': lengthP + '%'}">
-                <div class="maze-cell">{{ 'F' }}</div>
+        <div v-for="(x, i) in lengthArr" :key="i" class="maze-row">
+            <div v-for="(y, j) in widthArr" :key="i + j" class="maze-cell-container"  
+            :style="{ width: lengthP + '%', 'padding-top': lengthP + '%'}">
+                <div class="maze-cell">
+                    {{ testMaze[i][j] }}
+                </div>
             </div>
         </div>
     </section>
