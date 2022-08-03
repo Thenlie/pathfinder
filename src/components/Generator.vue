@@ -122,10 +122,10 @@
                         for (let i = 0; i < this.length; i++) {
                             for (let j = 0; j < this.width; j++) {
                                 if (arr2D[i][j] === '@') {
+                                    // populate final array
                                     // style HTML
-                                    console.log(i, j)
-                                    let el = document.getElementById(String(i).padStart(2, '0') + String(j).padStart(2, '0'));
-                                    // el.firstChild.style.backgroundColor = "rgb(213, 215, 142)";
+                                    // let el = document.getElementById(String(i).padStart(2, '0') + String(j).padStart(2, '0'));
+                                    // el.firstChild.style.backgroundColor = "rgb(213, 215, 142)";\
                                 }
                             }
                         }
@@ -148,15 +148,19 @@
                                     if (arr2D[i][j] === 0) { // not part of path
                                         let n = Math.floor(Math.random() * 100);
                                         if (n < 50) { // random selection 65%
+                                            arr2D[i][j] = '#';
                                             // style HTML
                                             let el = document.getElementById(String(i).padStart(2, '0') + String(j).padStart(2, '0'));
                                             el.firstChild.style.backgroundColor = "black";
                                         }
+                                    } else {
+                                        arr2D[i][j] = 0;
                                     }
                                 }
                             }
                         }
                     }
+                    console.table(arr2D);
                 }
 
                 createMazeWalls();
