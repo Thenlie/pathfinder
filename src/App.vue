@@ -1,32 +1,37 @@
 <script setup>
-    import Maze from './components/Maze.vue';
     import TestMaze from './components/TestMaze.vue';
     import Generator from './components/Generator.vue';
 </script>
 
+<template>
+    <TestMaze/>
+<Generator :length="15" :width="15" :mazeArr="mazeArr" @set="set"/> <!-- these values determine the size of the maze  -->
+</template>
+
 <script>
     export default {
+        name: 'App',
         // state
         data() {
             return {
-                mazeArr: []
+                mazeArr: [1, 2, 3]
             }
         },
         // actions
         methods: {
-            fill(arr) {
+            set(arr) {
                 this.mazeArr = arr;
+            },
+            get() {
+                return this.mazeArr;
             },
             isEmpty() {
                 this.mazeArr.length > 0 ? false : true;
             }
+        },
+        components: {
+            Generator,
+            TestMaze
         }
     }
 </script>
-
-<template>
-    <!-- <Maze :length="15" :width="15"/> these values determine the size of the maze  -->
-    <TestMaze/>
-    <Generator :length="15" :width="15"/> <!-- these values determine the size of the maze  -->
-</template>
-

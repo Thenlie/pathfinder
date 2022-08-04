@@ -1,7 +1,16 @@
 <script>
     export default {
-        props: { length: Number, width: Number },
+        name: 'Generator',
+        props: { length: Number, width: Number, mazeArr: Array },
+        emits: ['set', 'get'],
         methods: {
+            async set(arr) {
+                await this.$emit('set', arr);
+                console.log(this.mazeArr)
+            },
+            // get() {
+            //     console.log(this.$emit('get'));
+            // },
             generateMaze() {
                 let arr2D = []
                 let currX = 0;
@@ -161,8 +170,8 @@
                         }
                     }
                     console.table(arr2D);
+                    this.set(arr2D);
                 }
-
                 createMazeWalls();
             }
         },
@@ -182,6 +191,7 @@
     <div class="button-container">
         <button @click="generateMaze()">GENERATE MAZE</button>
         <button>SOLVE MAZE</button>
+        <!-- <button @click="get()">GET MAZE</button> -->
     </div>
     <section class="maze">
         <div v-for="(x, i) in lengthArr" :key="i" class="maze-row">
