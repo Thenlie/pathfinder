@@ -6,10 +6,7 @@
         methods: {
             async set(arr) {
                 await this.$emit('set', arr);
-                console.log(this.mazeArr); // <-- the 'proxy' this logs acts just like an array
-            },
-            get() {
-                console.log(this.mazeArr);
+                // console.log(this.mazeArr); // <-- the 'proxy' this logs acts just like an array
             },
             generateMaze() {
                 let arr2D = []
@@ -22,8 +19,8 @@
                     // remove current maze styling
                     for (let i = 0; i < this.length; i++) {
                         for (let j = 0; j < this.width; j++) {
-                            if (i !== 0 || j !== 0) { // not start
-                                if (i !== this.length-1 || j !== this.width-1) { // not finish
+                            if (i !== 0 || j !== 0) { // not start cell
+                                if (i !== this.length-1 || j !== this.width-1) { // not finish cell
                                     // style HTML
                                     let el = document.getElementById(String(i).padStart(2, '0') + String(j).padStart(2, '0'));
                                     el.firstChild.style.backgroundColor = "lightgray";
@@ -34,7 +31,7 @@
                 }
 
                 const create2dArray = () => {
-                    // create 2D array 
+                    // create 2D array of 0's
                     for (let i = 0; i < this.length; i++) {
                         arr2D.push([]);
                     }
@@ -45,7 +42,6 @@
                             } 
                         }
                     }
-                    // console.table(arr2D);
                 }
 
                 const createMazePath = () => {
@@ -61,39 +57,20 @@
                         return null;
                     }
 
-                    const checkSurroundings = () => {
+                    const checkSurroundings = (x, y) => {
+                        // check for available directions to move
                         let arr = [];
-                        let a = checkPosition(currX-1, currY);
-                        let b = checkPosition(currX+1, currY);
-                        let c = checkPosition(currX, currY-1);
-                        let d = checkPosition(currX, currY+1);
-                        let e = checkPosition(currX-2, currY);
-                        let f = checkPosition(currX+2, currY);
-                        let g = checkPosition(currX, currY-2);
-                        let h = checkPosition(currX, currY+2);
-                        let i = checkPosition(currX-1, currY-1);
-                        let j = checkPosition(currX+1, currY-1);
-                        let k = checkPosition(currX-1, currY+1);
-                        let l = checkPosition(currX+1, currY+1);
-                        if ((a === 0) && (e === null || e === 0) && (i === null || i === 0) && (k === null || k === 0)) {
-                            arr.push('U');
-                        }
-                        if ((b === 0) && (j === null || j === 0) && (f === null || f === 0) && (l === null || l === 0)) {
-                            arr.push('D');
-                        }
-                        if ((c === 0) && (i === null || i === 0) && (g === null || g === 0) && (j === null || j === 0)) {
-                            arr.push('L');
-                        }
-                        if ((d === 0) && (k === null || k === 0) && (h === null || h === 0) && (l === null || l === 0)) {
-                            arr.push('R');
-                        }
+                        if ((checkPosition(x-1, y) === 0) && (checkPosition(x-2, y) === null || checkPosition(x-2, y) === 0) && (checkPosition(x-1, y-1) === null || checkPosition(x-1, y-1) === 0) && (checkPosition(x-1, y+1) === null || checkPosition(x-1, y+1) === 0)) { arr.push('U') };
+                        if ((checkPosition(x+1, y) === 0) && (checkPosition(x+1, y-1) === null || checkPosition(x+1, y-1) === 0) && (checkPosition(x+2, y) === null || checkPosition(x+2, y) === 0) && (checkPosition(x+1, y+1) === null || checkPosition(x+1, y+1) === 0)) { arr.push('D') };
+                        if ((checkPosition(x, y-1) === 0) && (checkPosition(x-1, y-1) === null || checkPosition(x-1, y-1) === 0) && (checkPosition(x, y-2) === null || checkPosition(x, y-2) === 0) && (checkPosition(x+1, y-1) === null || checkPosition(x+1, y-1) === 0)) { arr.push('L') };
+                        if ((checkPosition(x, y+1) === 0) && (checkPosition(x-1, y+1) === null || checkPosition(x-1, y+1) === 0) && (checkPosition(x, y+2) === null || checkPosition(x, y+2) === 0) && (checkPosition(x+1, y+1) === null || checkPosition(x+1, y+1) === 0)) { arr.push('R') };
                         return arr;
                     }
 
                     // create initial path
                     while (!(currX == this.length-1 && currY == this.width-1)) {
-                        // safety check
                         c++
+                        // safety check
                         if (c > this.length * this.width) {
                             arr2D = [];
                             c = 0;
@@ -101,7 +78,7 @@
                             currY = 0;
                             break;
                         }
-                        let opts = checkSurroundings();
+                        let opts = checkSurroundings(currX, currY);
                         let move = Math.floor(Math.random() * opts.length);
                         // fill cell with character
                         if (currX === 0 && currY === 0) {
@@ -109,6 +86,7 @@
                         } else {
                             arr2D[currX][currY] = '@';
                         }
+                        // move current position
                         switch (opts[move]) {
                             case 'U':
                                 currX--
@@ -127,17 +105,7 @@
                     // check for finish position
                     if (currX == this.length-1 && currY == this.width-1) {
                         arr2D[currX][currY] = 'F';
-                        // console.table(arr2D);
-                        for (let i = 0; i < this.length; i++) {
-                            for (let j = 0; j < this.width; j++) {
-                                if (arr2D[i][j] === '@') {
-                                    // populate final array
-                                    // style HTML
-                                    // let el = document.getElementById(String(i).padStart(2, '0') + String(j).padStart(2, '0'));
-                                    // el.firstChild.style.backgroundColor = "rgb(213, 215, 142)";\
-                                }
-                            }
-                        }
+                        // console.table(arr2D); // <-- completed array with path
                         running = false;
                     } 
                 }
@@ -152,9 +120,9 @@
                 const createMazeWalls = () => {
                     for (let i = 0; i < this.length; i++) {
                         for (let j = 0; j < this.width; j++) {
-                            if (i !== 0 || j !== 0) { // not start
-                                if (i !== this.length-1 || j !== this.width-1) { // not finish
-                                    if (arr2D[i][j] === 0) { // not part of path
+                            if (i !== 0 || j !== 0) { // not start cell
+                                if (i !== this.length-1 || j !== this.width-1) { // not finish cell
+                                    if (arr2D[i][j] === 0) { // ensure cell is not part of path
                                         let n = Math.floor(Math.random() * 100);
                                         if (n < 50) { // random selection 65%
                                             arr2D[i][j] = '#';
@@ -169,7 +137,7 @@
                             }
                         }
                     }
-                    console.table(arr2D);
+                    // console.table(arr2D); // <-- completed array without path
                     this.set(arr2D);
                 }
                 createMazeWalls();
@@ -190,8 +158,7 @@
     <h1>Generated Maze</h1>
     <div class="button-container">
         <button @click="generateMaze()">GENERATE MAZE</button>
-        <button @click="get()">SOLVE MAZE</button>
-        <!-- <button @click="get()">GET MAZE</button> -->
+        <button>SOLVE MAZE</button>
     </div>
     <section class="maze">
         <div v-for="(x, i) in lengthArr" :key="i" class="maze-row">
