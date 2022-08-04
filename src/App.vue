@@ -22,12 +22,6 @@
             set(arr) {
                 this.mazeArr = arr;
             },
-            get() {
-                return this.mazeArr;
-            },
-            isEmpty() {
-                this.mazeArr.length > 0 ? false : true;
-            }
         },
         components: {
             Generator,

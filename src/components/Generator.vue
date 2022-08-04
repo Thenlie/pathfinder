@@ -2,15 +2,15 @@
     export default {
         name: 'Generator',
         props: { length: Number, width: Number, mazeArr: Array },
-        emits: ['set', 'get'],
+        emits: ['set'],
         methods: {
             async set(arr) {
                 await this.$emit('set', arr);
-                console.log(this.mazeArr)
+                console.log(this.mazeArr); // <-- the 'proxy' this logs acts just like an array
             },
-            // get() {
-            //     console.log(this.$emit('get'));
-            // },
+            get() {
+                console.log(this.mazeArr);
+            },
             generateMaze() {
                 let arr2D = []
                 let currX = 0;
@@ -190,7 +190,7 @@
     <h1>Generated Maze</h1>
     <div class="button-container">
         <button @click="generateMaze()">GENERATE MAZE</button>
-        <button>SOLVE MAZE</button>
+        <button @click="get()">SOLVE MAZE</button>
         <!-- <button @click="get()">GET MAZE</button> -->
     </div>
     <section class="maze">
