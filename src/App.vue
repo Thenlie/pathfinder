@@ -5,7 +5,7 @@
 
 <template>
     <TestMaze/>
-<Generator :length="15" :width="15" :mazeArr="mazeArr" @set="set"/> <!-- these values determine the size of the maze  -->
+    <Generator :length="15" :width="15" :mazeArr="mazeArr" @set="set"/> <!-- these values determine the size of the maze  -->
 </template>
 
 <script>
