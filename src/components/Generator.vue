@@ -1,6 +1,6 @@
 <script setup>
     import { clearMaze } from '../utils/mazeUtil';
-    import { create2dArray } from '../utils/arrayUtil';
+    import { create2dArray, checkPosition } from '../utils/arrayUtil';
 </script>
 
 <script>
@@ -14,36 +14,22 @@
                 // console.log(this.mazeArr); // <-- the 'proxy' this logs acts just like an array
             },
             generateMaze() {
-                let arr2D = []
-                let currX = 0;
-                let currY = 0;
-                let c = 0
+                let arr2D = [];
+                let c = 0, currX = 0, currY = 0;
                 let running = true;
 
                 const createMazePath = () => {
                     
-                    const checkPosition = (x, y) => {
-                        if (arr2D[x]) {
-                            if (arr2D[x][y] === 0) {
-                                return 0;
-                            } else if (arr2D[x][y] === '@') {
-                                return '@';
-                            }
-                        } 
-                        return null;
-                    };
-
                     const checkSurroundings = (x, y) => {
                         // check for available directions to move
                         let arr = [];
-                        if ((checkPosition(x-1, y) === 0) && (checkPosition(x-2, y) === null || checkPosition(x-2, y) === 0) && (checkPosition(x-1, y-1) === null || checkPosition(x-1, y-1) === 0) && (checkPosition(x-1, y+1) === null || checkPosition(x-1, y+1) === 0)) { arr.push('U') };
-                        if ((checkPosition(x+1, y) === 0) && (checkPosition(x+1, y-1) === null || checkPosition(x+1, y-1) === 0) && (checkPosition(x+2, y) === null || checkPosition(x+2, y) === 0) && (checkPosition(x+1, y+1) === null || checkPosition(x+1, y+1) === 0)) { arr.push('D') };
-                        if ((checkPosition(x, y-1) === 0) && (checkPosition(x-1, y-1) === null || checkPosition(x-1, y-1) === 0) && (checkPosition(x, y-2) === null || checkPosition(x, y-2) === 0) && (checkPosition(x+1, y-1) === null || checkPosition(x+1, y-1) === 0)) { arr.push('L') };
-                        if ((checkPosition(x, y+1) === 0) && (checkPosition(x-1, y+1) === null || checkPosition(x-1, y+1) === 0) && (checkPosition(x, y+2) === null || checkPosition(x, y+2) === 0) && (checkPosition(x+1, y+1) === null || checkPosition(x+1, y+1) === 0)) { arr.push('R') };
+                        if ((checkPosition(arr2D, x-1, y) === 0) && (checkPosition(arr2D, x-2, y) === null || checkPosition(arr2D, x-2, y) === 0) && (checkPosition(arr2D, x-1, y-1) === null || checkPosition(arr2D, x-1, y-1) === 0) && (checkPosition(arr2D, x-1, y+1) === null || checkPosition(arr2D, x-1, y+1) === 0)) { arr.push('U') };
+                        if ((checkPosition(arr2D, x+1, y) === 0) && (checkPosition(arr2D, x+1, y-1) === null || checkPosition(arr2D, x+1, y-1) === 0) && (checkPosition(arr2D, x+2, y) === null || checkPosition(arr2D, x+2, y) === 0) && (checkPosition(arr2D, x+1, y+1) === null || checkPosition(arr2D, x+1, y+1) === 0)) { arr.push('D') };
+                        if ((checkPosition(arr2D, x, y-1) === 0) && (checkPosition(arr2D, x-1, y-1) === null || checkPosition(arr2D, x-1, y-1) === 0) && (checkPosition(arr2D, x, y-2) === null || checkPosition(arr2D, x, y-2) === 0) && (checkPosition(arr2D, x+1, y-1) === null || checkPosition(arr2D, x+1, y-1) === 0)) { arr.push('L') };
+                        if ((checkPosition(arr2D, x, y+1) === 0) && (checkPosition(arr2D, x-1, y+1) === null || checkPosition(arr2D, x-1, y+1) === 0) && (checkPosition(arr2D, x, y+2) === null || checkPosition(arr2D, x, y+2) === 0) && (checkPosition(arr2D, x+1, y+1) === null || checkPosition(arr2D, x+1, y+1) === 0)) { arr.push('R') };
                         return arr;
                     };
 
-                    // create initial path
                     while (!(currX == this.length-1 && currY == this.width-1)) {
                         c++
                         // safety check
@@ -102,7 +88,6 @@
                 };
 
                 while (running) {
-                    // game loop
                     clearMaze(this.length, this.width);
                     arr2D = create2dArray(this.length, this.width);
                     createMazePath();
