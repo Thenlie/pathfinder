@@ -86,9 +86,8 @@
                             if ((i !== 0 || j !== 0) && (i !== this.length-1 || j !== this.width-1)) { // not start or finish cell
                                 if (arr2D[i][j] === 0) { // ensure cell is not part of path
                                     let n = Math.floor(Math.random() * 100);
-                                    if (n < 50) { // random selection 65%
+                                    if (n < 50) { // random selection 50%
                                         arr2D[i][j] = '#';
-                                        // style HTML
                                         let el = document.getElementById(String(i).padStart(2, '0') + String(j).padStart(2, '0'));
                                         el.firstChild.style.backgroundColor = "black";
                                     }
