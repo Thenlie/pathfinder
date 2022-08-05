@@ -1,3 +1,8 @@
+<script setup>
+    import { clearMaze } from '../utils/mazeUtil';
+    import { create2dArray } from '../utils/arrayUtil';
+</script>
+
 <script>
     export default {
         name: 'Generator',
@@ -15,34 +20,34 @@
                 let c = 0
                 let running = true;
 
-                const clearMaze = () => {
-                    // remove current maze styling
-                    for (let i = 0; i < this.length; i++) {
-                        for (let j = 0; j < this.width; j++) {
-                            if (i !== 0 || j !== 0) { // not start cell
-                                if (i !== this.length-1 || j !== this.width-1) { // not finish cell
-                                    // style HTML
-                                    let el = document.getElementById(String(i).padStart(2, '0') + String(j).padStart(2, '0'));
-                                    el.firstChild.style.backgroundColor = "lightgray";
-                                }
-                            }
-                        }
-                    }
-                }
+                // const clearMaze = () => {
+                //     // remove current maze styling
+                //     for (let i = 0; i < this.length; i++) {
+                //         for (let j = 0; j < this.width; j++) {
+                //             if (i !== 0 || j !== 0) { // not start cell
+                //                 if (i !== this.length-1 || j !== this.width-1) { // not finish cell
+                //                     // style HTML
+                //                     let el = document.getElementById(String(i).padStart(2, '0') + String(j).padStart(2, '0'));
+                //                     el.firstChild.style.backgroundColor = "lightgray";
+                //                 }
+                //             }
+                //         }
+                //     }
+                // }
 
-                const create2dArray = () => {
-                    // create 2D array of 0's
-                    for (let i = 0; i < this.length; i++) {
-                        arr2D.push([]);
-                    }
-                    for (let i = 0; i < this.length; i++) {
-                        for (let j = 0; j < this.width; j++) {
-                            if (arr2D[i]) {
-                                arr2D[i].push(0)
-                            } 
-                        }
-                    }
-                }
+                // const create2dArray = () => {
+                //     // create 2D array of 0's
+                //     for (let i = 0; i < this.length; i++) {
+                //         arr2D.push([]);
+                //     }
+                //     for (let i = 0; i < this.length; i++) {
+                //         for (let j = 0; j < this.width; j++) {
+                //             if (arr2D[i]) {
+                //                 arr2D[i].push(0)
+                //             } 
+                //         }
+                //     }
+                // }
 
                 const createMazePath = () => {
                     
@@ -51,11 +56,11 @@
                             if (arr2D[x][y] === 0) {
                                 return 0;
                             } else if (arr2D[x][y] === '@') {
-                                return '@'
+                                return '@';
                             }
                         } 
                         return null;
-                    }
+                    };
 
                     const checkSurroundings = (x, y) => {
                         // check for available directions to move
@@ -65,7 +70,7 @@
                         if ((checkPosition(x, y-1) === 0) && (checkPosition(x-1, y-1) === null || checkPosition(x-1, y-1) === 0) && (checkPosition(x, y-2) === null || checkPosition(x, y-2) === 0) && (checkPosition(x+1, y-1) === null || checkPosition(x+1, y-1) === 0)) { arr.push('L') };
                         if ((checkPosition(x, y+1) === 0) && (checkPosition(x-1, y+1) === null || checkPosition(x-1, y+1) === 0) && (checkPosition(x, y+2) === null || checkPosition(x, y+2) === 0) && (checkPosition(x+1, y+1) === null || checkPosition(x+1, y+1) === 0)) { arr.push('R') };
                         return arr;
-                    }
+                    };
 
                     // create initial path
                     while (!(currX == this.length-1 && currY == this.width-1)) {
@@ -108,14 +113,7 @@
                         // console.table(arr2D); // <-- completed array with path
                         running = false;
                     } 
-                }
-
-                while (running) {
-                    // game loop
-                    clearMaze();
-                    create2dArray();
-                    createMazePath();
-                }
+                };
 
                 const createMazeWalls = () => {
                     for (let i = 0; i < this.length; i++) {
@@ -139,7 +137,15 @@
                     }
                     // console.table(arr2D); // <-- completed array without path
                     this.set(arr2D);
+                };
+
+                while (running) {
+                    // game loop
+                    clearMaze(this.length, this.width);
+                    arr2D = create2dArray(this.length, this.width);
+                    createMazePath();
                 }
+
                 createMazeWalls();
             }
         },
