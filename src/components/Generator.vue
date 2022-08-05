@@ -31,7 +31,7 @@
                     };
 
                     while (!(currX == this.length-1 && currY == this.width-1)) {
-                        c++
+                        c++;
                         // safety check
                         if (c > this.length * this.width) {
                             arr2D = [];
