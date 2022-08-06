@@ -7,7 +7,8 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "test": "jest"
+    "test": "vitest",
+    "coverage": "vitest run --coverage"
   },
   "dependencies": {
     "uuid": "^8.3.2",
@@ -15,7 +16,7 @@
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^3.0.0",
-    "jest": "^28.1.3",
-    "vite": "^3.0.0"
+    "vite": "^3.0.0",
+    "vitest": "^0.21.0"
   }
 }

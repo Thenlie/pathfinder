@@ -26,4 +26,4 @@ const checkPosition = (arr2D, x, y) => {
     return null;
 };
 
-export { create2dArray, checkPosition };
+module.exports = { create2dArray, checkPosition };
