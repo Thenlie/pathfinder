@@ -1,5 +1,5 @@
 import { create2dArray, checkPosition } from '../utils/arrayUtil';
-import { describe, it, expect } from 'vitest'
+import { describe, it, expect } from 'vitest';
 
 describe('create2dArray', () => {
     const arr = create2dArray(10, 10);
@@ -17,10 +17,13 @@ describe('create2dArray', () => {
 })
 
 describe('checkPositon', () => {
+    const arr = create2dArray(10, 10);
+    const pos1 = checkPosition(arr, 5, 5);
+    const pos2 = checkPosition(arr, 5, 15);
     it('returns 0 for empty positions', () => {
-        expect(pos).toEqual(0);
+        expect(pos1).toEqual(0);
     });
     it('returns null for positions that don\'t exist', () => {
-        expect(pos).toBeNull();
+        expect(pos2).toBeNull();
     });
 })  
