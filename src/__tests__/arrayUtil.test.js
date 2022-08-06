@@ -2,7 +2,7 @@ import { create2dArray, checkPosition } from '../utils/arrayUtil';
 import { describe, it, expect } from 'vitest'
 
 describe('create2dArray', () => {
-    // const arr = [];
+    const arr = create2dArray(10, 10);
     it('is Array data type', () => {
         expect(arr).toBeInstanceOf(Array);
     });
@@ -11,11 +11,11 @@ describe('create2dArray', () => {
         expect(arr[0].length).toBe(10);
     });
     it('contains only zeros', () => {
-        expect(arr).toEqual(expect.arrayContaining([0, 0, 0, 0, 0, 0, 0, 0, 0, 0]));
-        expect(arr).not.toEqual(expect.arrayContaining([1, 2, 3, 4, 5 ,6, 7, 8, 9, 10]));
+        expect(arr[0]).toEqual(expect.arrayContaining([0, 0, 0, 0, 0, 0, 0, 0, 0, 0]));
+        expect(arr[0]).not.toEqual(expect.arrayContaining([1, 2, 3, 4, 5 ,6, 7, 8, 9, 10]));
     });
 })
 
-describe('checkPositon', () => {
-    
-})
+// describe('checkPositon', () => {
+
+// })
