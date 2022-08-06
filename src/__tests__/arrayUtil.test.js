@@ -16,6 +16,11 @@ describe('create2dArray', () => {
     });
 })
 
-// describe('checkPositon', () => {
-
-// })
+describe('checkPositon', () => {
+    it('returns 0 for empty positions', () => {
+        expect(pos).toEqual(0);
+    });
+    it('returns null for positions that don\'t exist', () => {
+        expect(pos).toBeNull();
+    });
+})  
