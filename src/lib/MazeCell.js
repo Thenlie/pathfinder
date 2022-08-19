@@ -27,3 +27,5 @@ class MazeCell {
         return this.left;
     }
 }
+
+export { MazeCell };

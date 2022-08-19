@@ -1,6 +1,6 @@
 <script setup>
     import { clearMaze } from '../utils/mazeUtil';
-    import { create2dArray, checkPosition } from '../utils/arrayUtil';
+    import { create2dArray, checkPosition, createNew2dArray } from '../utils/arrayUtil';
 </script>
 
 <script>
