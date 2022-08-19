@@ -16,6 +16,7 @@
             generateMaze() {
                 let arr2D = [];
                 let stack = [];
+                let c = 1;
                 let currX = 0;
                 let currY = 0;
                 let running = true;
@@ -32,12 +33,25 @@
                         return arr;
                     };
 
-                    while (stack.length < this.length * this.width) {
-                        stack.push({x: currX, y: currY}); 
+                    while (c < this.length * this.width) {
+                        console.log("Current Position: " + currX + " " + currY + " Iteration: " + c);
+                        console.log(arr2D[currX][currY])
+                        arr2D[currX][currY].visited = true;
+                        c++;
+                        if (stack.length > 0) {
+                            console.log(stack[stack.length-1])
+                            console.log(stack[stack.length-1].x !== currX)
+                            console.log(stack[stack.length-1].y !== currY)
+                            if (!(stack[stack.length-1].x == currX && stack[stack.length-1].y == currY)) {
+                                stack.push({x: currX, y: currY}); 
+                            }
+                        } else {
+                            stack.push({x: currX, y: currY}); 
+                        }
                         let opts = checkSurroundings(currX, currY);
                         if (opts.length > 0) {
                             let move = opts[Math.floor(Math.random() * opts.length)];
-                            arr2D[currX][currY].visited = true;
+                            console.log(opts, move)
                             // move current position
                             switch (move) {
                                 case 'U':
@@ -55,23 +69,32 @@
                             }
                         } else {
                             // backtrack
+                            console.log("Backtrack!");
                             stack.pop();
+                            c--
                             currX = stack[stack.length-1].x
                             currY = stack[stack.length-1].y
+                            console.log(currX, currY, stack[stack.length-1])
                         }
                     }
                     // check for complete stack
-                    if (stack.length === this.length * this.width) {
+                    if (c === this.length * this.width) {
                         console.log("Done!")
                         running = false;
-                        console.log(stack);
                     } 
                 };
+
+                const styleMaze = () => {
+                    for (let i = 0; i < stack.length; i++) {
+
+                    }
+                }
 
                 while (running) {
                     clearMaze(this.length, this.width);
                     arr2D = createNew2dArray(this.length, this.width);
                     createMazePath();
+                    styleMaze();
                 }
             }
         },
