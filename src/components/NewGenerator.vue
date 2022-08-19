@@ -16,7 +16,6 @@
             generateMaze() {
                 let arr2D = [];
                 let stack = [];
-                let c = 0;
                 let currX = 0;
                 let currY = 0;
                 let running = true;
@@ -34,18 +33,11 @@
                     };
 
                     while (stack.length < this.length * this.width) {
-                        console.log("Current Position: " + currX + " " + currY)
                         stack.push({x: currX, y: currY}); 
-                        c++;
-                        if (c > 20) {
-                            running = false;
-                            break;
-                        }
                         let opts = checkSurroundings(currX, currY);
                         if (opts.length > 0) {
                             let move = opts[Math.floor(Math.random() * opts.length)];
                             arr2D[currX][currY].visited = true;
-                            console.log(opts, move);
                             // move current position
                             switch (move) {
                                 case 'U':
@@ -64,8 +56,6 @@
                         } else {
                             // backtrack
                             stack.pop();
-                            console.log("Backtrack!");
-                            console.log(stack)
                             currX = stack[stack.length-1].x
                             currY = stack[stack.length-1].y
                         }
@@ -74,18 +64,15 @@
                     if (stack.length === this.length * this.width) {
                         console.log("Done!")
                         running = false;
+                        console.log(stack);
                     } 
                 };
 
                 while (running) {
                     clearMaze(this.length, this.width);
                     arr2D = createNew2dArray(this.length, this.width);
-                    stack = [];
-                    console.log(stack)
                     createMazePath();
                 }
-
-                // createMazeWalls();
             }
         },
         data() {
