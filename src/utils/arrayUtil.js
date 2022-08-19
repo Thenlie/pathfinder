@@ -44,4 +44,14 @@ const createNew2dArray = (length, width) => {
     return arr2D;
 }
 
-export { create2dArray, checkPosition, createNew2dArray };
+const checkNewPosition = (arr2D, x, y) => {
+    // return value of (x, y) in 2D array
+    if (arr2D[x]) {
+        if (arr2D[x][y]) {
+            return !arr2D[x][y].wasVisited();
+        }
+    }
+    return false;
+};
+
+export { create2dArray, checkPosition, createNew2dArray, checkNewPosition };
