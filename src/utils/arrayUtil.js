@@ -44,6 +44,4 @@ const createNew2dArray = (length, width) => {
     return arr2D;
 }
 
-console.log(createNew2dArray(20, 20));
-
 export { create2dArray, checkPosition, createNew2dArray };
