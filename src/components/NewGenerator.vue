@@ -53,10 +53,7 @@
                 }
 
                 const createMazePath = () => {
-
                     while (c < this.length * this.width) {
-                        console.log("Current Position: " + currX + " " + currY + " Iteration: " + c);
-                        console.log(arr2D[currX][currY])
                         arr2D[currX][currY].visited = true;
                         c++;
                         if (stack.length > 0) {
@@ -107,7 +104,7 @@
                 const resetMazeStyle = () => {
                     for (let i = 0; i < this.length; i++) {
                         for (let j = 0; j < this.width; j++) {
-                           document.getElementById(String(i).padStart(2, '0') + String(j).padStart(2, '0')).style.border = "2px solid black";
+                           document.getElementById(String(i).padStart(2, '0') + String(j).padStart(2, '0')).style.border = "1px solid black";
                         }
                     }
                 }
@@ -131,12 +128,11 @@
                     }
                 }
 
-                while (running) {
-                    clearMaze(this.length, this.width);
-                    arr2D = createNew2dArray(this.length, this.width);
-                    createMazePath();
-                    styleMaze();
-                }
+                clearMaze(this.length, this.width);
+                resetMazeStyle();
+                arr2D = createNew2dArray(this.length, this.width);
+                createMazePath();
+                styleMaze();
             }
         },
         data() {
