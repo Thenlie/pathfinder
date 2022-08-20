@@ -48,7 +48,6 @@ const checkNewPosition = (arr2D, x, y) => {
     // return value of (x, y) in 2D array
     if (arr2D[x]) {
         if (arr2D[x][y]) {
-            console.log(arr2D[x][y].visited)
             return !arr2D[x][y].visited;
         }
     }

@@ -10,16 +10,11 @@
         emits: ['set'],
         methods: {
             async set(arr) {
-                await this.$emit('set', arr);
-                // console.log(this.mazeArr); // <-- the 'proxy' this logs acts just like an array
+                this.$emit('set', arr);
+                // console.log(this.mazeArr); // <-- the 'proxy' this logs acts just like an array, must await line 13
             },
             generateMaze() {
-                let arr2D = [];
-                let stack = [];
-                let c = 1;
-                let currX = 0;
-                let currY = 0;
-                let running = true;
+                let arr2D = [], stack = [], c = 1, currX = 0, currY = 0, running = true;
 
                 const checkSurroundings = (x, y) => {
                     // check for available directions to move
@@ -32,6 +27,7 @@
                 };
 
                 const breakWalls = () => {
+                    // remove walls where current node is connected to prev node
                     let curr = arr2D[currX][currY];
                     let prev = arr2D[stack[stack.length-1].x][stack[stack.length-1].y];
                     if (curr.x < prev.x) { // up
@@ -67,34 +63,21 @@
                         let opts = checkSurroundings(currX, currY);
                         if (opts.length > 0) {
                             let move = opts[Math.floor(Math.random() * opts.length)];
-                            console.log(opts, move)
-                            // move current position
-                            switch (move) {
-                                case 'U':
-                                    currX--;
-                                    break;
-                                case 'D':
-                                    currX++;
-                                    break;
-                                case 'L':
-                                    currY--;
-                                    break;
-                                case 'R':
-                                    currY++;
-                                    break;
+                            switch (move) { // move current position
+                                case 'U': currX--; break;
+                                case 'D': currX++; break;
+                                case 'L': currY--; break;
+                                case 'R': currY++; break;
                             }
-                        } else {
-                            // backtrack
-                            console.log("Backtrack!");
+                        } else { // backtrack
                             stack.pop();
                             c--
                             currX = stack[stack.length-1].x
                             currY = stack[stack.length-1].y
-                            console.log(currX, currY, stack[stack.length-1])
                         }
                     }
                     // check for complete stack
-                    if (c === this.length * this.width) {
+                    if (c === this.length * this.width) { 
                         arr2D[currX][currY].visited = true;
                         breakWalls();
                         running = false;
@@ -102,6 +85,7 @@
                 };
 
                 const resetMazeStyle = () => {
+                    // rebuild all borders
                     for (let i = 0; i < this.length; i++) {
                         for (let j = 0; j < this.width; j++) {
                            document.getElementById(String(i).padStart(2, '0') + String(j).padStart(2, '0')).style.border = "1px solid black";
@@ -110,24 +94,16 @@
                 }
 
                 const styleMaze = () => {
+                    // remove borders according to 2D array
                     for (let i = 0; i < this.length; i++) {
                         for (let j = 0; j < this.width; j++) {
-                            if (!arr2D[i][j].top) { 
-                                document.getElementById(String(i).padStart(2, '0') + String(j).padStart(2, '0')).style.borderTop = "none"; 
-                            }
-                            if (!arr2D[i][j].bottom) {
-                                document.getElementById(String(i).padStart(2, '0') + String(j).padStart(2, '0')).style.borderBottom = "none"; 
-                            }
-                            if (!arr2D[i][j].left) {
-                                document.getElementById(String(i).padStart(2, '0') + String(j).padStart(2, '0')).style.borderLeft = "none"; 
-                            }
-                            if (!arr2D[i][j].right) {
-                                document.getElementById(String(i).padStart(2, '0') + String(j).padStart(2, '0')).style.borderRight = "none"; 
-                            }
+                            if (!arr2D[i][j].top) { document.getElementById(String(i).padStart(2, '0') + String(j).padStart(2, '0')).style.borderTop = "none" }
+                            if (!arr2D[i][j].bottom) { document.getElementById(String(i).padStart(2, '0') + String(j).padStart(2, '0')).style.borderBottom = "none" }
+                            if (!arr2D[i][j].left) { document.getElementById(String(i).padStart(2, '0') + String(j).padStart(2, '0')).style.borderLeft = "none" }
+                            if (!arr2D[i][j].right) { document.getElementById(String(i).padStart(2, '0') + String(j).padStart(2, '0')).style.borderRight = "none" }
                         }
                     }
                 }
-
                 clearMaze(this.length, this.width);
                 resetMazeStyle();
                 arr2D = createNew2dArray(this.length, this.width);
