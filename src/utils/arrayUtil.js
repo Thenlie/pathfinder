@@ -16,14 +16,7 @@ const create2dArray = (length, width) => {
 
 const checkPosition = (arr2D, x, y) => {
     // return value of (x, y) in 2D array
-    if (arr2D[x]) {
-        if (arr2D[x][y] === 0) {
-            return 0;
-        } else if (arr2D[x][y] === '@') {
-            return '@';
-        }
-    } 
-    return null;
+    return ([0,'@'].includes(arr2D[x]?.[y]))?arr2D[x][y]:null;
 };
 
 export { create2dArray, checkPosition };
