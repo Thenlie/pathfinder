@@ -37,7 +37,7 @@ const createNew2dArray = (length, width) => {
     for (let i = 0; i < length; i++) {
         for (let j = 0; j < width; j++) {
             if (arr2D[i]) {
-                arr2D[i].push(new MazeCell(i, j, false, (i == 0 ? true:false), (j == width-1 ? true:false), (i == length-1 ? true:false), (j == 0 ? true:false)))
+                arr2D[i].push(new MazeCell(i, j, false, true, true, true, true,))
             } 
         }
     }

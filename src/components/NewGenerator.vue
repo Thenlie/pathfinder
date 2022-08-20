@@ -21,17 +21,38 @@
                 let currY = 0;
                 let running = true;
 
+                const checkSurroundings = (x, y) => {
+                    // check for available directions to move
+                    let arr = [];
+                    if (checkNewPosition(arr2D, x-1, y)) { arr.push('U') };
+                    if (checkNewPosition(arr2D, x+1, y)) { arr.push('D') };
+                    if (checkNewPosition(arr2D, x, y-1)) { arr.push('L') };
+                    if (checkNewPosition(arr2D, x, y+1)) { arr.push('R') };
+                    return arr;
+                };
+
+                const breakWalls = () => {
+                    let curr = arr2D[currX][currY];
+                    let prev = arr2D[stack[stack.length-1].x][stack[stack.length-1].y];
+                    if (curr.x < prev.x) { // up
+                        arr2D[currX][currY].bottom = false;
+                        arr2D[stack[stack.length-1].x][stack[stack.length-1].y].top = false
+                    } 
+                    if (curr.x > prev.x) { // down
+                        arr2D[currX][currY].top = false;
+                        arr2D[stack[stack.length-1].x][stack[stack.length-1].y].bottom = false
+                    } 
+                    if (curr.y < prev.y) { // left
+                        arr2D[currX][currY].right = false;
+                        arr2D[stack[stack.length-1].x][stack[stack.length-1].y].left = false
+                    } 
+                    if (curr.y > prev.y) { // right
+                        arr2D[currX][currY].left = false;
+                        arr2D[stack[stack.length-1].x][stack[stack.length-1].y].right = false
+                    } 
+                }
+
                 const createMazePath = () => {
-                    
-                    const checkSurroundings = (x, y) => {
-                        // check for available directions to move
-                        let arr = [];
-                        if (checkNewPosition(arr2D, x-1, y)) { arr.push('U') };
-                        if (checkNewPosition(arr2D, x+1, y)) { arr.push('D') };
-                        if (checkNewPosition(arr2D, x, y-1)) { arr.push('L') };
-                        if (checkNewPosition(arr2D, x, y+1)) { arr.push('R') };
-                        return arr;
-                    };
 
                     while (c < this.length * this.width) {
                         console.log("Current Position: " + currX + " " + currY + " Iteration: " + c);
@@ -39,9 +60,7 @@
                         arr2D[currX][currY].visited = true;
                         c++;
                         if (stack.length > 0) {
-                            console.log(stack[stack.length-1])
-                            console.log(stack[stack.length-1].x !== currX)
-                            console.log(stack[stack.length-1].y !== currY)
+                            breakWalls();
                             if (!(stack[stack.length-1].x == currX && stack[stack.length-1].y == currY)) {
                                 stack.push({x: currX, y: currY}); 
                             }
@@ -79,14 +98,36 @@
                     }
                     // check for complete stack
                     if (c === this.length * this.width) {
-                        console.log("Done!")
+                        arr2D[currX][currY].visited = true;
+                        breakWalls();
                         running = false;
                     } 
                 };
 
-                const styleMaze = () => {
-                    for (let i = 0; i < stack.length; i++) {
+                const resetMazeStyle = () => {
+                    for (let i = 0; i < this.length; i++) {
+                        for (let j = 0; j < this.width; j++) {
+                           document.getElementById(String(i).padStart(2, '0') + String(j).padStart(2, '0')).style.border = "2px solid black";
+                        }
+                    }
+                }
 
+                const styleMaze = () => {
+                    for (let i = 0; i < this.length; i++) {
+                        for (let j = 0; j < this.width; j++) {
+                            if (!arr2D[i][j].top) { 
+                                document.getElementById(String(i).padStart(2, '0') + String(j).padStart(2, '0')).style.borderTop = "none"; 
+                            }
+                            if (!arr2D[i][j].bottom) {
+                                document.getElementById(String(i).padStart(2, '0') + String(j).padStart(2, '0')).style.borderBottom = "none"; 
+                            }
+                            if (!arr2D[i][j].left) {
+                                document.getElementById(String(i).padStart(2, '0') + String(j).padStart(2, '0')).style.borderLeft = "none"; 
+                            }
+                            if (!arr2D[i][j].right) {
+                                document.getElementById(String(i).padStart(2, '0') + String(j).padStart(2, '0')).style.borderRight = "none"; 
+                            }
+                        }
                     }
                 }
 
