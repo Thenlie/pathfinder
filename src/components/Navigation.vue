@@ -1,11 +1,13 @@
+<script setup>
+    import Dots from './Dots.vue';
+</script>
+
 <template>
     <header>
         <div class="logo-container">
             <h1>Pathfinder</h1>
             <!-- Inspired by https://codepen.io/avstorm/pen/oqKbLq -->
-            <span class="dot" style="background-color: #2A6EDB;"></span>
-            <span class="dot" style="background-color: #F25757;"></span>
-            <span class="dot" style="background-color: #F2E863;"></span>
+            <Dots />
         </div>
         <div class="btn-container">
             <router-link to="/" class="cta cta1">
