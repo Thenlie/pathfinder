@@ -29,22 +29,23 @@
                 const breakWalls = () => {
                     // remove walls where current node is connected to prev node
                     let curr = arr2D[currX][currY];
-                    let prev = arr2D[stack[stack.length-1].x][stack[stack.length-1].y];
+                    let last = stack[stack.length-1]
+                    let prev = arr2D[last.x][last.y];
                     if (curr.x < prev.x) { // up
                         arr2D[currX][currY].bottom = false;
-                        arr2D[stack[stack.length-1].x][stack[stack.length-1].y].top = false
+                        arr2D[last.x][last.y].top = false
                     } 
                     if (curr.x > prev.x) { // down
                         arr2D[currX][currY].top = false;
-                        arr2D[stack[stack.length-1].x][stack[stack.length-1].y].bottom = false
+                        arr2D[last.x][last.y].bottom = false
                     } 
                     if (curr.y < prev.y) { // left
                         arr2D[currX][currY].right = false;
-                        arr2D[stack[stack.length-1].x][stack[stack.length-1].y].left = false
+                        arr2D[last.x][last.y].left = false
                     } 
                     if (curr.y > prev.y) { // right
                         arr2D[currX][currY].left = false;
-                        arr2D[stack[stack.length-1].x][stack[stack.length-1].y].right = false
+                        arr2D[last.x][last.y].right = false
                     } 
                 }
 
