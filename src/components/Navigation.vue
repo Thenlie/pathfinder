@@ -14,9 +14,9 @@
             <router-link to="/about" class="cta cta2">
                 <span>About</span>
             </router-link>
-            <router-link to="/contact" class="cta cta3">
-                <span>Contact</span>
-            </router-link>
+            <a href="https://github.com/Thenlie/pathfinder" class="cta cta3">
+                <span>Code</span>
+            </a>
         </div>
     </header>
 </template>

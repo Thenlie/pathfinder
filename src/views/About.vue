@@ -11,15 +11,6 @@
 </template>
 
 <style scoped>
-    main {
-        padding: 2em;    
-    }
-
-    .page-heading {
-        text-align: center;
-        font-size: 48px;
-    }
-
     p {
         text-align: center;
         font-size: large;
