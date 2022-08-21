@@ -1,5 +1,5 @@
 <script setup>
-    import { clearMaze } from '../utils/mazeUtil';
+    import { clearMaze, styleMaze } from '../utils/mazeUtil';
     import { createNew2dArray, checkNewPosition } from '../utils/arrayUtil';
 </script>
 
@@ -84,21 +84,10 @@
                     } 
                 };
 
-                const styleMaze = () => {
-                    // remove borders according to 2D array
-                    for (let i = 0; i < this.length; i++) {
-                        for (let j = 0; j < this.width; j++) {
-                            if (!arr2D[i][j].top) { document.getElementById(String(i).padStart(2, '0') + String(j).padStart(2, '0')).style.borderTop = "none" }
-                            if (!arr2D[i][j].bottom) { document.getElementById(String(i).padStart(2, '0') + String(j).padStart(2, '0')).style.borderBottom = "none" }
-                            if (!arr2D[i][j].left) { document.getElementById(String(i).padStart(2, '0') + String(j).padStart(2, '0')).style.borderLeft = "none" }
-                            if (!arr2D[i][j].right) { document.getElementById(String(i).padStart(2, '0') + String(j).padStart(2, '0')).style.borderRight = "none" }
-                        }
-                    }
-                }
                 clearMaze(this.length, this.width);
                 arr2D = createNew2dArray(this.length, this.width);
                 createMazePath();
-                styleMaze();
+                styleMaze(arr2D);
             }
         },
         data() {
