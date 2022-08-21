@@ -101,6 +101,7 @@
     .logo-container {
         display: flex;
         align-items: center;
+        justify-content: center;
     }
 
     .logo-container h1 {
@@ -231,8 +232,14 @@
             flex-direction: column;
             align-items:flex-start;
         }
+        .logo-container h1 {
+            font-size: 20px;
+        }
         .cta {
             margin-left: 1em;
+        }
+        .mobile-menu .line {
+            width: 30px;
         }
     }
 </style>
