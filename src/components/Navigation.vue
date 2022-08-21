@@ -9,16 +9,28 @@
             toggleMenu() {
                 let menu = document.querySelector('.mobile-menu');
                 let btnC = document.querySelector('.mobile-btn-container');
-                let head = document.querySelector('.header');
                 if (menu.classList.contains('is-active')) {
                     btnC.style.display = 'none';
                     } else {
                     btnC.style.display = 'flex';
                 }
                     menu.classList.toggle('is-active');
+            },
+            onResize() {
+                if (window.innerWidth > 800) {
+                    document.querySelector('.mobile-btn-container').style.display = 'none';
+                    document.querySelector('.mobile-menu').classList.remove('is-active');
+                } 
             }
-        }
+        },
 
+        created() {
+            window.addEventListener('resize', this.onResize)
+        },
+
+        beforeDestroy() {
+            window.removeEventListener('resize', this.onResize)
+        },
     }
 </script>
 
@@ -137,6 +149,9 @@
         transform: scale(0.96);
     }
     .mobile-menu {
+        display: none;
+    }
+    .mobile-btn-container {
         display: none;
     }
     @media screen and (max-width: 800px) {
