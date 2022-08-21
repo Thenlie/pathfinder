@@ -125,8 +125,8 @@
 <template>
     <h1>Generated Maze</h1>
     <div class="button-container">
-        <button @click="generateMaze()">GENERATE MAZE</button>
-        <button>SOLVE MAZE</button>
+        <button @click="generateMaze()">Generate Maze</button>
+        <button>Solve Maze</button>
     </div>
     <section class="maze">
         <div v-for="(x, i) in lengthArr" :key="i" class="maze-row">
@@ -203,9 +203,9 @@
         }
     }
 
-    @media screen and (min-width: 1500px) {
+    @media screen and (min-width: 1800px) {
         .maze {
-            width: 33%;
+            width: 40%;
         }
     }
 </style>

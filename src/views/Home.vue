@@ -3,8 +3,38 @@
 </script>
 
 <template>
-    <div class="home">
-        <h1>Home</h1>
+    <main class="home">
+        <h1 class="page-heading">Home</h1>
         <NewGenerator :length="50" :width="50" :mazeArr="mazeArr" @set="set" /> <!-- these values determine the size of the maze  -->
-    </div>
+    </main>
 </template>
+
+<script>
+    export default {
+        name: 'App',
+        // state
+        data() {
+            return {
+                mazeArr: [0]
+            }
+        },
+        methods: {
+            set(arr) {
+                this.mazeArr = arr;
+            },
+        },
+        components: {
+            NewGenerator,
+        }
+    }
+</script>
+
+<style scoped>
+    main {
+        padding: 2em;    
+    }
+    .page-heading {
+        text-align: center;
+        text-decoration: underline;
+    }
+</style>

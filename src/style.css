@@ -5,6 +5,10 @@
     box-sizing: border-box;
 }
 
+body {
+    background-color: #F8F9FA;
+}
+
 button {
     cursor: pointer;
 }
