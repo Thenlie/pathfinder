@@ -1,6 +1,6 @@
 <script setup>
     import { clearMaze, styleMaze } from '../utils/mazeUtil';
-    import { createNew2dArray, checkNewPosition } from '../utils/arrayUtil';
+    import { create2dArray, checkPosition } from '../utils/arrayUtil';
 </script>
 
 <script>
@@ -19,10 +19,10 @@
                 const checkSurroundings = (x, y) => {
                     // check for available directions to move
                     let arr = [];
-                    if (checkNewPosition(arr2D, x-1, y)) { arr.push('U') };
-                    if (checkNewPosition(arr2D, x+1, y)) { arr.push('D') };
-                    if (checkNewPosition(arr2D, x, y-1)) { arr.push('L') };
-                    if (checkNewPosition(arr2D, x, y+1)) { arr.push('R') };
+                    if (checkPosition(arr2D, x-1, y)) { arr.push('U') };
+                    if (checkPosition(arr2D, x+1, y)) { arr.push('D') };
+                    if (checkPosition(arr2D, x, y-1)) { arr.push('L') };
+                    if (checkPosition(arr2D, x, y+1)) { arr.push('R') };
                     return arr;
                 };
 
@@ -85,7 +85,7 @@
                 };
 
                 clearMaze(this.length, this.width);
-                arr2D = createNew2dArray(this.length, this.width);
+                arr2D = create2dArray(this.length, this.width);
                 createMazePath();
                 styleMaze(arr2D);
             }

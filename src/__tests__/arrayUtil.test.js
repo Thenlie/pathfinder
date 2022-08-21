@@ -1,4 +1,4 @@
-import { create2dArray, checkPosition, createNew2dArray, checkNewPosition } from '../utils/arrayUtil';
+import { create2dArray, checkPosition, create2dArray, checkPosition } from '../utils/arrayUtil';
 import { MazeCell } from '../lib/MazeCell';
 import { describe, it, expect } from 'vitest';
 
@@ -29,8 +29,8 @@ describe('checkPositon', () => {
     });
 })  
 
-describe('createNew2dArray', () => {
-    const arr = createNew2dArray(10, 10);
+describe('create2dArray', () => {
+    const arr = create2dArray(10, 10);
     it('is Array data type', () => {
         expect(arr).toBeInstanceOf(Array);
     });
@@ -44,9 +44,9 @@ describe('createNew2dArray', () => {
 })
 
 describe('checkNewPositon', () => {
-    const arr = createNew2dArray(10, 10);
-    const pos1 = checkNewPosition(arr, 5, 5);
-    const pos2 = checkNewPosition(arr, 5, 15);
+    const arr = create2dArray(10, 10);
+    const pos1 = checkPosition(arr, 5, 5);
+    const pos2 = checkPosition(arr, 5, 15);
     it('returns true for valid positions', () => {
         expect(pos1).toBeTruthy();
     });
