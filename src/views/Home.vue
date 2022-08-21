@@ -1,5 +1,5 @@
 <script setup>
-    import NewGenerator from '../components/NewGenerator.vue';
+    import Generator from '../components/Generator.vue';
     import Dots from '../components/Dots.vue';
 </script>
 
@@ -9,7 +9,7 @@
         <div class="dot-container">
             <Dots />
         </div>
-        <NewGenerator :length="50" :width="50" :mazeArr="mazeArr" @set="set" /> <!-- these values determine the size of the maze  -->
+        <Generator :length="50" :width="50" :mazeArr="mazeArr" @set="set" /> <!-- these values determine the size of the maze  -->
     </main>
 </template>
 
@@ -28,7 +28,7 @@
             },
         },
         components: {
-            NewGenerator,
+            Generator,
         }
     }
 </script>
