@@ -26,4 +26,14 @@ const checkPosition = (arr2D, x, y) => {
     return false;
 };
 
-export { create2dArray, checkPosition };
+const checkSurroundings = (arr2D, x, y) => {
+    // check for available directions to move
+    let arr = [];
+    if (checkPosition(arr2D, x-1, y)) { arr.push('U') };
+    if (checkPosition(arr2D, x+1, y)) { arr.push('D') };
+    if (checkPosition(arr2D, x, y-1)) { arr.push('L') };
+    if (checkPosition(arr2D, x, y+1)) { arr.push('R') };
+    return arr;
+};
+
+export { create2dArray, checkPosition, checkSurroundings };

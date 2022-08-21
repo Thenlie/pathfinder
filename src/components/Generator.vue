@@ -1,6 +1,6 @@
 <script setup>
     import { clearMaze, styleMaze } from '../utils/mazeUtil';
-    import { create2dArray, checkPosition } from '../utils/arrayUtil';
+    import { create2dArray, checkPosition, checkSurroundings } from '../utils/arrayUtil';
 </script>
 
 <script>
@@ -16,15 +16,15 @@
             generateMaze() {
                 let arr2D = [], stack = [], c = 1, currX = 0, currY = 0, running = true;
 
-                const checkSurroundings = (x, y) => {
-                    // check for available directions to move
-                    let arr = [];
-                    if (checkPosition(arr2D, x-1, y)) { arr.push('U') };
-                    if (checkPosition(arr2D, x+1, y)) { arr.push('D') };
-                    if (checkPosition(arr2D, x, y-1)) { arr.push('L') };
-                    if (checkPosition(arr2D, x, y+1)) { arr.push('R') };
-                    return arr;
-                };
+                // const checkSurroundings = (x, y) => {
+                //     // check for available directions to move
+                //     let arr = [];
+                //     if (checkPosition(arr2D, x-1, y)) { arr.push('U') };
+                //     if (checkPosition(arr2D, x+1, y)) { arr.push('D') };
+                //     if (checkPosition(arr2D, x, y-1)) { arr.push('L') };
+                //     if (checkPosition(arr2D, x, y+1)) { arr.push('R') };
+                //     return arr;
+                // };
 
                 const breakWalls = () => {
                     // remove walls where current node is connected to prev node
@@ -33,16 +33,13 @@
                     if (curr.x < prev.x) { // up
                         arr2D[currX][currY].bottom = false;
                         arr2D[stack[stack.length-1].x][stack[stack.length-1].y].top = false
-                    } 
-                    if (curr.x > prev.x) { // down
+                    } else if (curr.x > prev.x) { // down
                         arr2D[currX][currY].top = false;
                         arr2D[stack[stack.length-1].x][stack[stack.length-1].y].bottom = false
-                    } 
-                    if (curr.y < prev.y) { // left
+                    } else if (curr.y < prev.y) { // left
                         arr2D[currX][currY].right = false;
                         arr2D[stack[stack.length-1].x][stack[stack.length-1].y].left = false
-                    } 
-                    if (curr.y > prev.y) { // right
+                    } else if (curr.y > prev.y) { // right
                         arr2D[currX][currY].left = false;
                         arr2D[stack[stack.length-1].x][stack[stack.length-1].y].right = false
                     } 
@@ -60,7 +57,7 @@
                         } else {
                             stack.push({x: currX, y: currY}); 
                         }
-                        let opts = checkSurroundings(currX, currY);
+                        let opts = checkSurroundings(arr2D, currX, currY);
                         if (opts.length > 0) {
                             let move = opts[Math.floor(Math.random() * opts.length)];
                             switch (move) { // move current position
