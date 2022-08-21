@@ -6,7 +6,7 @@
     <main class="home">
         <h1 class="page-heading">Home</h1>
         <div class="dot-container">
-            <span class="dot" style="background-color: #0E79B2;"></span>
+            <span class="dot" style="background-color: #2A6EDB;"></span>
             <span class="dot" style="background-color: #F25757;"></span>
             <span class="dot" style="background-color: #F2E863;"></span>
         </div>
