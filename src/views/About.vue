@@ -6,6 +6,7 @@
             <span class="dot" style="background-color: #F25757;"></span>
             <span class="dot" style="background-color: #F2E863;"></span>
         </div>
+        <p>🚧 Page Under Construction 🚧</p>
     </main>
 </template>
 
@@ -17,5 +18,10 @@
     .page-heading {
         text-align: center;
         font-size: 48px;
+    }
+
+    p {
+        text-align: center;
+        font-size: large;
     }
 </style>

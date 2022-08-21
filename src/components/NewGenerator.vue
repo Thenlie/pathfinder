@@ -123,7 +123,6 @@
 </script>
 
 <template>
-    <h1>Generated Maze</h1>
     <div class="button-container">
         <button @click="generateMaze()">Generate Maze</button>
         <button>Solve Maze</button>
@@ -143,11 +142,6 @@
 </template>
 
 <style scoped>
-    h1 {
-        text-align: center;
-        padding-top: 0.5em;
-    }
-
     .button-container {
         display: flex;
         justify-content: space-evenly;
