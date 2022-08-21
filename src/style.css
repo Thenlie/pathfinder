@@ -12,3 +12,15 @@ body {
 button {
     cursor: pointer;
 }
+
+.dot {
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+    display: inline-block;
+    margin: 0.1em;
+}
+
+.dot-container {
+    text-align: center;
+}
