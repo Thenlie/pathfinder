@@ -5,7 +5,9 @@ const clearMaze = (l, w) => {
             if ((i !== 0 || j !== 0) && (i !== l-1 || j !== w-1)) { // not start or finish cell
                 // style HTML
                 let el = document.getElementById(String(i).padStart(2, '0') + String(j).padStart(2, '0'));
+                el.style.border = "1px solid black";
                 el.firstChild.style.backgroundColor = "lightgray";
+
             }
         }
     }

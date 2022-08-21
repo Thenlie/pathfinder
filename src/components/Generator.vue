@@ -84,15 +84,6 @@
                     } 
                 };
 
-                const resetMazeStyle = () => {
-                    // rebuild all borders
-                    for (let i = 0; i < this.length; i++) {
-                        for (let j = 0; j < this.width; j++) {
-                           document.getElementById(String(i).padStart(2, '0') + String(j).padStart(2, '0')).style.border = "1px solid black";
-                        }
-                    }
-                }
-
                 const styleMaze = () => {
                     // remove borders according to 2D array
                     for (let i = 0; i < this.length; i++) {
@@ -105,7 +96,6 @@
                     }
                 }
                 clearMaze(this.length, this.width);
-                resetMazeStyle();
                 arr2D = createNew2dArray(this.length, this.width);
                 createMazePath();
                 styleMaze();
