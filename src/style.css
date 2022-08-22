@@ -5,6 +5,32 @@
     box-sizing: border-box;
 }
 
+body {
+    background-color: #f0f0f0;
+}
+
 button {
     cursor: pointer;
+}
+
+main {
+    padding: 2em;    
+}
+
+.page-heading {
+    text-align: center;
+    font-size: 48px;
+}
+
+.dot {
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+    display: inline-block;
+    margin: 0.1em;
+}
+
+.dot-container {
+    text-align: center;
+    margin: 0.1em;
 }
