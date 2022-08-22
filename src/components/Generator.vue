@@ -116,7 +116,7 @@
                         } else if (page === 3) {
                             document.querySelector('.maze-btn-container-two').style.display = 'flex';       
                         }
-                    } 
+                    }
                 };
                 clearMaze(this.length, this.width, page);
                 arr2D = create2dArray(this.length, this.width);
@@ -124,6 +124,9 @@
                 if (page < 3) {
                     styleMaze(arr2D);
                 }
+            },
+            clearCurrentMaze(page) {
+                clearMaze(this.length, this.width, page)
             }
         },
         data() {
@@ -157,9 +160,11 @@
     </section>
     <div v-if="pageType === 2" class="maze-btn-container maze-btn-container-one">
         <button @click="generateMaze(2)">Show Animation</button>
+        <button @click="clearCurrentMaze(2)">Clear</button>
     </div>
     <div v-if="pageType === 3" class="maze-btn-container maze-btn-container-two">
         <button @click="generateMaze(3)">Show Animation</button>
+        <button @click="clearCurrentMaze(3)">Clear</button>
     </div>
 </template>
 

@@ -172,6 +172,7 @@ const styleMaze = (arr2D) => {
 }"
             />
         </div>
+        <p>And there you have it! Let's see the styling in action. Below is an animated maze that removes the walls as it steps through the program, rather than all at the end. Click the button to watch the animation. The maze will be randomized every time.</p>
         <div class="generator-container">
             <Generator :length="10" :width="10" :mazeArr="mazeArr" :page="3" @set="set" /> <!-- these values determine the size of the maze  -->
         </div>
