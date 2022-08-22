@@ -10,10 +10,10 @@
         <div class="dot-container">
             <Dots />
         </div>
-        <p>Pathfinder is a website built to demonstrate pathfinding algorithms! This project was started so the developers could learn more about these algorithms and have a fun project to work on in their spare time. Started in July 2022, this was also the developers first time seeing, learning, and using Vue.js</p>
-        <p>This project ended up being a great learning experience for all involved. It not only taught logical and algorithmic thinking, but it also taught skills on collaboration and team software development. Many tools were used to assist in the development. Some key tools include; Git, GitHub, VS Code, Vite, Notion, and Discord.</p>
+        <p>Pathfinder is a website built to demonstrate pathfinding algorithms! This project was started so the developers could learn more about these types of algorithms and have a fun project to work on in their spare time. Started in July 2022, this was also the developers first time seeing, learning, and using Vue.js with Vite.</p>
+        <p>This project ended up being a great learning experience for everyone involved. It not only taught logical and algorithmic thinking, it also taught skills for collaboration and team software development. Many tools were used to assist in the development. Some key tools include: Git, GitHub, VS Code, Vite, Notion, and Discord. You can find more information about the development of the project on GitHub at <a href="https://github.com/Thenlie/pathfinder">https://github.com/Thenlie/pathfinder</a>. There you can also find information about contributing to the project if you would like to build upon what has already been done!</p>
         <h2>Maze Generation</h2>
-        <p>Unbeknownst to the developers at first, the first step in building a really good pathfinding algorithim, is building a really good maze generator. Without lots of automated testing, it is really hard to know how error proof your code is. Additionally, hardcoding mazes gets really tedious after just one or two. This leads to the inevitability of creating a maze generation algorithm!</p>
+        <p>Unbeknownst to the developers at first, the first step in building a pathfinding algorithim, is building a maze generator. This is because without lots of automated testing, it is really hard to know how error proof your code is. Additionally, hardcoding mazes gets really tedious after just one or two as it involves manually populating every cell in the maze. This leads to the inevitability of creating a maze generation algorithm!</p>
         <h3>What does a maze look like in code?</h3>
         <p>To represent a maze in code, we start with a two dimentional array. This is nothing more than an array of arrays. Below is an example of a 10 x 10 2D array and how to generate one with nested for loops:</p>
         <div class="code-container">
@@ -48,7 +48,7 @@ function generateArray() {
 }"
             />
         </div>
-        <p>In this example, you can see our first idea for representing the maze. We would simply use characters to represent each state of the maze cells. A <span class="code-snip">#</span> would represent a wall, <span class="code-snip">S</span> and <span class="code-snip">F</span> would be start and finish respectively, and <span class="code-snip">0</span> would represent and empty cell. We could also use <span class="code-snip">@</span> to notate cells we have already traveled to. To access individual cells of the maze we target the vertical and then horizontal positon in the array. So the first cell would be <span class="code-snip">arr2D[0][0]</span></p>
+        <p>In this example, you can see our first idea for representing the maze. We would simply use characters to represent each state of the maze cells. A <span class="code-snip">#</span> would represent a wall, <span class="code-snip">S</span> and <span class="code-snip">F</span> would be start and finish respectively, and <span class="code-snip">0</span> would represent an empty cell. We can also use <span class="code-snip">@</span> to notate cells we have already traveled to. To access individual cells of the maze we target the vertical and then horizontal positon in the array. So the first couple of cells would be: <span class="code-snip">arr2D[0][0],  arr2D[0][1], arr2D[0][2]...</span>.</p>
         <p></p>
         <div class="dot-container">
             <Dots />
@@ -86,6 +86,8 @@ const checkSurroundings = (arr2D, x, y) => {
         <p>There was one problem with this method, and it is what makes making and solving mazes so difficult. It is possible for the path to form a loop and block itself off, leaving no moves and not reaching the finish. For this first attempt, we had a very simple solution to this problem. We would keep track of how many cells the path attempted to go to. If we reached a certain number, we would know forsure that we are in an endless loop. If we hit that state, we would simply restart the function and try again. This would repeat until a valid path was made. Not very efficient, but it did work!</p>
         <p>Once the path was created, another simple solution was chosen to complete the maze. THe 2D array was looped through and any cell that was not a part of the path had a 50% chance of turning into a wall. This left us with some interesting, albeit less than desireable maze. Some examples of those mazes can be seen below:</p> 
         <SampleMaze />
+        <h3>Problems</h3>
+        <p>There are a number of issues with these mazes and the steps taken to create them. First, while we do know there is going to be a path to the end, we do not know if there will be any dead ends or complexity in the solution. This means we could end up with a mostly striaght line surrounded by walls, not a very fun or challenging maze. Second, entire portions of the maze can become cut off by walls. It was very common to see the lower left or upper right corners completely cut off from the rest of the maze (see fig 1.3). This effectively made the maze area smaller since parts were inaccessible. Again, this reduced the fun and complexity of the maze.</p>
         <div class="dot-container">
             <Dots />
         </div>
@@ -149,7 +151,7 @@ class MazeCell {
         text-indent: 30px;
         text-align:justify;
         font-size: large;
-        margin: 0.5em;
+        margin: 1em 0.5em;
     }
     .code {
         width: fit-content;

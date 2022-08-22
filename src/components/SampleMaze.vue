@@ -27,36 +27,39 @@
 
 <template>
     <div class="container">
-        <section class="maze">
-            <div v-for="(x, i) in lengthArr" :key="i" class="maze-row">
-                <div v-for="(y, j) in widthArr" :key="i + j" class="maze-cell-container"  
-                :style="{ width: lengthP + '%', 'padding-top': lengthP + '%'}">
-                    <div class="maze-cell">
-                        {{ testMaze[i][j] }}
+            <section class="maze">
+                <div v-for="(x, i) in lengthArr" :key="i" class="maze-row">
+                    <div v-for="(y, j) in widthArr" :key="i + j" class="maze-cell-container"  
+                    :style="{ width: lengthP + '%', 'padding-top': lengthP + '%'}">
+                        <div class="maze-cell">
+                            {{ testMaze[i][j] }}
+                        </div>
                     </div>
                 </div>
-            </div>
-        </section>
-        <section class="maze">
-            <div v-for="(x, i) in lengthArr" :key="i" class="maze-row">
-                <div v-for="(y, j) in widthArr" :key="i + j" class="maze-cell-container"  
-                :style="{ width: lengthP + '%', 'padding-top': lengthP + '%'}">
-                    <div class="maze-cell">
-                        {{ testMaze2[i][j] }}
+                <p>fig 1.1</p>
+            </section>
+            <section class="maze">
+                <div v-for="(x, i) in lengthArr" :key="i" class="maze-row">
+                    <div v-for="(y, j) in widthArr" :key="i + j" class="maze-cell-container"  
+                    :style="{ width: lengthP + '%', 'padding-top': lengthP + '%'}">
+                        <div class="maze-cell">
+                            {{ testMaze2[i][j] }}
+                        </div>
                     </div>
                 </div>
-            </div>
-        </section>
-        <section class="maze">
-            <div v-for="(x, i) in lengthArr" :key="i" class="maze-row">
-                <div v-for="(y, j) in widthArr" :key="i + j" class="maze-cell-container"  
-                :style="{ width: lengthP + '%', 'padding-top': lengthP + '%'}">
-                    <div class="maze-cell">
-                        {{ testMaze3[i][j] }}
+                <p>fig 1.2</p>
+            </section>
+            <section class="maze">
+                <div v-for="(x, i) in lengthArr" :key="i" class="maze-row">
+                    <div v-for="(y, j) in widthArr" :key="i + j" class="maze-cell-container"  
+                    :style="{ width: lengthP + '%', 'padding-top': lengthP + '%'}">
+                        <div class="maze-cell">
+                            {{ testMaze3[i][j] }}
+                        </div>
                     </div>
                 </div>
-            </div>
-        </section>
+                <p>fig 1.3</p>
+            </section>
     </div>
 </template>
 
@@ -79,7 +82,6 @@
         width: 15%;
         margin: 1em auto;
         text-align: center;
-        border: 2px solid black;
     }
 
     .maze-row {
@@ -106,14 +108,20 @@
         justify-content: center;
         background-color: lightgray;
     }
+    .maze p {
+        text-align: center;
+        margin-top: 0.5em;
+        font-style: italic;
+    }
 
     .maze-row:first-child .maze-cell-container:first-child .maze-cell {
         background-color: #8CDBC8;
     }
 
-    .maze-row:last-child  .maze-cell-container:last-child .maze-cell {
+    .maze-row:nth-child(10)  .maze-cell-container:nth-child(10) .maze-cell {
         background-color: #E7A7A7;
     }
+
     @media screen and (max-width: 1200px) {
         .maze {
             width: 25%;
