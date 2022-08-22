@@ -6,14 +6,14 @@
 <script>
     export default {
         name: 'Generator',
-        props: { length: Number, width: Number, mazeArr: Array },
+        props: { length: Number, width: Number, mazeArr: Array, page: Number },
         emits: ['set'],
         methods: {
             async set(arr) {
                 this.$emit('set', arr);
                 // console.log(this.mazeArr); // <-- the 'proxy' this logs acts just like an array, must await line 13
             },
-            generateMaze() {
+            generateMaze(page) {
                 let arr2D = [], stack = [], c = 1, currX = 0, currY = 0, running = true;
 
                 const breakWalls = () => {
@@ -83,15 +83,19 @@
                 widthArr: Array(this.width).fill(''),
                 lengthP: (1 / this.length) * 100,
                 widthP: (1 / this.width) * 100,
+                pageType: this.page
             }
         }
     }
 </script>
 
 <template>
-    <div class="button-container">
-        <button @click="generateMaze()">Generate Maze</button>
+    <div v-if="pageType === 1" class="button-container">
+        <button @click="generateMaze(1)">Generate Maze</button>
         <button>Solve Maze</button>
+    </div>
+    <div v-if="pageType === 2" class="button-container">
+        <button @click="generateMaze(2)">Show Animation</button>
     </div>
     <section class="maze">
         <div v-for="(x, i) in lengthArr" :key="i" class="maze-row">
