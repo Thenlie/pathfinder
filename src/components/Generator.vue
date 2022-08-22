@@ -14,6 +14,9 @@
                 // console.log(this.mazeArr); // <-- the 'proxy' this logs acts just like an array, must await line 13
             },
             generateMaze(page) {
+                if (page === 2) {
+                    document.querySelector('.maze-btn-container').style.display = 'none';       
+                }
                 let arr2D = [], stack = [], c = 1, currX = 0, currY = 0, running = true;
 
                 const breakWalls = () => {
@@ -39,11 +42,11 @@
                     while (c < this.length * this.width) {
                         if (page === 2) {
                             let el = document.getElementById(String(currX).padStart(2, '0') + String(currY).padStart(2, '0')).firstChild
-                            if (el.style.backgroundColor == "lightgray") {
+                            if (el.style.backgroundColor === "lightgray") {
                                 el.style.backgroundColor = "rgb(242, 87, 87)";
-                            } else if (el.style.backgroundColor == "rgb(242, 87, 87)") {
+                            } else if (el.style.backgroundColor === "rgb(242, 87, 87)") {
                                 el.style.backgroundColor = "rgb(42, 110, 219)"
-                            } else if (el.style.backgroundColor == "rgb(42, 110, 219)") {
+                            } else if (el.style.backgroundColor === "rgb(42, 110, 219)") {
                                 el.style.backgroundColor = "#F2E863"
                             }
                             await new Promise(resolve => setTimeout(resolve, 75));
@@ -80,7 +83,8 @@
                         breakWalls();
                         running = false;
                         if (page == 2) {
-                            document.getElementById(String(currX).padStart(2, '0') + String(currY).padStart(2, '0')).firstChild.style.backgroundColor = 'rgb(242, 87, 87)'
+                            document.getElementById(String(currX).padStart(2, '0') + String(currY).padStart(2, '0')).firstChild.style.backgroundColor = 'rgb(242, 87, 87)';
+                        document.querySelector('.maze-btn-container').style.display = 'flex';       
                         }
                     } 
                 };
@@ -104,11 +108,11 @@
 </script>
 
 <template>
-    <div v-if="pageType === 1" class="button-container">
+    <div v-if="pageType === 1" class="maze-btn-container">
         <button @click="generateMaze(1)">Generate Maze</button>
         <button>Solve Maze</button>
     </div>
-    <div v-if="pageType === 2" class="button-container">
+    <div v-if="pageType === 2" class="maze-btn-container">
         <button @click="generateMaze(2)">Show Animation</button>
     </div>
     <section class="maze">
@@ -126,7 +130,7 @@
 </template>
 
 <style scoped>
-    .button-container {
+    .maze-btn-container {
         display: flex;
         justify-content: space-evenly;
         padding: 0.5em;
