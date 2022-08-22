@@ -34,3 +34,16 @@ main {
     text-align: center;
     margin: 0.1em;
 }
+
+.vue-back-to-top {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 60px;
+    height: 60px;
+    padding: 10px 16px;
+    border-radius: 50%;
+    font-size: 22px;
+    line-height: 22px;
+    background-color: rgba(211, 211, 211, 0.5);
+  }

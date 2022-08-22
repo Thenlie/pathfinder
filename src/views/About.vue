@@ -150,7 +150,7 @@ const breakWalls = () => {
         arr2D[stack[stack.length-1].x][stack[stack.length-1].y].right = false
     } 
 }"
-                />
+            />
             </div>
             <p>As you can see, we are altering the wall properties of the <span class="code-snip">MazeCell</span> class on each individual cell. Note that if we remove the top of the current cell, we need to remove the bottom of the previous.</p>
             <p>The last step in generating the maze is to style the HTML. This can be done in the function above however we decided to first generate the entire 2D array and then loop through that and style the maze at the end. This was mostly done to keep code separate and organized. You can see how the HTML was styled below:</p>
@@ -189,6 +189,9 @@ const breakWalls = () => {
             <h2>Conclusion</h2>
             <p>As you can see, we end up with a pretty great looking maze! Additionally, this typically takes less than half a second to run, even if we increase the size of the maze to 25 x 25 or even 50 x 50. All of this, and we have simply generated a maze! We still need to solve it, which will be explained in the next section.</p>
         </section>
+        <back-to-top bottom="50px" right="50px">
+            <font-awesome-icon icon="fa-regular fa-arrow-alt-circle-up" size="3x"/>
+        </back-to-top>
     </main>
 </template>
 
@@ -230,6 +233,9 @@ const breakWalls = () => {
         width: fit-content;
         margin: auto;
         display: inline;
+    }
+    svg {
+        color: rgb(100, 100, 100)
     }
 
     .code-container {
