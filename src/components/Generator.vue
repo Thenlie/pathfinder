@@ -35,8 +35,19 @@
                     } 
                 }
 
-                const createMazePath = () => {
+                const createMazePath = async () => {
                     while (c < this.length * this.width) {
+                        if (page === 2) {
+                            let el = document.getElementById(String(currX).padStart(2, '0') + String(currY).padStart(2, '0')).firstChild
+                            if (el.style.backgroundColor == "lightgray") {
+                                el.style.backgroundColor = "rgb(242, 87, 87)";
+                            } else if (el.style.backgroundColor == "rgb(242, 87, 87)") {
+                                el.style.backgroundColor = "rgb(42, 110, 219)"
+                            } else if (el.style.backgroundColor == "rgb(42, 110, 219)") {
+                                el.style.backgroundColor = "#F2E863"
+                            }
+                            await new Promise(resolve => setTimeout(resolve, 75));
+                        }
                         arr2D[currX][currY].visited = true;
                         c++;
                         if (stack.length > 0) {
@@ -68,6 +79,9 @@
                         arr2D[currX][currY].visited = true;
                         breakWalls();
                         running = false;
+                        if (page == 2) {
+                            document.getElementById(String(currX).padStart(2, '0') + String(currY).padStart(2, '0')).firstChild.style.backgroundColor = 'rgb(242, 87, 87)'
+                        }
                     } 
                 };
 
@@ -103,8 +117,8 @@
             :id="String(i).padStart(2, '0') + String(j).padStart(2, '0')" 
             :style="{ width: lengthP + '%', 'padding-top': lengthP + '%'}">
                 <div class="maze-cell">
-                    {{ i === 0 && j === 0 ? 'S' : ' '}}
-                    {{ i === lengthArr.length-1 && j === widthArr.length-1 ? 'F' : ' '}}
+                    {{ i === 0 && j === 0 && pageType == 1 ? 'S' : ' '}}
+                    {{ i === lengthArr.length-1 && j === widthArr.length-1 && pageType == 1 ? 'F' : ' '}}
                 </div>
             </div>
         </div>
@@ -150,13 +164,13 @@
         background-color: lightgray;
     }
 
-    .maze-row:first-child .maze-cell-container:first-child .maze-cell {
+    /* .maze-row:first-child .maze-cell-container:first-child .maze-cell {
         background-color: #8CDBC8;
     }
 
     .maze-row:last-child  .maze-cell-container:last-child .maze-cell {
         background-color: #E7A7A7;
-    }
+    } */
 
     @media screen and (min-width: 900px) {
         .maze {
