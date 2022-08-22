@@ -15,7 +15,9 @@
             },
             generateMaze(page) {
                 if (page === 2) {
-                    document.querySelector('.maze-btn-container').style.display = 'none';       
+                    document.querySelector('.maze-btn-container-one').style.display = 'none';       
+                } else if (page === 3) {
+                    document.querySelector('.maze-btn-container-two').style.display = 'none';       
                 }
                 let arr2D = [], stack = [], c = 1, currX = 0, currY = 0, running = true;
 
@@ -23,26 +25,47 @@
                     // remove walls where current node is connected to prev node
                     let curr = arr2D[currX][currY];
                     let prev = arr2D[stack[stack.length-1].x][stack[stack.length-1].y];
+                    let currEl, prevEl;
+                    if (page === 3 && stack.length > 0) {
+                        currEl = document.getElementById('d' + String(currX).padStart(2, '0') + 'd' + String(currY).padStart(2, '0'));
+                        prevEl = document.getElementById('d' + String(stack[stack.length-1].x).padStart(2, '0') + 'd' + String(stack[stack.length-1].y).padStart(2, '0'));
+                    }
                     if (curr.x < prev.x) { // up
                         arr2D[currX][currY].bottom = false;
                         arr2D[stack[stack.length-1].x][stack[stack.length-1].y].top = false
+                        if (page === 3) {
+                            currEl.style.borderBottom = "none" 
+                            prevEl.style.borderTop = "none" 
+                        }
                     } else if (curr.x > prev.x) { // down
                         arr2D[currX][currY].top = false;
                         arr2D[stack[stack.length-1].x][stack[stack.length-1].y].bottom = false
+                        if (page === 3) {
+                            currEl.style.borderTop = "none" 
+                            prevEl.style.borderBottom = "none" 
+                        }
                     } else if (curr.y < prev.y) { // left
                         arr2D[currX][currY].right = false;
                         arr2D[stack[stack.length-1].x][stack[stack.length-1].y].left = false
+                        if (page === 3) {
+                            currEl.style.borderRight = "none" 
+                            prevEl.style.borderLeft = "none" 
+                        }
                     } else if (curr.y > prev.y) { // right
                         arr2D[currX][currY].left = false;
                         arr2D[stack[stack.length-1].x][stack[stack.length-1].y].right = false
+                        if (page === 3) {
+                            currEl.style.borderLeft = "none" 
+                            prevEl.style.borderRight = "none" 
+                        }
                     } 
                 }
 
                 const createMazePath = async () => {
                     while (c < this.length * this.width) {
                         if (page === 2) {
-                            let el = document.getElementById(String(currX).padStart(2, '0') + String(currY).padStart(2, '0')).firstChild
-                            if (el.style.backgroundColor === "lightgray") {
+                            let el = document.getElementById('s' + String(currX).padStart(2, '0') + 's' + String(currY).padStart(2, '0')).firstChild
+                            if (el.style.backgroundColor === "") {
                                 el.style.backgroundColor = "rgb(242, 87, 87)";
                             } else if (el.style.backgroundColor === "rgb(242, 87, 87)") {
                                 el.style.backgroundColor = "rgb(42, 110, 219)"
@@ -50,6 +73,11 @@
                                 el.style.backgroundColor = "#F2E863"
                             }
                             await new Promise(resolve => setTimeout(resolve, 75));
+                        } else if (page === 3) {
+                            let el = document.getElementById('d' + String(currX).padStart(2, '0') + 'd' + String(currY).padStart(2, '0')).firstChild
+                            el.style.backgroundColor = '#F2E863'
+                            await new Promise(resolve => setTimeout(resolve, 75));
+                            el.style.backgroundColor = 'lightgray'
                         }
                         arr2D[currX][currY].visited = true;
                         c++;
@@ -82,17 +110,20 @@
                         arr2D[currX][currY].visited = true;
                         breakWalls();
                         running = false;
-                        if (page == 2) {
-                            document.getElementById(String(currX).padStart(2, '0') + String(currY).padStart(2, '0')).firstChild.style.backgroundColor = 'rgb(242, 87, 87)';
-                        document.querySelector('.maze-btn-container').style.display = 'flex';       
+                        if (page === 2) {
+                            document.getElementById('s' + String(currX).padStart(2, '0') + 's' + String(currY).padStart(2, '0')).firstChild.style.backgroundColor = 'rgb(242, 87, 87)';
+                            document.querySelector('.maze-btn-container-one').style.display = 'flex';       
+                        } else if (page === 3) {
+                            document.querySelector('.maze-btn-container-two').style.display = 'flex';       
                         }
                     } 
                 };
-
-                clearMaze(this.length, this.width);
+                clearMaze(page)
                 arr2D = create2dArray(this.length, this.width);
                 createMazePath();
-                styleMaze(arr2D);
+                if (page < 3) {
+                    styleMaze(arr2D);
+                }
             }
         },
         data() {
@@ -115,7 +146,7 @@
     <section class="maze">
         <div v-for="(x, i) in lengthArr" :key="i" class="maze-row">
             <div v-for="(y, j) in widthArr" :key="i + j" class="maze-cell-container"  
-            :id="String(i).padStart(2, '0') + String(j).padStart(2, '0')" 
+            :id="pageType === 1 ? String(i).padStart(2, '0') + String(j).padStart(2, '0') : pageType === 2 ? 's' + String(i).padStart(2, '0') + 's' + String(j).padStart(2, '0') : 'd' + String(i).padStart(2, '0') + 'd' + String(j).padStart(2, '0')"
             :style="{ width: lengthP + '%', 'padding-top': lengthP + '%'}">
                 <div class="maze-cell">
                     {{ i === 0 && j === 0 && pageType == 1 ? 'S' : ' '}}
@@ -124,8 +155,11 @@
             </div>
         </div>
     </section>
-    <div v-if="pageType === 2" class="maze-btn-container">
+    <div v-if="pageType === 2" class="maze-btn-container maze-btn-container-one">
         <button @click="generateMaze(2)">Show Animation</button>
+    </div>
+    <div v-if="pageType === 3" class="maze-btn-container maze-btn-container-two">
+        <button @click="generateMaze(3)">Show Animation</button>
     </div>
 </template>
 
@@ -164,7 +198,7 @@
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        background-color: lightgray;
+        background-color: rgb(211, 211, 211);
     }
 
     @media screen and (min-width: 900px) {
