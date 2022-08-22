@@ -4,6 +4,10 @@ import { createRouter, createWebHistory } from 'vue-router'
 import Home from './views/Home.vue'
 import About from './views/About.vue'
 import App from './App.vue'
+import 'highlight.js/styles/stackoverflow-light.css'
+import hljs from 'highlight.js/lib/common';
+import javascript from 'highlight.js/lib/languages/javascript';
+import hljsVuePlugin from "@highlightjs/vue-plugin";
 
 const router = createRouter({
     history: createWebHistory(),
@@ -13,6 +17,9 @@ const router = createRouter({
     ],
 })
 
+hljs.registerLanguage('javascript', javascript);
+
 createApp(App)
     .use(router)
+    .use(hljsVuePlugin)
     .mount('#app')

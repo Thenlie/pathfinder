@@ -112,9 +112,6 @@
         <button @click="generateMaze(1)">Generate Maze</button>
         <button>Solve Maze</button>
     </div>
-    <div v-if="pageType === 2" class="maze-btn-container">
-        <button @click="generateMaze(2)">Show Animation</button>
-    </div>
     <section class="maze">
         <div v-for="(x, i) in lengthArr" :key="i" class="maze-row">
             <div v-for="(y, j) in widthArr" :key="i + j" class="maze-cell-container"  
@@ -127,6 +124,9 @@
             </div>
         </div>
     </section>
+    <div v-if="pageType === 2" class="maze-btn-container">
+        <button @click="generateMaze(2)">Show Animation</button>
+    </div>
 </template>
 
 <style scoped>
