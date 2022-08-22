@@ -1,14 +1,18 @@
-const clearMaze = (l, w) => {
+const clearMaze = (l, w, t) => {
     // remove current maze styling
     for (let i = 0; i < l; i++) {
         for (let j = 0; j < w; j++) {
-            if ((i !== 0 || j !== 0) && (i !== l-1 || j !== w-1)) { // not start or finish cell
-                // style HTML
-                let el = document.getElementById(String(i).padStart(2, '0') + String(j).padStart(2, '0'));
-                el.style.border = "1px solid black";
-                el.firstChild.style.backgroundColor = "lightgray";
-
+            // style HTML
+            let el;
+            if (t === 1) {
+                el = document.getElementById(String(i).padStart(2, '0') + String(j).padStart(2, '0'));
+            } else if (t === 2) {
+                el = document.getElementById('s' + String(i).padStart(2, '0') + 's' + String(j).padStart(2, '0'));
+            } else {
+                el = document.getElementById('d' + String(i).padStart(2, '0') + 'd' + String(j).padStart(2, '0'));                
             }
+            el.style.border = "1px solid black";
+            el.firstChild.style.backgroundColor = "rgb(211, 211, 211)";
         }
     }
 };

@@ -1,5 +1,5 @@
 <script>
-    import { testMaze } from '../test-maze';
+    import { testMaze } from '../utils/testMaze';
     export default {
         data() {
             return {
