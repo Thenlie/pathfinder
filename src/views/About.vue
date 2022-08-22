@@ -187,7 +187,7 @@ const breakWalls = () => {
         </section>
         <section>
             <h2>Conclusion</h2>
-            <p>As you can see, we end up with a pretty great looking maze! Additionally, this typically takes less than half a second to run, even if we increase the size of the maze to 25 x 25 or even 50 x 50. All of this, and we have simply generated a maze! We still need to solve it, which will be explained in the next section.</p>
+            <p>As you can see, we end up with a pretty great looking maze! Additionally, this typically takes less than half a second to run, even if we increase the size of the maze to 25 x 25 or even 50 x 50. All of this, and we have only generated a maze! We still need to solve it, which will be explained in the next section.</p>
         </section>
         <back-to-top bottom="50px" right="50px">
             <font-awesome-icon icon="fa-regular fa-arrow-alt-circle-up" size="3x"/>
@@ -229,6 +229,9 @@ const breakWalls = () => {
         font-size: large;
         margin: 1em 0.5em;
     }
+    p a {
+        overflow-wrap: break-word;
+    }
     .code {
         width: fit-content;
         margin: auto;
@@ -242,6 +245,7 @@ const breakWalls = () => {
         background-color: #f6f6f6;
         display: flex;
         flex-wrap: wrap;
+        overflow-x: scroll;
     }
     .code-snip {
         padding: 0 0.1em 0 0.1em;
@@ -254,9 +258,6 @@ const breakWalls = () => {
         width:45%
     }
     @media screen and (max-width: 600px) {
-        .code-container {
-            overflow-x: scroll;
-        }
         .generator-container {
             width:75%
         }

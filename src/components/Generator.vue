@@ -124,6 +124,8 @@
                 if (page < 3) {
                     styleMaze(arr2D);
                 }
+                this.set(arr2D);
+
             },
             clearCurrentMaze(page) {
                 clearMaze(this.length, this.width, page)
@@ -158,6 +160,8 @@
             </div>
         </div>
     </section>
+    <p v-if="pageType === 2">fig 2.1</p>
+    <p v-if="pageType === 3">fig 2.2</p>
     <div v-if="pageType === 2" class="maze-btn-container maze-btn-container-one">
         <button @click="generateMaze(2)">Show Animation</button>
         <button @click="clearCurrentMaze(2)">Clear</button>
@@ -204,6 +208,11 @@
         align-items: center;
         justify-content: center;
         background-color: rgb(211, 211, 211);
+    }
+
+    p {
+        text-align: center;
+        font-style: italic;
     }
 
     @media screen and (min-width: 900px) {
