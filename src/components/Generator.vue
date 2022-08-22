@@ -65,7 +65,7 @@
                     while (c < this.length * this.width) {
                         if (page === 2) {
                             let el = document.getElementById('s' + String(currX).padStart(2, '0') + 's' + String(currY).padStart(2, '0')).firstChild
-                            if (el.style.backgroundColor === "") {
+                            if (el.style.backgroundColor === "rgb(211, 211, 211)") {
                                 el.style.backgroundColor = "rgb(242, 87, 87)";
                             } else if (el.style.backgroundColor === "rgb(242, 87, 87)") {
                                 el.style.backgroundColor = "rgb(42, 110, 219)"
@@ -118,7 +118,7 @@
                         }
                     } 
                 };
-                clearMaze(page)
+                clearMaze(this.length, this.width, page);
                 arr2D = create2dArray(this.length, this.width);
                 createMazePath();
                 if (page < 3) {
