@@ -13,6 +13,7 @@
   "dependencies": {
     "@highlightjs/vue-plugin": "^2.1.0",
     "uuid": "^8.3.2",
+    "vercel": "^28.1.0",
     "vue": "^3.2.37",
     "vue-router": "^4.1.3"
   },

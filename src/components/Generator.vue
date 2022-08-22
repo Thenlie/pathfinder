@@ -137,7 +137,6 @@
     }
 
     .maze {
-        width: 75%;
         margin: 1em auto;
         text-align: center;
         border: 2px solid black;
@@ -167,14 +166,6 @@
         justify-content: center;
         background-color: lightgray;
     }
-
-    /* .maze-row:first-child .maze-cell-container:first-child .maze-cell {
-        background-color: #8CDBC8;
-    }
-
-    .maze-row:last-child  .maze-cell-container:last-child .maze-cell {
-        background-color: #E7A7A7;
-    } */
 
     @media screen and (min-width: 900px) {
         .maze {

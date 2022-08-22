@@ -90,8 +90,30 @@ const checkSurroundings = (arr2D, x, y) => {
             <Dots />
         </div>
         <h2>Attempt #2</h2>
-        <p></p>        
-        <Generator :length="10" :width="10" :mazeArr="mazeArr" :page="2" @set="set" /> <!-- these values determine the size of the maze  -->
+        <p>Before long, it was determined that the best use of time would be to pivot the entire project plan. Repeating the entire search function upon a dead end was simply not efficient enough. What we needed was a function that would backtrack when it hit a dead end and then continue on a different path. Enter, recursive backtracking!</p> 
+        <p>With this new approach, we keep track of how many available moves there are. When there are none, we return to the previous position and never return to the cell we were just in. This continues until every cell is visited.</p>
+        <p>But wait, if we visit every cell, how do we know there is a path to the end? It has to do with how we draw/remove the walls. Let's dive a bit deeper into how this algorithm works to fully understand.</p>
+        <p>When we start our function we create an empty array, called <span class="code-snip">stack</span>. Every time we visit a new cell, we push that location (stored as an object) onto the stack. This keeps track of the path the node takes, in order. When we reach a dead end, we pop the current location off of the stack and return to the previous location. So, how do we know which cells have been visited if they are popped off the stack? For this, a custom class was implemented. This class is stored in each maze cell. The class can be seen below:</p>
+        <div class="code-container">
+            <highlightjs language="javascript" class="code" code="
+class MazeCell {
+    constructor(x, y, visited, top, right, bottom, left) {
+        this.x = x; // x coordinate location -- INT
+        this.y = y; // y coordinate location -- INT
+        this.visited = visited; // checked in search, defaults to False -- BOOL
+        this.top = top; // true if wall, false if air --  BOOL
+        this.right = right; // ^
+        this.bottom = bottom; // ^
+        this.left = left; // ^
+    }
+}"
+            />
+        </div>
+        <p>As you can see, each cell contains information about it's location, walls, and wether or not it has been visited. As such, we simply need to call <span class="code-snip">MazeCell.visited</span> to check if we are able to go to this square. Let's see this algorith in action! Click the button below to see the algorithm work. It will be random every iteration.</p>
+        <div class="generator-container">
+            <Generator :length="10" :width="10" :mazeArr="mazeArr" :page="2" @set="set" /> <!-- these values determine the size of the maze  -->
+        </div>
+        <p>Now for the tricky part. To get the actual maze we need to remove some walls. Remember, we are starting with a grid, meaning every wall is in place. So, as our function progresses we are creating links between two cells. These cells can never have more than two links since a node can only go in and out of a cell once (other than backtracking). Additionall, we know the connections hit every single cell in the grid eventuall. This means there is not only a path to the end, there is a path to every single cell without a doubt. This means we are garunteed to get a far more interesting maze with more dead ends and no cut off sections.</p>
     </main>
 </template>
 
@@ -146,9 +168,16 @@ const checkSurroundings = (arr2D, x, y) => {
         background-color: lightgray;
         border-radius: 3px;
     }
+    .generator-container {
+        margin: auto;
+        width:45%
+    }
     @media screen and (max-width: 600px) {
         .code-container {
             overflow-x: scroll;
+        }
+        .generator-container {
+            width:75%
         }
     }
 </style>
