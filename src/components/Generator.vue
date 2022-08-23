@@ -148,7 +148,7 @@
         <button @click="generateMaze(1)">Generate Maze</button>
         <button>Solve Maze</button>
     </div>
-    <section class="maze">
+    <!-- <section class="maze">
         <div v-for="(x, i) in lengthArr" :key="i" class="maze-row">
             <div v-for="(y, j) in widthArr" :key="i + j" class="maze-cell-container"  
             :id="pageType === 1 ? String(i).padStart(2, '0') + String(j).padStart(2, '0') : pageType === 2 ? 's' + String(i).padStart(2, '0') + 's' + String(j).padStart(2, '0') : 'd' + String(i).padStart(2, '0') + 'd' + String(j).padStart(2, '0')"
@@ -159,7 +159,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> -->
     <p v-if="pageType === 2">fig 2.1</p>
     <p v-if="pageType === 3">fig 2.2</p>
     <div v-if="pageType === 2" class="maze-btn-container maze-btn-container-one">
