@@ -141,54 +141,8 @@
         padding: 0.5em;
     }
 
-    .maze {
-        margin: 1em auto;
-        text-align: center;
-        border: 2px solid black;
-    }
-
-    .maze-row {
-        display: flex;
-    }
-
-    .maze-cell-container {
-        border: black 1px solid;
-        position: relative;
-    }
-
-    .maze-cell {
-        text-align: center;
-        font-size: larger;
-        font-weight: bold;
-        position: absolute;
-        top: 0;
-        left: 0;
-        bottom: 0;
-        right: 0;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        background-color: rgb(211, 211, 211);
-    }
-
     p {
         text-align: center;
         font-style: italic;
-    }
-
-    @media screen and (min-width: 900px) {
-        .maze {
-            width: 50%;
-        }
-        .maze-cell-container {
-            border: black 1px solid;
-        }
-    }
-
-    @media screen and (min-width: 1800px) {
-        .maze {
-            width: 40%;
-        }
     }
 </style>

@@ -31,12 +31,6 @@
 </template>
 
 <style scoped>
-    .maze-btn-container {
-        display: flex;
-        justify-content: space-evenly;
-        padding: 0.5em;
-    }
-
     .maze {
         margin: 1em auto;
         text-align: center;
@@ -66,11 +60,6 @@
         align-items: center;
         justify-content: center;
         background-color: rgb(211, 211, 211);
-    }
-
-    p {
-        text-align: center;
-        font-style: italic;
     }
 
     @media screen and (min-width: 900px) {
