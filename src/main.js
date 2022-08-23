@@ -12,8 +12,9 @@ import BackToTop from 'vue-backtotop'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { faArrowAltCircleUp } from '@fortawesome/free-regular-svg-icons'
+import { faGithub } from '@fortawesome/free-brands-svg-icons'
 
-library.add(faArrowAltCircleUp)
+library.add(faArrowAltCircleUp, faGithub)
 
 const router = createRouter({
     history: createWebHistory(),
