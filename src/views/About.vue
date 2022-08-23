@@ -1,7 +1,7 @@
 <script setup>
     import Dots from '../components/Dots.vue';
     import Generator from '../components/Generator.vue';
-    import SampleMaze from '../components/SampleMaze.vue'
+    import SampleMaze from '../components/SampleMazes.vue'
     import Maze from '../components/Maze.vue';
 </script>
 
