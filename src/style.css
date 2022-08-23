@@ -5,8 +5,19 @@
     box-sizing: border-box;
 }
 
+html, body{
+    min-height:100%;
+}
+
 body {
     background-color: #f0f0f0;
+    height:100vh;
+}
+
+#app {
+    /* height: 100%; */
+    position: relative;
+    min-height: 100vh;
 }
 
 button {
@@ -15,7 +26,13 @@ button {
 }
 
 main {
-    padding: 2em;    
+    padding-bottom: 6rem;    
+}
+
+footer {
+    position: absolute;
+    width: 100%;
+    bottom: 0;
 }
 
 .page-heading {

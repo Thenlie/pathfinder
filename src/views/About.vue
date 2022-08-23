@@ -3,7 +3,6 @@
     import Generator from '../components/Generator.vue';
     import SampleMaze from '../components/SampleMazes.vue'
     import Maze from '../components/Maze.vue';
-    import Footer from '../components/Footer.vue';
 </script>
 
 <template>
@@ -197,7 +196,6 @@ const breakWalls = () => {
             <font-awesome-icon icon="fa-regular fa-arrow-alt-circle-up" size="3x"/>
         </back-to-top>
     </main>
-    <Footer />
 </template>
 
 <script>
