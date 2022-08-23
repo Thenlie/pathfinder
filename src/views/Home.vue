@@ -2,6 +2,7 @@
     import Generator from '../components/Generator.vue';
     import Dots from '../components/Dots.vue';
     import Maze from '../components/Maze.vue';
+    import Footer from '../components/Footer.vue';
 </script>
 
 <template>
@@ -13,6 +14,7 @@
         <Generator :length="50" :width="50" :mazeArr="mazeArr" :page="1" @set="set" /> <!-- these values determine the size of the maze -->
         <Maze :length="50" :width="50" :mazeArr="mazeArr" :page="1"  />
     </main>
+    <Footer />
 </template>
 
 <script>
