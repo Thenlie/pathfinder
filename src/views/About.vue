@@ -3,6 +3,7 @@
     import Generator from '../components/Generator.vue';
     import SampleMaze from '../components/SampleMazes.vue'
     import Maze from '../components/Maze.vue';
+    import Footer from '../components/Footer.vue';
 </script>
 
 <template>
@@ -196,6 +197,7 @@ const breakWalls = () => {
             <font-awesome-icon icon="fa-regular fa-arrow-alt-circle-up" size="3x"/>
         </back-to-top>
     </main>
+    <Footer />
 </template>
 
 <script>
@@ -259,6 +261,9 @@ const breakWalls = () => {
     .generator-container {
         margin: auto;
         width:45%
+    }
+    code.hljs {
+        font-size: 12px;
     }
     @media screen and (max-width: 600px) {
         .generator-container {

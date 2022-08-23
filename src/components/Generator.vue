@@ -125,11 +125,11 @@
     <p v-if="pageType === 2">fig 2.1</p>
     <p v-if="pageType === 3">fig 2.2</p>
     <div v-if="pageType === 2" class="maze-btn-container maze-btn-container-one">
-        <button @click="generateMaze(2)">Show Animation</button>
+        <button @click="generateMaze(2)">Start</button>
         <button @click="clearCurrentMaze(2)">Clear</button>
     </div>
     <div v-if="pageType === 3" class="maze-btn-container maze-btn-container-two">
-        <button @click="generateMaze(3)">Show Animation</button>
+        <button @click="generateMaze(3)">Start</button>
         <button @click="clearCurrentMaze(3)">Clear</button>
     </div>
 </template>

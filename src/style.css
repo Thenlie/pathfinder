@@ -10,6 +10,7 @@ body {
 }
 
 button {
+    padding: 0.1em;
     cursor: pointer;
 }
 
@@ -46,4 +47,20 @@ main {
     font-size: 22px;
     line-height: 22px;
     background-color: rgba(211, 211, 211, 0.5);
-  }
+}
+
+code.hljs {
+    font-size: 16px;
+}
+
+@media screen and (max-width: 1200px) {
+    code.hljs {
+        font-size: 14px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    code.hljs {
+        font-size: 12px;
+    }
+}
