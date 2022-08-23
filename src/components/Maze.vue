@@ -32,9 +32,10 @@
 
 <style scoped>
     .maze {
-        margin: 1em auto;
+        margin: 0.5rem auto;
         text-align: center;
-        border: 2px solid black;
+        width: 90%;
+        margin-bottom: 2rem;
     }
 
     .maze-row {
@@ -48,8 +49,6 @@
 
     .maze-cell {
         text-align: center;
-        font-size: larger;
-        font-weight: bold;
         position: absolute;
         top: 0;
         left: 0;
@@ -64,14 +63,17 @@
 
     @media screen and (min-width: 900px) {
         .maze {
-            width: 50%;
-        }
-        .maze-cell-container {
-            border: black 1px solid;
+            width: 75%;
         }
     }
 
-    @media screen and (min-width: 1800px) {
+    @media screen and (min-width: 1100px) {
+        .maze {
+            width: 50%;
+        }
+    }
+
+    @media screen and (min-width: 1600px) {
         .maze {
             width: 40%;
         }

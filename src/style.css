@@ -4,46 +4,51 @@
     font-family: monospace;
     box-sizing: border-box;
 }
+/* sticky foot styling */
+
+html, body{
+    min-height:100%;
+}
 
 body {
     background-color: #f0f0f0;
+    height:100vh;
 }
 
-button {
-    cursor: pointer;
+#app {
+    position: relative;
+    min-height: 100vh;
 }
 
 main {
-    padding: 2em;    
+    padding-bottom: 6rem;    
+}
+
+footer {
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+}
+
+/* general styles */
+
+button {
+    padding: 0.1em;
+    cursor: pointer;
+}
+
+.about {
+    padding-left: 2rem;
+    padding-right: 2rem;
 }
 
 .page-heading {
     text-align: center;
     font-size: 48px;
-}
-
-.dot {
-    height: 20px;
-    width: 20px;
-    border-radius: 50%;
-    display: inline-block;
-    margin: 0.1em;
+    margin: 0.5rem;
 }
 
 .dot-container {
     text-align: center;
     margin: 0.1em;
 }
-
-.vue-back-to-top {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 60px;
-    height: 60px;
-    padding: 10px 16px;
-    border-radius: 50%;
-    font-size: 22px;
-    line-height: 22px;
-    background-color: rgba(211, 211, 211, 0.5);
-  }

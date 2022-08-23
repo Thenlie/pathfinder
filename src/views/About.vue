@@ -239,6 +239,7 @@ const breakWalls = () => {
         width: fit-content;
         margin: auto;
         display: inline;
+        font-size: 16px;
     }
     svg {
         color: rgb(100, 100, 100)
@@ -260,9 +261,30 @@ const breakWalls = () => {
         margin: auto;
         width:45%
     }
+
+    .vue-back-to-top {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 60px;
+        height: 60px;
+        padding: 10px 16px;
+        border-radius: 50%;
+        font-size: 22px;
+        line-height: 22px;
+        background-color: rgba(211, 211, 211, 0.5);
+    }
+    @media screen and (max-width: 1200px) {
+        .code {
+            font-size: 14px;
+        }
+    }
     @media screen and (max-width: 600px) {
         .generator-container {
             width:75%
+        }
+        .code {
+            font-size: 12px;
         }
     }
 </style>
