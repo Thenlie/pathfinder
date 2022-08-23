@@ -49,8 +49,6 @@
 
     .maze-cell {
         text-align: center;
-        font-size: larger;
-        font-weight: bold;
         position: absolute;
         top: 0;
         left: 0;

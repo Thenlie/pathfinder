@@ -10,8 +10,8 @@
         <div class="dot-container">
             <Dots />
         </div>
-        <Generator :length="50" :width="50" :mazeArr="mazeArr" :page="1" @set="set" /> <!-- these values determine the size of the maze -->
-        <Maze :length="50" :width="50" :mazeArr="mazeArr" :page="1"  />
+        <Generator :length="25" :width="25" :mazeArr="mazeArr" :page="1" @set="set" /> <!-- these values determine the size of the maze -->
+        <Maze :length="25" :width="25" :mazeArr="mazeArr" :page="1"  />
     </main>
 </template>
 
