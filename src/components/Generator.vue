@@ -1,5 +1,5 @@
 <script setup>
-    import { clearMaze, styleMaze } from '../utils/mazeUtil';
+    import { animateCells, animateWalls, clearMaze, styleMaze } from '../utils/mazeUtil';
     import { create2dArray, checkSurroundings } from '../utils/arrayUtil';
 </script>
 
@@ -11,7 +11,6 @@
         methods: {
             async set(arr) {
                 this.$emit('set', arr);
-                // console.log(this.mazeArr); // <-- the 'proxy' this logs acts just like an array, must await line 13
             },
             generateMaze(page) {
                 if (page === 2) {
@@ -25,53 +24,28 @@
                     // remove walls where current node is connected to prev node
                     let curr = arr2D[currX][currY];
                     let prev = arr2D[stack[stack.length-1].x][stack[stack.length-1].y];
-                    let currEl, prevEl;
                     if (page === 3 && stack.length > 0) {
-                        currEl = document.getElementById('d' + String(currX).padStart(2, '0') + 'd' + String(currY).padStart(2, '0'));
-                        prevEl = document.getElementById('d' + String(stack[stack.length-1].x).padStart(2, '0') + 'd' + String(stack[stack.length-1].y).padStart(2, '0'));
+                        animateWalls(currX, currY, stack, curr, prev)
                     }
                     if (curr.x < prev.x) { // up
                         arr2D[currX][currY].bottom = false;
                         arr2D[stack[stack.length-1].x][stack[stack.length-1].y].top = false
-                        if (page === 3) {
-                            currEl.style.borderBottom = "none" 
-                            prevEl.style.borderTop = "none" 
-                        }
                     } else if (curr.x > prev.x) { // down
                         arr2D[currX][currY].top = false;
                         arr2D[stack[stack.length-1].x][stack[stack.length-1].y].bottom = false
-                        if (page === 3) {
-                            currEl.style.borderTop = "none" 
-                            prevEl.style.borderBottom = "none" 
-                        }
                     } else if (curr.y < prev.y) { // left
                         arr2D[currX][currY].right = false;
                         arr2D[stack[stack.length-1].x][stack[stack.length-1].y].left = false
-                        if (page === 3) {
-                            currEl.style.borderRight = "none" 
-                            prevEl.style.borderLeft = "none" 
-                        }
                     } else if (curr.y > prev.y) { // right
                         arr2D[currX][currY].left = false;
                         arr2D[stack[stack.length-1].x][stack[stack.length-1].y].right = false
-                        if (page === 3) {
-                            currEl.style.borderLeft = "none" 
-                            prevEl.style.borderRight = "none" 
-                        }
                     } 
                 }
 
                 const createMazePath = async () => {
                     while (c < this.length * this.width) {
                         if (page === 2) {
-                            let el = document.getElementById('s' + String(currX).padStart(2, '0') + 's' + String(currY).padStart(2, '0')).firstChild
-                            if (el.style.backgroundColor === "rgb(211, 211, 211)") {
-                                el.style.backgroundColor = "rgb(242, 87, 87)";
-                            } else if (el.style.backgroundColor === "rgb(242, 87, 87)") {
-                                el.style.backgroundColor = "rgb(42, 110, 219)"
-                            } else if (el.style.backgroundColor === "rgb(42, 110, 219)") {
-                                el.style.backgroundColor = "#F2E863"
-                            }
+                            animateCells(currX, currY);
                             await new Promise(resolve => setTimeout(resolve, 75));
                         } else if (page === 3) {
                             let el = document.getElementById('d' + String(currX).padStart(2, '0') + 'd' + String(currY).padStart(2, '0')).firstChild
@@ -148,18 +122,6 @@
         <button @click="generateMaze(1)">Generate Maze</button>
         <button>Solve Maze</button>
     </div>
-    <!-- <section class="maze">
-        <div v-for="(x, i) in lengthArr" :key="i" class="maze-row">
-            <div v-for="(y, j) in widthArr" :key="i + j" class="maze-cell-container"  
-            :id="pageType === 1 ? String(i).padStart(2, '0') + String(j).padStart(2, '0') : pageType === 2 ? 's' + String(i).padStart(2, '0') + 's' + String(j).padStart(2, '0') : 'd' + String(i).padStart(2, '0') + 'd' + String(j).padStart(2, '0')"
-            :style="{ width: lengthP + '%', 'padding-top': lengthP + '%'}">
-                <div class="maze-cell">
-                    {{ i === 0 && j === 0 && pageType == 1 ? 'S' : ' '}}
-                    {{ i === lengthArr.length-1 && j === widthArr.length-1 && pageType == 1 ? 'F' : ' '}}
-                </div>
-            </div>
-        </div>
-    </section> -->
     <p v-if="pageType === 2">fig 2.1</p>
     <p v-if="pageType === 3">fig 2.2</p>
     <div v-if="pageType === 2" class="maze-btn-container maze-btn-container-one">
