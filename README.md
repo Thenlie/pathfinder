@@ -25,10 +25,16 @@ To run the development version of this app, use the following command:
 npm run dev
 ```
 
-To build the app use the following command:
+To build the app, use the following command:
 ```
 npm run build
 ```
+
+To run the testing framework, use the following command:
+```
+npm run test
+```
+> NOTE: Tests can be viewed in `/src/__tests__`
 
 ## License
 <details>
