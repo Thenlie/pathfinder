@@ -34,8 +34,8 @@
     .maze {
         margin: 0.5rem auto;
         text-align: center;
-        border: 2px solid black;
         width: 90%;
+        margin-bottom: 2rem;
     }
 
     .maze-row {
@@ -67,12 +67,15 @@
         .maze {
             width: 75%;
         }
-        .maze-cell-container {
-            border: black 1px solid;
+    }
+
+    @media screen and (min-width: 1100px) {
+        .maze {
+            width: 50%;
         }
     }
 
-    @media screen and (min-width: 1800px) {
+    @media screen and (min-width: 1600px) {
         .maze {
             width: 40%;
         }
