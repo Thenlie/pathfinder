@@ -1,4 +1,5 @@
 import { MazeCell } from "../lib/MazeCell.js";
+import { animateWalls } from "./mazeUtil.js";
 
 const create2dArray = (length, width) => {
     // create 2D array of MazeCell's 
@@ -36,4 +37,26 @@ const checkSurroundings = (arr2D, x, y) => {
     return arr;
 };
 
-export { create2dArray, checkPosition, checkSurroundings };
+const breakWalls = (arr2D, x, y, stack, page) => {
+    // remove walls where current node is connected to prev node
+    let curr = arr2D[x][y];
+    let prev = arr2D[stack[stack.length-1].x][stack[stack.length-1].y];
+    if (curr.x < prev.x) { // up
+        curr.bottom = false;
+        prev.top = false
+    } else if (curr.x > prev.x) { // down
+        curr.top = false;
+        prev.bottom = false
+    } else if (curr.y < prev.y) { // left
+        curr.right = false;
+        prev.left = false
+    } else if (curr.y > prev.y) { // right
+        curr.left = false;
+        prev.right = false
+    } 
+    if (page === 3 && stack.length > 0) {
+        animateWalls(x, y, stack, curr, prev)
+    }
+}
+
+export { create2dArray, checkPosition, checkSurroundings, breakWalls };

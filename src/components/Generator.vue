@@ -1,6 +1,6 @@
 <script setup>
-    import { animateCells, animateWalls, animateCurrentNode, clearMaze, styleMaze, hideButtons } from '../utils/mazeUtil';
-    import { create2dArray, checkSurroundings } from '../utils/arrayUtil';
+    import { animateCells, animateCurrentNode, clearMaze, styleMaze, toggleButtons } from '../utils/mazeUtil';
+    import { create2dArray, checkSurroundings, breakWalls } from '../utils/arrayUtil';
 </script>
 
 <script>
@@ -14,29 +14,7 @@
             },
             generateMaze(page) {
                 let arr2D = [], stack = [], currX = 0, currY = 0;
-                hideButtons(page)
-
-                const breakWalls = () => {
-                    // remove walls where current node is connected to prev node
-                    let curr = arr2D[currX][currY];
-                    let prev = arr2D[stack[stack.length-1].x][stack[stack.length-1].y];
-                    if (page === 3 && stack.length > 0) {
-                        animateWalls(currX, currY, stack, curr, prev)
-                    }
-                    if (curr.x < prev.x) { // up
-                        curr.bottom = false;
-                        prev.top = false
-                    } else if (curr.x > prev.x) { // down
-                        curr.top = false;
-                        prev.bottom = false
-                    } else if (curr.y < prev.y) { // left
-                        curr.right = false;
-                        prev.left = false
-                    } else if (curr.y > prev.y) { // right
-                        curr.left = false;
-                        prev.right = false
-                    } 
-                }
+                toggleButtons(page, false);
 
                 const createMazePath = async () => {
                     let c = 1;
@@ -49,7 +27,7 @@
                         }
                         arr2D[currX][currY].visited = true;
                         if (stack.length > 0) {
-                            breakWalls();
+                            breakWalls(arr2D, currX, currY, stack, page);
                             if (!(stack[stack.length-1].x == currX && stack[stack.length-1].y == currY)) {
                                 stack.push({x: currX, y: currY}); 
                             }
@@ -74,13 +52,11 @@
                     // check for complete stack
                     if (c === this.length * this.width) { 
                         arr2D[currX][currY].visited = true;
-                        breakWalls();
+                        breakWalls(arr2D, currX, currY, stack, page);
                         if (page === 2) {
                             document.getElementById('s' + String(currX).padStart(2, '0') + 's' + String(currY).padStart(2, '0')).firstChild.style.backgroundColor = 'rgb(242, 87, 87)';
-                            document.querySelector('.maze-btn-container-one').style.display = 'flex';       
-                        } else if (page === 3) {
-                            document.querySelector('.maze-btn-container-two').style.display = 'flex';       
                         }
+                        toggleButtons(page, true)
                     }
                 };
                 clearMaze(this.length, this.width, page);

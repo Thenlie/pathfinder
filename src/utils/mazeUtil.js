@@ -66,12 +66,12 @@ const animateCurrentNode = async (x, y) => {
     el.style.backgroundColor = 'lightgray'
 }
 
-const hideButtons = (page) => {
+const toggleButtons = (page, state) => {
     if (page === 2) {
-        document.querySelector('.maze-btn-container-one').style.display = 'none';       
+        !state ? document.querySelector('.maze-btn-container-one').style.display = 'none' : document.querySelector('.maze-btn-container-one').style.display = 'flex';       
     } else if (page === 3) {
-        document.querySelector('.maze-btn-container-two').style.display = 'none';       
+        !state ? document.querySelector('.maze-btn-container-two').style.display = 'none' : document.querySelector('.maze-btn-container-two').style.display = 'flex';  
     }
 }
 
-export { clearMaze, styleMaze, animateCells, animateWalls, animateCurrentNode, hideButtons };
+export { clearMaze, styleMaze, animateCells, animateWalls, animateCurrentNode, toggleButtons };
