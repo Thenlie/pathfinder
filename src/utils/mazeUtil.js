@@ -29,7 +29,7 @@ const styleMaze = (arr2D) => {
     }
 }
 
-const animateCells = (x, y) => {
+const animateCells = async (x, y) => {
     let el = document.getElementById('s' + String(x).padStart(2, '0') + 's' + String(y).padStart(2, '0')).firstChild
     if (el.style.backgroundColor === "rgb(211, 211, 211)") {
         el.style.backgroundColor = "rgb(242, 87, 87)";
@@ -38,6 +38,7 @@ const animateCells = (x, y) => {
     } else if (el.style.backgroundColor === "rgb(42, 110, 219)") {
         el.style.backgroundColor = "#F2E863"
     }
+    await new Promise(resolve => setTimeout(resolve, 75));
 }
 
 const animateWalls = (x, y, stack, curr, prev) => {
@@ -58,4 +59,19 @@ const animateWalls = (x, y, stack, curr, prev) => {
     } 
 }
 
-export { clearMaze, styleMaze, animateCells, animateWalls };
+const animateCurrentNode = async (x, y) => {
+    let el = document.getElementById('d' + String(x).padStart(2, '0') + 'd' + String(y).padStart(2, '0')).firstChild
+    el.style.backgroundColor = '#F2E863'
+    await new Promise(resolve => setTimeout(resolve, 75));
+    el.style.backgroundColor = 'lightgray'
+}
+
+const hideButtons = (page) => {
+    if (page === 2) {
+        document.querySelector('.maze-btn-container-one').style.display = 'none';       
+    } else if (page === 3) {
+        document.querySelector('.maze-btn-container-two').style.display = 'none';       
+    }
+}
+
+export { clearMaze, styleMaze, animateCells, animateWalls, animateCurrentNode, hideButtons };
