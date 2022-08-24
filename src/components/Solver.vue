@@ -5,35 +5,33 @@ import { checkBorders } from '../utils/arrayUtil';
 <script>
 export default {
   name: 'Solver',
-  props: { mazeArr: Array },
+  props: { length: Number, width: Number, mazeArr: Array, page: Number },
   methods: {
-    solveMaze() {
-      let path = [];
+    solveMaze(arr2D, x, y, length, width) {
       arr2D[x][y].visited = true;
       path.push(arr2D[x][y]);
 
       // check for end of maze
-      if (x === 9 && y === 9) {
-        console.log(path);
+      if (x === length - 1 && y === width - 1) {
         return;
       }
 
-      let opts = checkWalls(arr2D, x, y);
+      let opts = checkBorders(arr2D, x, y);
       if (opts.length > 0) {
         for (let i = 0; i < opts.length; ) {
           let opt = opts[Math.floor(Math.random() * opts.length)];
           switch (opt) {
             case 'U':
-              solveMaze(arr2D, x - 1, y);
+              this.solveMaze(arr2D, x - 1, y, this.length, this.width);
               break;
             case 'R':
-              solveMaze(arr2D, x, y + 1);
+              this.solveMaze(arr2D, x, y + 1, this.length, this.width);
               break;
             case 'D':
-              solveMaze(arr2D, x + 1, y);
+              this.solveMaze(arr2D, x + 1, y, this.length, this.width);
               break;
             case 'L':
-              solveMaze(arr2D, x, y - 1);
+              this.solveMaze(arr2D, x, y - 1, this.length, this.width);
               break;
             default:
               break;
@@ -42,15 +40,34 @@ export default {
         }
       }
       arr2D[x][y].visited = false;
-      path.pop();
       return;
     },
+  },
+  data() {
+    return {
+      pageType: this.page,
+    };
   },
 };
 </script>
 
 <template>
-  <main>
-    <h1>Solver</h1>
-  </main>
+  <div v-if="pageType === 1" class="maze-btn-container">
+    <button @click="solveMaze(this.mazeArr, 0, 0, this.length, this.width)">
+      Solve Maze
+    </button>
+  </div>
 </template>
+
+<style scoped>
+.maze-btn-container {
+  display: flex;
+  justify-content: space-evenly;
+  padding: 0.5em;
+}
+
+p {
+  text-align: center;
+  font-style: italic;
+}
+</style>
