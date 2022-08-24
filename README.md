@@ -2,17 +2,17 @@
 
 ![JS Badge](https://img.shields.io/static/v1?label=language&message=JavaScript&color=yellow&logo=javascript)
 ![Vue Badge](https://img.shields.io/static/v1?label=framework&message=vue&color=success&logo=vuedotjs)
+![Vite Badge](https://img.shields.io/static/v1?label=created&message=vite&color=blueviolet&logo=vite)
 ![Node Badge](https://img.shields.io/static/v1?label=engine&message=node&color=green&logo=nodedotjs)
 ![Git Badge](https://img.shields.io/static/v1?label=control&message=git&color=orange&logo=git)
 
 
-A program that creates and solves mazes automatically 
+A program that creates and solves mazes automatically! This project was created using Vite and VueJS and was mostly created to learn those frameworks. The other intention of building this app was to improve algorithmic thinking and problem solving skills. 
 
 ---
 
   ## Table of Contents
 
-  * [Installation](#installation)
   * [Usage](#usage)
   * [License](#license)
   * [Contributing](#contributing)
@@ -25,11 +25,22 @@ To run the development version of this app, use the following command:
 npm run dev
 ```
 
+To build the app, use the following command:
+```
+npm run build
+```
+
+To run the testing framework, use the following command:
+```
+npm run test
+```
+> NOTE: Tests can be viewed in `/src/__tests__`
+
 ## License
 <details>
 
 
-<summary>GNU LESSER GENERAL PUBLIC LICENSE</summary>
+<summary>GNU LESSER GENERAL PUBLIC LICENSE (click to expand)</summary>
 
 > Version 3, 29 June 2007
 > 
@@ -202,6 +213,7 @@ npm run dev
 
 Feel free to fork this repo and make it your own! If you think your changes could be widely used, submit a pull request! More info on how to do that can be found [here](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-pull-requests).
 
+You can also find a list of active issue and tasks [here](https://github.com/Thenlie/pathfinder/issues).
 
 ## Questions?
 

@@ -1,7 +1,10 @@
 <script setup>
-    import Maze from './components/Maze.vue';
+    import Navigation from './components/Navigation.vue';
+    import Footer from './components/Footer.vue';
 </script>
 
 <template>
-  <Maze :length="15" :width="15"/> <!-- these values determine the size of the maze  -->
+    <Navigation/>
+    <router-view></router-view>
+    <Footer />
 </template>
