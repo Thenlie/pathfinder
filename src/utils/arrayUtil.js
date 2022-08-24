@@ -36,4 +36,22 @@ const checkSurroundings = (arr2D, x, y) => {
     return arr;
 };
 
-export { create2dArray, checkPosition, checkSurroundings };
+const checkBorders = (arr2D, x, y) => {
+  // check for available directions to move
+  let arr = [];
+  if (!arr2D[x][y].top && !arr2D[x - 1][y].visited) {
+    arr.push('U');
+  }
+  if (!arr2D[x][y].bottom && !arr2D[x + 1][y].visited) {
+    arr.push('D');
+  }
+  if (!arr2D[x][y].left && !arr2D[x][y - 1].visited) {
+    arr.push('L');
+  }
+  if (!arr2D[x][y].right && !arr2D[x][y + 1].visited) {
+    arr.push('R');
+  }
+  return arr;
+};
+
+export { create2dArray, checkPosition, checkSurroundings, checkBorders };
