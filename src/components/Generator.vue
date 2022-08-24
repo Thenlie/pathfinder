@@ -1,6 +1,6 @@
 <script setup>
     import { animateCells, animateWalls, clearMaze, styleMaze } from '../utils/mazeUtil';
-    import { create2dArray, checkSurroundings } from '../utils/arrayUtil';
+    import { create2dArray, resetVisited, checkSurroundings } from '../utils/arrayUtil';
 </script>
 
 <script>
@@ -98,6 +98,7 @@
                 if (page < 3) {
                     styleMaze(arr2D);
                 }
+                resetVisited(arr2D);
                 this.set(arr2D);
 
             },

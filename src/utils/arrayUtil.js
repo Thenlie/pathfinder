@@ -16,6 +16,14 @@ const create2dArray = (length, width) => {
     return arr2D;
 }
 
+const resetVisited = arr2D => {
+  for (let i = 0; i < arr2D.length; i++) {
+    for (let j = 0; j < arr2D[0].length; j++) {
+      arr2D[i][j].visited = false;
+    }
+  }
+}
+
 const checkPosition = (arr2D, x, y) => {
     // return value of (x, y) in 2D array
     if (arr2D[x]) {
@@ -54,4 +62,4 @@ const checkBorders = (arr2D, x, y) => {
   return arr;
 };
 
-export { create2dArray, checkPosition, checkSurroundings, checkBorders };
+export { create2dArray, resetVisited, checkPosition, checkSurroundings, checkBorders };
