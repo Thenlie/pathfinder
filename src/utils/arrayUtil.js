@@ -9,9 +9,7 @@ const create2dArray = (length, width) => {
     }
     for (let i = 0; i < length; i++) {
         for (let j = 0; j < width; j++) {
-            if (arr2D[i]) {
-                arr2D[i].push(new MazeCell(i, j, false, true, true, true, true,))
-            } 
+            if (arr2D[i]) { arr2D[i].push(new MazeCell(i, j, false, true, true, true, true,)) } 
         }
     }
     return arr2D;
@@ -41,22 +39,10 @@ const breakWalls = (arr2D, x, y, stack, page) => {
     // remove walls where current node is connected to prev node
     let curr = arr2D[x][y];
     let prev = arr2D[stack[stack.length-1].x][stack[stack.length-1].y];
-    if (curr.x < prev.x) { // up
-        curr.bottom = false;
-        prev.top = false
-    } else if (curr.x > prev.x) { // down
-        curr.top = false;
-        prev.bottom = false
-    } else if (curr.y < prev.y) { // left
-        curr.right = false;
-        prev.left = false
-    } else if (curr.y > prev.y) { // right
-        curr.left = false;
-        prev.right = false
-    } 
-    if (page === 3 && stack.length > 0) {
-        animateWalls(x, y, stack, curr, prev)
-    }
+    if (curr.x < prev.x) { curr.bottom = false; prev.top = false }
+    else if (curr.x > prev.x) { curr.top = false; prev.bottom = false }
+    else if (curr.y < prev.y) { curr.right = false; prev.left = false }
+    else if (curr.y > prev.y) { curr.left = false; prev.right = false }
 }
 
 export { create2dArray, checkPosition, checkSurroundings, breakWalls };
