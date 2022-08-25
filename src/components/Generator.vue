@@ -1,6 +1,6 @@
 <script setup>
     import { animateCells, animateCurrentNode, clearMaze, styleMaze, toggleButtons } from '../utils/mazeUtil';
-    import { create2dArray, checkSurroundings, breakWalls } from '../utils/arrayUtil';
+    import { create2dArray, checkSurroundings, breakWalls, resetVisited } from '../utils/arrayUtil';
 </script>
 
 <script>

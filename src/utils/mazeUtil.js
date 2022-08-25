@@ -33,19 +33,14 @@ const animateCells = async (x, y) => {
     await new Promise(resolve => setTimeout(resolve, 75));
 }
 
-// const styleMazeCells = (arr2D) => {
-//   // remove borders according to 2D array
-//   for (let i = 0; i < arr2D.length; i++) {
-//     for (let j = 0; j < arr2D[0].length; j++) {
-//       if (arr2D[i][j].visited) {
-//         document.getElementById(
-//           String(i).padStart(2, '0') + String(j).padStart(2, '0')
-//         ).firstChild.style.backgroundColor = 'rgb(42, 110, 219)';
-//       }
-//     }
-//   }
-// };
-
+const styleMazeCells = (arr2D) => {
+  // remove borders according to 2D array
+  for (let i = 0; i < arr2D.length; i++) {
+    for (let j = 0; j < arr2D[0].length; j++) {
+      if (arr2D[i][j].visited) { document.getElementById(String(i).padStart(2, '0') + String(j).padStart(2, '0')).firstChild.style.backgroundColor = 'rgba(42, 110, 219, 0.5)' }
+    }
+  }
+};
 
 const animateWalls = (x, y, stack, curr, prev) => {
     // remove walls of current and previous node
@@ -67,11 +62,8 @@ const animateCurrentNode = async (x, y) => {
 
 const toggleButtons = (page, state) => {
     // add or remove 'start' and 'clear' buttons under mazes
-    if (page === 2) {
-        !state ? document.querySelector('.maze-btn-container-one').style.display = 'none' : document.querySelector('.maze-btn-container-one').style.display = 'flex';       
-    } else if (page === 3) {
-        !state ? document.querySelector('.maze-btn-container-two').style.display = 'none' : document.querySelector('.maze-btn-container-two').style.display = 'flex';  
-    }
+    if (page === 2) { !state ? document.querySelector('.maze-btn-container-one').style.display = 'none' : document.querySelector('.maze-btn-container-one').style.display = 'flex' } 
+    else if (page === 3) { !state ? document.querySelector('.maze-btn-container-two').style.display = 'none' : document.querySelector('.maze-btn-container-two').style.display = 'flex' }
 }
 
-export { clearMaze, styleMaze, animateCells, animateWalls, animateCurrentNode, toggleButtons };
+export { clearMaze, styleMaze, styleMazeCells, animateCells, animateWalls, animateCurrentNode, toggleButtons };
