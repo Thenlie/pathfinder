@@ -1,5 +1,6 @@
 <script setup>
     import Generator from '../components/Generator.vue';
+    import Solver from '../components/Solver.vue';
     import Dots from '../components/Dots.vue';
     import Maze from '../components/Maze.vue';
 </script>
@@ -11,6 +12,7 @@
             <Dots />
         </div>
         <Generator :length="25" :width="25" :mazeArr="mazeArr" :page="1" @set="set" /> <!-- these values determine the size of the maze -->
+        <Solver :length="25" :width="25" :mazeArr="mazeArr" :page="1" @set="set" />
         <Maze :length="25" :width="25" :mazeArr="mazeArr" :page="1"  />
     </main>
 </template>
@@ -32,6 +34,7 @@
         components: {
             Generator,
             Maze,
+            Solver,
         }
     }
 </script>

@@ -33,6 +33,20 @@ const animateCells = async (x, y) => {
     await new Promise(resolve => setTimeout(resolve, 75));
 }
 
+// const styleMazeCells = (arr2D) => {
+//   // remove borders according to 2D array
+//   for (let i = 0; i < arr2D.length; i++) {
+//     for (let j = 0; j < arr2D[0].length; j++) {
+//       if (arr2D[i][j].visited) {
+//         document.getElementById(
+//           String(i).padStart(2, '0') + String(j).padStart(2, '0')
+//         ).firstChild.style.backgroundColor = 'rgb(42, 110, 219)';
+//       }
+//     }
+//   }
+// };
+
+
 const animateWalls = (x, y, stack, curr, prev) => {
     // remove walls of current and previous node
     let currEl = document.getElementById('d' + String(x).padStart(2, '0') + 'd' + String(y).padStart(2, '0'));

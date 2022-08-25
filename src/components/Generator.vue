@@ -65,6 +65,7 @@
                 if (page < 3) {
                     styleMaze(arr2D);
                 }
+                resetVisited(arr2D);
                 this.set(arr2D);
 
             },
@@ -87,7 +88,6 @@
 <template>
     <div v-if="pageType === 1" class="maze-btn-container">
         <button @click="generateMaze(1)">Generate Maze</button>
-        <button>Solve Maze</button>
     </div>
     <p v-if="pageType === 2">fig 2.1</p>
     <p v-if="pageType === 3">fig 2.2</p>
