@@ -1,4 +1,4 @@
-# Pathfinder ![Project License Badge](https://img.shields.io/badge/license-GNU-brightgreen)
+# Pathfinder ![Project License Badge](https://img.shields.io/github/license/Thenlie/pathfinder)![Project Issues Badge](https://img.shields.io/github/issues/Thenlie/pathfinder)
 
 ![JS Badge](https://img.shields.io/static/v1?label=language&message=JavaScript&color=yellow&logo=javascript)
 ![Vue Badge](https://img.shields.io/static/v1?label=framework&message=vue&color=success&logo=vuedotjs)
