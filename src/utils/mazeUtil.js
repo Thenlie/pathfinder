@@ -34,7 +34,7 @@ const animateCells = async (x, y) => {
 }
 
 const styleMazeCells = (arr2D) => {
-  // remove borders according to 2D array
+  // style visited cells in maze
   for (let i = 0; i < arr2D.length; i++) {
     for (let j = 0; j < arr2D[0].length; j++) {
       if (arr2D[i][j].visited) { document.getElementById(String(i).padStart(2, '0') + String(j).padStart(2, '0')).firstChild.style.backgroundColor = 'rgba(42, 110, 219, 0.5)' }
