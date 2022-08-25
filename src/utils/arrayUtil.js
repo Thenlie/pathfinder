@@ -16,6 +16,14 @@ const create2dArray = (length, width) => {
     return arr2D;
 }
 
+const resetVisited = arr2D => {
+  for (let i = 0; i < arr2D.length; i++) {
+    for (let j = 0; j < arr2D[0].length; j++) {
+      arr2D[i][j].visited = false;
+    }
+  }
+}
+
 const checkPosition = (arr2D, x, y) => {
     // return value of (x, y) in 2D array
     if (arr2D[x]) {
@@ -36,4 +44,22 @@ const checkSurroundings = (arr2D, x, y) => {
     return arr;
 };
 
-export { create2dArray, checkPosition, checkSurroundings };
+const checkBorders = (arr2D, x, y) => {
+  // check for available directions to move
+  let arr = [];
+  if (!arr2D[x][y].top && !arr2D[x - 1][y].visited) {
+    arr.push('U');
+  }
+  if (!arr2D[x][y].bottom && !arr2D[x + 1][y].visited) {
+    arr.push('D');
+  }
+  if (!arr2D[x][y].left && !arr2D[x][y - 1].visited) {
+    arr.push('L');
+  }
+  if (!arr2D[x][y].right && !arr2D[x][y + 1].visited) {
+    arr.push('R');
+  }
+  return arr;
+};
+
+export { create2dArray, resetVisited, checkPosition, checkSurroundings, checkBorders };

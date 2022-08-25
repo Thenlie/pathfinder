@@ -29,6 +29,19 @@ const styleMaze = (arr2D) => {
     }
 }
 
+const styleMazeCells = (arr2D) => {
+  // remove borders according to 2D array
+  for (let i = 0; i < arr2D.length; i++) {
+    for (let j = 0; j < arr2D[0].length; j++) {
+      if (arr2D[i][j].visited) {
+        document.getElementById(
+          String(i).padStart(2, '0') + String(j).padStart(2, '0')
+        ).firstChild.style.backgroundColor = 'rgb(42, 110, 219)';
+      }
+    }
+  }
+};
+
 const animateCells = (x, y) => {
     let el = document.getElementById('s' + String(x).padStart(2, '0') + 's' + String(y).padStart(2, '0')).firstChild
     if (el.style.backgroundColor === "rgb(211, 211, 211)") {
@@ -58,4 +71,4 @@ const animateWalls = (x, y, stack, curr, prev) => {
     } 
 }
 
-export { clearMaze, styleMaze, animateCells, animateWalls };
+export { clearMaze, styleMaze, styleMazeCells, animateCells, animateWalls };
