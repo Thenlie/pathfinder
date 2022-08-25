@@ -1,5 +1,6 @@
 <script setup>
 import { checkBorders } from '../utils/arrayUtil';
+import { styleMazeCells } from '../utils/mazeUtil';
 </script>
 
 <script>
@@ -7,12 +8,21 @@ export default {
   name: 'Solver',
   props: { length: Number, width: Number, mazeArr: Array, page: Number },
   methods: {
-    solveMaze(arr2D, x, y, length, width) {
+    async solveMaze(arr2D, x, y, length, width) {
       arr2D[x][y].visited = true;
-      path.push(arr2D[x][y]);
 
       // check for end of maze
       if (x === length - 1 && y === width - 1) {
+        console.log('end');
+        console.log(arr2D[0][0].visited);
+        for (let i = 0; i < x + 1; i++) {
+          for (let j = 0; j < y + 1; j++) {
+            if (arr2D[i][j].visited === true) {
+              this.path.push(JSON.parse(JSON.stringify(arr2D[i][j])));
+            }
+          }
+        }
+        styleMazeCells(arr2D);
         return;
       }
 
@@ -33,8 +43,6 @@ export default {
             case 'L':
               this.solveMaze(arr2D, x, y - 1, this.length, this.width);
               break;
-            default:
-              break;
           }
           opts.splice(opts.indexOf(opt), 1);
         }
@@ -46,6 +54,7 @@ export default {
   data() {
     return {
       pageType: this.page,
+      path: [],
     };
   },
 };

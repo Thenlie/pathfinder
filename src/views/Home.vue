@@ -12,7 +12,7 @@
             <Dots />
         </div>
         <Generator :length="25" :width="25" :mazeArr="mazeArr" :page="1" @set="set" /> <!-- these values determine the size of the maze -->
-        <Solver :length="25" :width="25" :mazeArr="mazeArr" :page="1"/>
+        <Solver :length="25" :width="25" :mazeArr="mazeArr" :page="1" @set="set" />
         <Maze :length="25" :width="25" :mazeArr="mazeArr" :page="1"  />
     </main>
 </template>
