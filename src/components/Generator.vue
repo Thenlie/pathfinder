@@ -1,17 +1,14 @@
 <script setup>
     import { animateCells, animateCurrentNode, clearMaze, styleMaze, toggleButtons } from '../utils/mazeUtil';
     import { create2dArray, checkSurroundings, breakWalls, resetVisited } from '../utils/arrayUtil';
+    import { mazeArray } from '../lib/mazeArray';
 </script>
 
 <script>
     export default {
         name: 'Generator',
         props: { length: Number, width: Number, mazeArr: Array, page: Number },
-        emits: ['set'],
         methods: {
-            async set(arr) {
-                this.$emit('set', arr);
-            },
             generateMaze(page) {
                 let arr2D = [], stack = [], currX = 0, currY = 0;
                 toggleButtons(page, false);
@@ -66,8 +63,7 @@
                     styleMaze(arr2D);
                 }
                 resetVisited(arr2D);
-                this.set(arr2D);
-
+                mazeArray.set(arr2D);
             },
             clearCurrentMaze(page) {
                 clearMaze(this.length, this.width, page)
