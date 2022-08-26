@@ -8,11 +8,7 @@
     export default {
         name: 'Generator',
         props: { length: Number, width: Number, mazeArr: Array, page: Number },
-        emits: ['set'],
         methods: {
-            async set(arr) {
-                this.$emit('set', arr);
-            },
             generateMaze(page) {
                 let arr2D = [], stack = [], currX = 0, currY = 0;
                 toggleButtons(page, false);
@@ -67,7 +63,6 @@
                     styleMaze(arr2D);
                 }
                 resetVisited(arr2D);
-                this.set(arr2D);
                 mazeArray.set(arr2D);
             },
             clearCurrentMaze(page) {
