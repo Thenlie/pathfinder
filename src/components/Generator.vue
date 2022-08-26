@@ -10,7 +10,7 @@
         emits: ['set'],
         methods: {
             async set(arr) {
-                this.$emit('set', arr);
+                await this.$emit('set', arr);
             },
             generateMaze(page) {
                 let arr2D = [], stack = [], currX = 0, currY = 0;
