@@ -10,9 +10,9 @@
         emits: ['set'],
         methods: {
             async set(arr) {
-                await this.$emit('set', arr);
+                this.$emit('set', arr);
             },
-            async generateMaze(page) {
+            generateMaze(page) {
                 let arr2D = [], stack = [], currX = 0, currY = 0;
                 toggleButtons(page, false);
 
@@ -66,7 +66,7 @@
                     styleMaze(arr2D);
                 }
                 resetVisited(arr2D);
-                await this.set(arr2D);
+                this.set(arr2D);
 
             },
             clearCurrentMaze(page) {
