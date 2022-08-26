@@ -1,6 +1,7 @@
 <script setup>
     import { checkBorders } from '../utils/arrayUtil';
     import { styleMazeCells } from '../utils/mazeUtil';
+    import { mazeArray } from '../lib/mazeArray';
 </script>
 
 <script>
@@ -61,7 +62,7 @@ export default {
 
 <template>
     <div v-if="pageType === 1" class="maze-btn-container">
-        <button @click="solveMaze(this.mazeArr, 0, 0, this.length, this.width)">
+        <button @click="solveMaze(mazeArray.array, 0, 0, this.length, this.width)">
             Solve Maze
         </button>
     </div>

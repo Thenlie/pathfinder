@@ -1,6 +1,7 @@
 <script setup>
     import { animateCells, animateCurrentNode, clearMaze, styleMaze, toggleButtons } from '../utils/mazeUtil';
     import { create2dArray, checkSurroundings, breakWalls, resetVisited } from '../utils/arrayUtil';
+    import { mazeArray } from '../lib/mazeArray';
 </script>
 
 <script>
@@ -67,7 +68,7 @@
                 }
                 resetVisited(arr2D);
                 this.set(arr2D);
-
+                mazeArray.set(arr2D);
             },
             clearCurrentMaze(page) {
                 clearMaze(this.length, this.width, page)
