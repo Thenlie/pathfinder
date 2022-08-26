@@ -14,6 +14,7 @@ A program that creates and solves mazes automatically! This project was created 
   ## Table of Contents
 
   * [Usage](#usage)
+  * [Screenshot](#screenshot)
   * [License](#license)
   * [Contributing](#contributing)
   * [Questions](#questions)
@@ -34,6 +35,12 @@ To run the testing framework, use the following command:
 ```
 npm run test
 ```
+> NOTE: Tests can be viewed in `/src/__tests__`
+
+## Screenshot
+
+![pathfinder screenshot](https://user-images.githubusercontent.com/41388783/187005010-76ea5295-c4ef-4caa-8704-5fc2c55ecaff.png)
+
 > NOTE: Tests can be viewed in `/src/__tests__`
 
 ## License
