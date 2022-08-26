@@ -55,6 +55,8 @@ export default {
         return {
             pageType: this.page,
             path: [],
+            length: this.length,
+            width: this.width
         };
     },
 };
@@ -62,7 +64,7 @@ export default {
 
 <template>
     <div v-if="pageType === 1" class="maze-btn-container">
-        <button @click="solveMaze(mazeArray.array, 0, 0, this.length, this.width)">
+        <button @click="solveMaze(mazeArray.array, 0, 0, length, width)">
             Solve Maze
         </button>
     </div>
