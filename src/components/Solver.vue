@@ -7,13 +7,13 @@
 <script>
 export default {
     name: 'Solver',
-    props: { length: Number, width: Number, mazeArr: Array, page: Number },
+    props: { page: Number },
     methods: {
-        async solveMaze(arr2D, x, y, length, width) {
+        async solveMaze(arr2D, x, y,) {
             arr2D[x][y].visited = true;
 
             // check for end of maze
-            if (x === length - 1 && y === width - 1) {
+            if (x === arr2D.length - 1 && y === arr2D[0].length - 1) {
                 this.path = []
                 for (let i = 0; i < x + 1; i++) {
                     for (let j = 0; j < y + 1; j++) {
@@ -32,16 +32,16 @@ export default {
                     let opt = opts[Math.floor(Math.random() * opts.length)];
                     switch (opt) {
                         case 'U':
-                            this.solveMaze(arr2D, x - 1, y, this.length, this.width);
+                            this.solveMaze(arr2D, x - 1, y);
                             break;
                         case 'R':
-                            this.solveMaze(arr2D, x, y + 1, this.length, this.width);
+                            this.solveMaze(arr2D, x, y + 1);
                             break;
                         case 'D':
-                            this.solveMaze(arr2D, x + 1, y, this.length, this.width);
+                            this.solveMaze(arr2D, x + 1, y);
                             break;
                         case 'L':
-                            this.solveMaze(arr2D, x, y - 1, this.length, this.width);
+                            this.solveMaze(arr2D, x, y - 1);
                             break;
                     }
                     opts.splice(opts.indexOf(opt), 1);
@@ -55,8 +55,6 @@ export default {
         return {
             pageType: this.page,
             path: [],
-            l: this.length,
-            w: this.width
         };
     },
 };
@@ -64,7 +62,7 @@ export default {
 
 <template>
     <div v-if="pageType === 1" class="maze-btn-container">
-        <button @click="solveMaze(mazeArray.array, 0, 0, l, w)">
+        <button @click="solveMaze(mazeArray.array, 0, 0)">
             Solve Maze
         </button>
     </div>

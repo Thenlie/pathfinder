@@ -14,7 +14,7 @@
         </div>
         <div class="btn-container">
             <Generator :length="25" :width="25" :mazeArr="mazeArray.array" :page="1" /> <!-- these values determine the size of the maze -->
-            <Solver :length="25" :width="25" :mazeArr="mazeArray.array" :page="1" />
+            <Solver :page="1" />
         </div>
         <Maze :length="25" :width="25" :mazeArr="mazeArray.array" :page="1"  />
     </main>
