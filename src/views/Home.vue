@@ -11,12 +11,12 @@
     export default {
         name: 'Home',
         data() {
-            return { key: 0 }
+            return { componentKey: 0 }
         },
         methods: {
             updateMazeSize() {
                 mazeArray.set(create2dArray(document.getElementById('input-1').value, document.getElementById('input-2').value))
-                this.key++
+                this.componentKey++
                 document.getElementById('input-1').value = ''
                 document.getElementById('input-2').value = ''
             }
@@ -45,7 +45,7 @@
             <Generator :page="1" /> <!-- these values determine the size of the maze -->
             <Solver :page="1" />
         </div>
-        <Maze :page="1" :key="this.key" />
+        <Maze :page="1" :key="this.componentKey" />
     </main>
 </template>
 
