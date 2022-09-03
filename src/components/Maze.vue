@@ -1,26 +1,29 @@
+<script setup>
+    import { mazeArray } from '../lib/mazeArray';
+</script>
+
 <script>
     export default {
-        name: 'Generator',
-        props: { length: Number, width: Number, mazeArr: Array, page: Number },
+        name: 'Maze',
+        props: { page: Number },
         data() {
             return {
-                lengthArr: Array(this.length).fill(''),
-                widthArr: Array(this.width).fill(''),
-                lengthP: (1 / this.length) * 100,
-                widthP: (1 / this.width) * 100,
+                lengthArr: Array(mazeArray.array.length).fill(''),
+                widthArr: Array(mazeArray.array[0].length).fill(''),
+                lengthP: (1 / mazeArray.array.length) * 100,
+                widthP: (1 / mazeArray.array[0].length) * 100,
                 pageType: this.page
             }
         }
     }
 </script>
 
-
 <template>
     <section class="maze">
         <div v-for="(x, i) in lengthArr" :key="i" class="maze-row">
             <div v-for="(y, j) in widthArr" :key="i + j" class="maze-cell-container"  
             :id="pageType === 1 ? String(i).padStart(2, '0') + String(j).padStart(2, '0') : pageType === 2 ? 's' + String(i).padStart(2, '0') + 's' + String(j).padStart(2, '0') : 'd' + String(i).padStart(2, '0') + 'd' + String(j).padStart(2, '0')"
-            :style="{ width: lengthP + '%', 'padding-top': lengthP + '%'}">
+            :style="{ width: widthP + '%', 'padding-top': widthP + '%'}">
                 <div class="maze-cell">
                     {{ i === 0 && j === 0 && pageType == 1 ? 'S' : ' '}}
                     {{ i === lengthArr.length-1 && j === widthArr.length-1 && pageType == 1 ? 'F' : ' '}}
@@ -66,7 +69,7 @@
             width: 75%;
         }
     }
-
+    /*
     @media screen and (min-width: 1100px) {
         .maze {
             width: 50%;
@@ -77,5 +80,5 @@
         .maze {
             width: 40%;
         }
-    }
+    } */
 </style>
