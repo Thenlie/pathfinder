@@ -6,7 +6,6 @@
     import Maze from '../components/Maze.vue';
     import { mazeArray } from '../lib/mazeArray';
     import { create2dArray } from '../utils/arrayUtil';
-    const key = ref(0);
 </script>
 
 <script>
@@ -19,6 +18,9 @@
                 document.getElementById('input-1').value = ''
                 document.getElementById('input-2').value = ''
             }
+        },
+        data() {
+            return { key: 0 }
         }
     }
 </script>
