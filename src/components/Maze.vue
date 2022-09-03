@@ -18,7 +18,6 @@
     }
 </script>
 
-
 <template>
     <section class="maze">
         <div v-for="(x, i) in lengthArr" :key="i" class="maze-row">

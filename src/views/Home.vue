@@ -1,8 +1,26 @@
 <script setup>
+    import { ref } from 'vue';
     import Generator from '../components/Generator.vue';
     import Solver from '../components/Solver.vue';
     import Dots from '../components/Dots.vue';
     import Maze from '../components/Maze.vue';
+    import { mazeArray } from '../lib/mazeArray';
+    import { create2dArray } from '../utils/arrayUtil';
+    const key = ref(0);
+</script>
+
+<script>
+    export default {
+        name: 'Home',
+        methods: {
+            updateMazeSize() {
+                mazeArray.set(create2dArray(document.getElementById('input-1').value, document.getElementById('input-2').value))
+                this.key++
+                document.getElementById('input-1').value = ''
+                document.getElementById('input-2').value = ''
+            }
+        }
+    }
 </script>
 
 <template>
@@ -13,16 +31,16 @@
         </div>
         <div class="input-container">
             <label for="length">Length: </label>
-            <input name="length" />
+            <input id="input-1" name="length" type="number" />
             <label for="width">Width: </label>
-            <input name="width" />
-            <button>Apply</button>
+            <input id="input-2" name="width" type="number" />
+            <button @click="updateMazeSize">Apply</button>
         </div>
         <div class="btn-container">
             <Generator :page="1" /> <!-- these values determine the size of the maze -->
             <Solver :page="1" />
         </div>
-        <Maze :page="1"  />
+        <Maze :page="1" :key="this.key" />
     </main>
 </template>
 

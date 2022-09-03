@@ -3,6 +3,21 @@
     import Generator from '../components/Generator.vue';
     import SampleMaze from '../components/SampleMazes.vue'
     import Maze from '../components/Maze.vue';
+    import { mazeArray } from '../lib/mazeArray';
+    import hljsVuePlugin from "@highlightjs/vue-plugin";
+    import { create2dArray } from '../utils/arrayUtil';
+</script>
+
+<script>
+    export default {
+        name: 'App',
+        created: function() {
+            mazeArray.set(create2dArray(10, 10))
+        },
+        components: {
+            highlightjs: hljsVuePlugin.component
+        }
+    }
 </script>
 
 <template>
@@ -197,29 +212,6 @@ const breakWalls = () => {
         </back-to-top>
     </main>
 </template>
-
-<script>
-    import hljsVuePlugin from "@highlightjs/vue-plugin";
-
-    export default {
-        name: 'App',
-        // state
-        data() {
-            return {
-                mazeArr: [0]
-            }
-        },
-        methods: {
-            set(arr) {
-                this.mazeArr = arr;
-            },
-        },
-        components: {
-            Generator,
-            highlightjs: hljsVuePlugin.component
-        }
-    }
-</script>
 
 <style scoped>
     h2, h3 {
