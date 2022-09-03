@@ -3,7 +3,6 @@
     import Solver from '../components/Solver.vue';
     import Dots from '../components/Dots.vue';
     import Maze from '../components/Maze.vue';
-    import { mazeArray } from '../lib/mazeArray';
 </script>
 
 <template>
@@ -23,7 +22,7 @@
             <Generator :page="1" /> <!-- these values determine the size of the maze -->
             <Solver :page="1" />
         </div>
-        <Maze :length="10" :width="10" :mazeArr="mazeArray.array" :page="1"  />
+        <Maze :page="1"  />
     </main>
 </template>
 

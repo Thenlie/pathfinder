@@ -127,7 +127,7 @@ class MazeCell {
             <p>When we start our function we create an empty array, called <span class="code-snip">stack</span>. Every time we visit a new cell, we push that location (stored as an object) onto the stack. This keeps track of the path the node takes, in order. When we reach a dead end, we pop the current location off of the stack and return to the previous location. So, how do we know which cells have been visited if they are popped off the stack?</p>
             <p>For this, we can go back to our custom class. We created a property <span class="code-snip">visited</span> that can be used to track this state. As such, we simply need to call <span class="code-snip">MazeCell.visited</span> to check if we are able to go to this square and <span class="code-snip">MazeCell.visited = true;</span> to note that we have been there. Let's see this algorithm in action! Click the button below to see the algorithm work. It will be random every iteration.</p>
             <div class="generator-container">
-                <Maze :length="10" :width="10" :mazeArr="mazeArr" :page="2" />
+                <Maze :page="2" />
                 <Generator :page="2" /> <!-- these values determine the size of the maze  -->
             </div>
             <p>Now for the tricky part. To get the actual maze we need to remove some walls. Remember, we are starting with a grid, meaning every wall is in place. So, as our function progresses we are creating links between two cells. These cells can never have more than two links since a node can only go in and out of a cell once (other than backtracking). Additionally, we know the connections hit every single cell in the grid eventually. This means there is not only a path to the end, there is a path to every single cell without a doubt. So, we are guaranteed to get a far more interesting maze with more dead ends and no cut off sections.</p>
@@ -181,7 +181,7 @@ const breakWalls = () => {
             </div>
             <p>And there you have it! Let's see the styling in action. Below is an animated maze that removes the walls as it steps through the program, rather than all at the end. Click the button to watch the animation. The maze will be randomized every time.</p>
             <div class="generator-container">
-                <Maze :length="10" :width="10" :mazeArr="mazeArr" :page="3" />
+                <Maze :page="3" />
                 <Generator :page="3" /> <!-- these values determine the size of the maze  -->
             </div>
             <div class="dot-container">

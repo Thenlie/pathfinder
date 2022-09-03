@@ -1,13 +1,17 @@
+<script setup>
+    import { mazeArray } from '../lib/mazeArray';
+</script>
+
 <script>
     export default {
-        name: 'Generator',
-        props: { length: Number, width: Number, mazeArr: Array, page: Number },
+        name: 'Maze',
+        props: { page: Number },
         data() {
             return {
-                lengthArr: Array(this.length).fill(''),
-                widthArr: Array(this.width).fill(''),
-                lengthP: (1 / this.length) * 100,
-                widthP: (1 / this.width) * 100,
+                lengthArr: Array(mazeArray.array.length).fill(''),
+                widthArr: Array(mazeArray.array[0].length).fill(''),
+                lengthP: (1 / mazeArray.array.length) * 100,
+                widthP: (1 / mazeArray.array[0].length) * 100,
                 pageType: this.page
             }
         }
