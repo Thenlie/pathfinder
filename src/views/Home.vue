@@ -20,10 +20,10 @@
             <button>Apply</button>
         </div>
         <div class="btn-container">
-            <Generator :length="25" :width="25" :mazeArr="mazeArray.array" :page="1" /> <!-- these values determine the size of the maze -->
+            <Generator :page="1" /> <!-- these values determine the size of the maze -->
             <Solver :page="1" />
         </div>
-        <Maze :length="25" :width="25" :mazeArr="mazeArray.array" :page="1"  />
+        <Maze :length="10" :width="10" :mazeArr="mazeArray.array" :page="1"  />
     </main>
 </template>
 

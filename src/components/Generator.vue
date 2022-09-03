@@ -7,7 +7,7 @@
 <script>
     export default {
         name: 'Generator',
-        props: { length: Number, width: Number, mazeArr: Array, page: Number },
+        props: { page: Number },
         methods: {
             generateMaze(page) {
                 let arr2D = [], stack = [], currX = 0, currY = 0;
@@ -15,7 +15,7 @@
 
                 const createMazePath = async () => {
                     let c = 1;
-                    while (c < this.length * this.width) {
+                    while (c < mazeArray.array.length * mazeArray.array[0].length) {
                         c++;
                         if (page === 2) {
                             await animateCells(currX, currY);
@@ -47,7 +47,7 @@
                         }
                     }
                     // check for complete stack
-                    if (c === this.length * this.width) { 
+                    if (c === mazeArray.array.length * mazeArray.array[0].length) { 
                         arr2D[currX][currY].visited = true;
                         breakWalls(arr2D, currX, currY, stack, page);
                         if (page === 2) {
@@ -56,8 +56,8 @@
                         toggleButtons(page, true)
                     }
                 };
-                clearMaze(this.length, this.width, page);
-                arr2D = create2dArray(this.length, this.width);
+                clearMaze(mazeArray.array.length, mazeArray.array[0].length, page);
+                arr2D = create2dArray(mazeArray.array.length, mazeArray.array[0].length);
                 createMazePath();
                 if (page < 3) {
                     styleMaze(arr2D);
@@ -66,15 +66,15 @@
                 mazeArray.set(arr2D);
             },
             clearCurrentMaze(page) {
-                clearMaze(this.length, this.width, page)
+                clearMaze(mazeArray.array.length, mazeArray.array[0].length, page)
             }
         },
         data() {
             return {
-                lengthArr: Array(this.length).fill(''),
-                widthArr: Array(this.width).fill(''),
-                lengthP: (1 / this.length) * 100,
-                widthP: (1 / this.width) * 100,
+                lengthArr: Array(mazeArray.array.length).fill(''),
+                widthArr: Array(mazeArray.array[0].length).fill(''),
+                lengthP: (1 / mazeArray.array.length) * 100,
+                widthP: (1 / mazeArray.array[0].length) * 100,
                 pageType: this.page
             }
         }

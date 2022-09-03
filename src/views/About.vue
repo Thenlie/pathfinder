@@ -128,7 +128,7 @@ class MazeCell {
             <p>For this, we can go back to our custom class. We created a property <span class="code-snip">visited</span> that can be used to track this state. As such, we simply need to call <span class="code-snip">MazeCell.visited</span> to check if we are able to go to this square and <span class="code-snip">MazeCell.visited = true;</span> to note that we have been there. Let's see this algorithm in action! Click the button below to see the algorithm work. It will be random every iteration.</p>
             <div class="generator-container">
                 <Maze :length="10" :width="10" :mazeArr="mazeArr" :page="2" />
-                <Generator :length="10" :width="10" :mazeArr="mazeArr" :page="2" /> <!-- these values determine the size of the maze  -->
+                <Generator :page="2" /> <!-- these values determine the size of the maze  -->
             </div>
             <p>Now for the tricky part. To get the actual maze we need to remove some walls. Remember, we are starting with a grid, meaning every wall is in place. So, as our function progresses we are creating links between two cells. These cells can never have more than two links since a node can only go in and out of a cell once (other than backtracking). Additionally, we know the connections hit every single cell in the grid eventually. This means there is not only a path to the end, there is a path to every single cell without a doubt. So, we are guaranteed to get a far more interesting maze with more dead ends and no cut off sections.</p>
             <p>To do this we simply remove the walls where two cells are connected. A simple function was created to accomplish this task. This can be seen below:</p>
@@ -182,7 +182,7 @@ const breakWalls = () => {
             <p>And there you have it! Let's see the styling in action. Below is an animated maze that removes the walls as it steps through the program, rather than all at the end. Click the button to watch the animation. The maze will be randomized every time.</p>
             <div class="generator-container">
                 <Maze :length="10" :width="10" :mazeArr="mazeArr" :page="3" />
-                <Generator :length="10" :width="10" :mazeArr="mazeArr" :page="3" /> <!-- these values determine the size of the maze  -->
+                <Generator :page="3" /> <!-- these values determine the size of the maze  -->
             </div>
             <div class="dot-container">
                 <Dots />
