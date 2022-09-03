@@ -30,10 +30,14 @@
             <Dots />
         </div>
         <div class="input-container">
-            <label for="length">Length: </label>
-            <input id="input-1" name="length" type="number" />
-            <label for="width">Width: </label>
-            <input id="input-2" name="width" type="number" />
+            <div>
+                <label for="length">Height: </label>
+                <input id="input-1" name="length" type="number" />
+            </div>
+            <div>
+                <label for="width">Width: </label>
+                <input id="input-2" name="width" type="number" />
+            </div>
             <button @click="updateMazeSize">Apply</button>
         </div>
         <div class="btn-container">
@@ -51,6 +55,7 @@
     }
     .btn-container, .input-container {
         display: flex;
+        flex-wrap: wrap;
         justify-content: center;
         align-items: center;
     }
