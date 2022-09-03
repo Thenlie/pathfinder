@@ -1,5 +1,4 @@
 <script setup>
-    import { ref } from 'vue';
     import Generator from '../components/Generator.vue';
     import Solver from '../components/Solver.vue';
     import Dots from '../components/Dots.vue';
@@ -11,6 +10,9 @@
 <script>
     export default {
         name: 'Home',
+        data() {
+            return { key: 0 }
+        },
         methods: {
             updateMazeSize() {
                 mazeArray.set(create2dArray(document.getElementById('input-1').value, document.getElementById('input-2').value))
@@ -19,9 +21,6 @@
                 document.getElementById('input-2').value = ''
             }
         },
-        data() {
-            return { key: 0 }
-        }
     }
 </script>
 
