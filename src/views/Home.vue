@@ -45,7 +45,7 @@
             <Generator :page="1" /> <!-- these values determine the size of the maze -->
             <Solver :page="1" />
         </div>
-        <Maze :page="1" :key="this.componentKey" />
+        <Maze :page="1" :key="componentKey" />
     </main>
 </template>
 
