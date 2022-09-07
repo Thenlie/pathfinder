@@ -14,7 +14,8 @@
             return { componentKey: 0 }
         },
         methods: {
-            updateMazeSize() {
+            updateMazeSize(e) {
+                e.preventDefault()
                 mazeArray.set(create2dArray(document.getElementById('input-1').value, document.getElementById('input-2').value))
                 this.componentKey++
                 document.getElementById('input-1').value = ''
@@ -31,15 +32,13 @@
             <Dots />
         </div>
         <div class="input-container">
-            <div>
+            <form  @submit="updateMazeSize">
                 <label for="length">Height: </label>
-                <input id="input-1" name="length" type="number" />
-            </div>
-            <div>
+                <input id="input-1" name="length" type="number" min="5" max="50" />
                 <label for="width">Width: </label>
-                <input id="input-2" name="width" type="number" />
-            </div>
-            <button @click="updateMazeSize">Apply</button>
+                <input id="input-2" name="width" type="number" min="5" max="50"/>
+                <button type="submit">Apply</button>
+            </form>
         </div>
         <div class="btn-container">
             <Generator :page="1" /> <!-- these values determine the size of the maze -->
