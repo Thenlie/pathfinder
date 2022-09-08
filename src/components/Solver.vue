@@ -1,6 +1,6 @@
 <script setup>
     import { checkBorders } from '../utils/arrayUtil';
-    import { styleMazeCells } from '../utils/mazeUtil';
+    import { styleMazeCells, animateMazePath } from '../utils/mazeUtil';
     import { mazeArray } from '../lib/mazeArray';
 </script>
 
@@ -10,7 +10,7 @@ export default {
     props: { page: Number },
     methods: {
         async solveMaze(arr2D, x, y, mazePath) {
-            arr2D[x][y].visited = true;
+            arr2D[x][y].visited = true; // <-- not sure if this is necessary anymore
             mazePath.push(JSON.parse(JSON.stringify(arr2D[x][y])));
 
             // check for end of maze
@@ -23,7 +23,7 @@ export default {
                 //         }
                 //     }
                 // }
-                styleMazeCells(arr2D);
+                animateMazePath(this.path);
                 return;
             }
 
@@ -48,7 +48,7 @@ export default {
                     opts.splice(opts.indexOf(opt), 1);
                 }
             }
-            arr2D[x][y].visited = false;
+            arr2D[x][y].visited = false; // <-- not sure if this is necessary anymore
             mazePath.pop();
             return;
         },
