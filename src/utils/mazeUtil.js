@@ -42,6 +42,14 @@ const styleMazeCells = (arr2D) => {
   }
 };
 
+const animateMazePath = async (pathArray) => {
+  for (let i = 0; i < pathArray.length; i++) {
+    document.getElementById(String(pathArray[i].x).padStart(2, '0') + String(pathArray[i].y).padStart(2, '0')).firstChild.style.backgroundColor = 'rgba(42, 110, 219, 0.5)';
+    await new Promise(resolve => setTimeout(resolve, 25));
+  }
+  
+};
+
 const animateWalls = (x, y, stack, curr, prev) => {
     // remove walls of current and previous node
     let currEl = document.getElementById('d' + String(x).padStart(2, '0') + 'd' + String(y).padStart(2, '0'));
@@ -66,4 +74,4 @@ const toggleButtons = (page, state) => {
     else if (page === 3) { !state ? document.querySelector('.maze-btn-container-two').style.display = 'none' : document.querySelector('.maze-btn-container-two').style.display = 'flex' }
 }
 
-export { clearMaze, styleMaze, styleMazeCells, animateCells, animateWalls, animateCurrentNode, toggleButtons };
+export { clearMaze, styleMaze, styleMazeCells, animateMazePath, animateCells, animateWalls, animateCurrentNode, toggleButtons };
