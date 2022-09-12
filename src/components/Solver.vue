@@ -10,7 +10,6 @@ export default {
     props: { page: Number },
     methods: {
         async solveMaze() {
-            clearMazePath(this.path);
             const findMazePath = (arr2D, x, y, mazePath) => {
               arr2D[x][y].visited = true; // <-- not sure if this is necessary anymore
               mazePath.push(JSON.parse(JSON.stringify(arr2D[x][y])));
@@ -47,6 +46,7 @@ export default {
               return;
             }
             findMazePath(mazeArray.array, 0, 0, []);
+            clearMazePath(this.path);
             animateMazePath(this.path);
         },
     },
