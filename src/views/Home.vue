@@ -5,6 +5,7 @@
     import Maze from '../components/Maze.vue';
     import { mazeArray } from '../lib/mazeArray';
     import { create2dArray } from '../utils/arrayUtil';
+    import { clearMaze } from '../utils/mazeUtil';
 </script>
 
 <script>
@@ -16,6 +17,7 @@
         methods: {
             updateMazeSize(e) {
                 e.preventDefault()
+                clearMaze(mazeArray.array.length, mazeArray.array[0].length, 1);
                 mazeArray.set(create2dArray(document.getElementById('input-1').value, document.getElementById('input-2').value))
                 this.componentKey++
                 document.getElementById('input-1').value = ''

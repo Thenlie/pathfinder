@@ -1,4 +1,10 @@
+let timeoutRef = null;
+const wait = ms => new Promise(resolve => {
+  timeoutRef = setTimeout(resolve, ms);
+});
+
 const clearMaze = (l, w, t) => {
+    if (timeoutRef != null) clearTimeout(timeoutRef);
     // remove current maze styling
     for (let i = 0; i < l; i++) {
         for (let j = 0; j < w; j++) {
@@ -30,15 +36,29 @@ const animateCells = async (x, y) => {
     if (el.style.backgroundColor === "rgb(211, 211, 211)") { el.style.backgroundColor = "rgb(242, 87, 87)" } 
     else if (el.style.backgroundColor === "rgb(242, 87, 87)") { el.style.backgroundColor = "rgb(42, 110, 219)" } 
     else if (el.style.backgroundColor === "rgb(42, 110, 219)") { el.style.backgroundColor = "#F2E863" }
-    await new Promise(resolve => setTimeout(resolve, 75));
+    await wait(75);
 }
 
-const styleMazeCells = (arr2D) => {
+const styleMazePath = (arr2D) => {
   // style visited cells in maze
   for (let i = 0; i < arr2D.length; i++) {
     for (let j = 0; j < arr2D[0].length; j++) {
       if (arr2D[i][j].visited) { document.getElementById(String(i).padStart(2, '0') + String(j).padStart(2, '0')).firstChild.style.backgroundColor = 'rgba(42, 110, 219, 0.5)' }
     }
+  }
+};
+
+const clearMazePath = (pathArray) => {
+  for (let i = 0; i < pathArray.length; i++) {
+    document.getElementById(String(pathArray[i].x).padStart(2, '0') + String(pathArray[i].y).padStart(2, '0')).firstChild.style.backgroundColor = 'rgb(211, 211, 211)';
+  }
+}
+
+const animateMazePath = async (pathArray) => {
+  if (timeoutRef !== null) clearTimeout(timeoutRef);
+  for (let i = 0; i < pathArray.length; i++) {
+    document.getElementById(String(pathArray[i].x).padStart(2, '0') + String(pathArray[i].y).padStart(2, '0')).firstChild.style.backgroundColor = 'rgba(42, 110, 219, 0.5)';
+    await wait(25);
   }
 };
 
@@ -66,4 +86,4 @@ const toggleButtons = (page, state) => {
     else if (page === 3) { !state ? document.querySelector('.maze-btn-container-two').style.display = 'none' : document.querySelector('.maze-btn-container-two').style.display = 'flex' }
 }
 
-export { clearMaze, styleMaze, styleMazeCells, animateCells, animateWalls, animateCurrentNode, toggleButtons };
+export { clearMaze, styleMaze, styleMazePath, clearMazePath, animateMazePath, animateCells, animateWalls, animateCurrentNode, toggleButtons };
